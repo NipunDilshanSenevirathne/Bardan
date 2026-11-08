@@ -1,0 +1,172 @@
+{
+  "policy_id": "AE-AD-HEAT",
+  "version": "0.1.1-demo",
+  "status": "demonstration_only",
+  "jurisdiction": "Abu Dhabi, UAE",
+  "site_timezone": "Asia/Dubai",
+  "sources": [
+    {
+      "authority": "ADPHC",
+      "document": "ADOSH-SF Code of Practice 11.0 Safety in the Heat",
+      "edition": "V4.0",
+      "issued": "2024-07-15",
+      "mandatory": true
+    },
+    {
+      "authority": "ADPHC",
+      "document": "ADOSH-SF Technical Guideline Safety in the Heat",
+      "edition": "V4.0",
+      "issued": "2024-07-15",
+      "mandatory": false,
+      "url": "https://www.adphc.gov.ae/-/media/Project/ADPHC/ADPHC/PDF/OSHAD-SF/Technical-Guidelines/Safety-in-the-Heat--Eng.pdf"
+    }
+  ],
+  "notice": "DEMONSTRATION RULES, NOT YET REVIEWED. TWL zones (220/140/115 W/m2), the acclimatization schedules and the urine specific gravity limits follow the ADOSH-SF guideline V4.0 (2024); Table 1 is published as an image, so its values must be transcribed and checked by two qualified people before any real use. The WBGT planning bands and most rest minutes are demonstration values, not official limits. Forecasts are for planning only and never count as a live observation. Review sheet: docs/RULE-REVIEW.md.",
+  "approved_by": [],
+  "signature": "demo-unsigned",
+  "freshness_minutes": {
+    "twl_measured": 30,
+    "wbgt_measured": 30,
+    "official_external": 90,
+    "derived": 90
+  },
+  "twl_zones": [
+    {
+      "band": "unrestricted",
+      "min_exclusive": 220,
+      "max_inclusive": null
+    },
+    {
+      "band": "acclimatization",
+      "min_inclusive": 140,
+      "max_inclusive": 220
+    },
+    {
+      "band": "buffer",
+      "min_inclusive": 115,
+      "max_exclusive": 140
+    },
+    {
+      "band": "withdrawal",
+      "min_inclusive": null,
+      "max_exclusive": 115
+    }
+  ],
+  "wbgt_planning_bands_demo": [
+    {
+      "band": "unrestricted",
+      "max_exclusive": 28.0
+    },
+    {
+      "band": "acclimatization",
+      "min_inclusive": 28.0,
+      "max_exclusive": 31.0
+    },
+    {
+      "band": "buffer",
+      "min_inclusive": 31.0,
+      "max_exclusive": 33.0
+    },
+    {
+      "band": "withdrawal",
+      "min_inclusive": 33.0
+    }
+  ],
+  "acclimatization": {
+    "new_percent_by_day": [
+      20,
+      40,
+      60,
+      80,
+      100
+    ],
+    "experienced_percent_by_day": [
+      50,
+      60,
+      80,
+      100,
+      100
+    ],
+    "minimum_programme_days": 5
+  },
+  "controls_by_band": {
+    "unrestricted": [
+      "STANDARD_CONTROLS"
+    ],
+    "acclimatization": [
+      "EXTRA_BREAKS",
+      "ASSURED_FLUIDS"
+    ],
+    "buffer": [
+      "EXTRA_BREAKS",
+      "ASSURED_FLUIDS",
+      "SHADE_AND_VENTILATION",
+      "NO_LONE_WORK"
+    ],
+    "withdrawal": [
+      "ESSENTIAL_WORK_ONLY",
+      "NO_LONE_WORK",
+      "ASSURED_FLUIDS"
+    ]
+  },
+  "state_by_band": {
+    "unrestricted": "routine",
+    "acclimatization": "enhanced",
+    "buffer": "enhanced",
+    "withdrawal": "stop"
+  },
+  "rest_minutes_per_hour_demo": {
+    "unrestricted": 0,
+    "acclimatization": 10,
+    "buffer": 15,
+    "withdrawal": 40
+  },
+  "urgent_symptoms": [
+    "confusion",
+    "collapse",
+    "seizure",
+    "chest_pain",
+    "breathing_difficulty",
+    "slurred_speech",
+    "unresponsive"
+  ],
+  "concerning_symptoms": [
+    "headache",
+    "dizziness",
+    "nausea",
+    "cramps",
+    "weakness",
+    "muscle_pain_dark_urine"
+  ],
+  "task_deadlines_minutes": {
+    "WATER_RESTORE": 10,
+    "SHADE_EXTEND": 15,
+    "CHECK_WORKER": 5,
+    "ENHANCED_SCHEDULE": 30,
+    "STOP_AFFECTED_WORK": 0,
+    "NEW_WORKER_REVIEW": 60,
+    "AC_FIX": 1440,
+    "TRAINING_DUE": 14400
+  },
+  "evidence_required": {
+    "WATER_RESTORE": "E3",
+    "SHADE_EXTEND": "E3",
+    "CHECK_WORKER": "E2",
+    "ENHANCED_SCHEDULE": "E2",
+    "STOP_AFFECTED_WORK": "E3",
+    "NEW_WORKER_REVIEW": "E2",
+    "AC_FIX": "E3",
+    "TRAINING_DUE": "E2"
+  },
+  "permissions": {
+    "may_relax_legal_minimum": false,
+    "may_infer_fitness_from_pulse": false,
+    "may_override_clinician_restriction": false
+  },
+  "review": {
+    "state": "pending_qualified_review",
+    "compared_with": "ADOSH-SF Technical Guideline Safety in the Heat V4.0 (2024-07-15)",
+    "compared_on": "2026-11-08",
+    "sheet": "docs/RULE-REVIEW.md"
+  }
+}

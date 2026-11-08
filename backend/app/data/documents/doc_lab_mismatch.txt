@@ -1,0 +1,11 @@
+EXTERNAL LAB (FICTIONAL)
+Urine Chemistry
+
+Patient name:  Anwar Hossain
+Patient ID:    PT-811-XX
+
+Collected:     02 Aug 2025 08:10
+
+Test                                  Result     Units     Reference
+Urine albumin/creatinine ratio        410        mg/g      
+Method: not stated

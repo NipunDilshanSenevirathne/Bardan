@@ -1,0 +1,283 @@
+{
+ "generated": "2026-10-20",
+ "items": [
+  {
+   "name": "FastAPI",
+   "version": "0.151.0",
+   "licence": "MIT",
+   "use": "API framework",
+   "url": "https://github.com/fastapi/fastapi"
+  },
+  {
+   "name": "Starlette",
+   "version": "1.9.0",
+   "licence": "BSD-3-Clause",
+   "use": "ASGI toolkit (via FastAPI)",
+   "url": "https://github.com/encode/starlette"
+  },
+  {
+   "name": "Pydantic",
+   "version": "2.14.1",
+   "licence": "MIT",
+   "use": "Typed request and response schemas",
+   "url": "https://github.com/pydantic/pydantic"
+  },
+  {
+   "name": "Uvicorn",
+   "version": "0.54.0",
+   "licence": "BSD-3-Clause",
+   "use": "ASGI server",
+   "url": "https://github.com/encode/uvicorn"
+  },
+  {
+   "name": "HTTPX",
+   "version": "0.28.1",
+   "licence": "BSD-3-Clause",
+   "use": "HTTP client (forecast provider, AI adapter)",
+   "url": "https://github.com/encode/httpx"
+  },
+  {
+   "name": "jsonschema",
+   "version": "4.26.0",
+   "licence": "MIT",
+   "use": "Contract and AI-output schema checks",
+   "url": "https://github.com/python-jsonschema/jsonschema"
+  },
+  {
+   "name": "NumPy",
+   "version": "2.5.4",
+   "licence": "BSD-3-Clause",
+   "use": "Forecast model numerics",
+   "url": "https://numpy.org"
+  },
+  {
+   "name": "Google OR-Tools (CP-SAT)",
+   "version": "9.15",
+   "licence": "Apache-2.0",
+   "use": "Constraint solver for the shift planner",
+   "url": "https://github.com/google/or-tools"
+  },
+  {
+   "name": "thermofeel (ECMWF)",
+   "version": "2.3.0",
+   "licence": "Apache-2.0",
+   "use": "Liljegren WBGT calculation",
+   "url": "https://github.com/ecmwf/thermofeel"
+  },
+  {
+   "name": "tzdata",
+   "version": "2026.5",
+   "licence": "Apache-2.0",
+   "use": "Time-zone database fallback",
+   "url": "https://github.com/python/tzdata"
+  },
+  {
+   "name": "pytest",
+   "version": "9.1.1",
+   "licence": "MIT",
+   "use": "Release tests",
+   "url": "https://pytest.org"
+  },
+  {
+   "name": "React / React DOM",
+   "version": "19.3.1",
+   "licence": "MIT",
+   "use": "User interface",
+   "url": "https://react.dev"
+  },
+  {
+   "name": "React Router",
+   "version": "7.18.4",
+   "licence": "MIT",
+   "use": "Routing",
+   "url": "https://reactrouter.com"
+  },
+  {
+   "name": "TanStack Query",
+   "version": "5.104.5",
+   "licence": "MIT",
+   "use": "Data fetching and caching",
+   "url": "https://tanstack.com/query"
+  },
+  {
+   "name": "Recharts",
+   "version": "3.10.1",
+   "licence": "MIT",
+   "use": "Charts",
+   "url": "https://recharts.org"
+  },
+  {
+   "name": "Lucide icons",
+   "version": "1.60.0",
+   "licence": "ISC",
+   "use": "Icons",
+   "url": "https://lucide.dev"
+  },
+  {
+   "name": "Motion",
+   "version": "14.4.0",
+   "licence": "MIT",
+   "use": "Animation (respects reduced motion)",
+   "url": "https://motion.dev"
+  },
+  {
+   "name": "Tailwind CSS",
+   "version": "4.3.3",
+   "licence": "MIT",
+   "use": "Styling",
+   "url": "https://tailwindcss.com"
+  },
+  {
+   "name": "Vite",
+   "version": "8.3.4",
+   "licence": "MIT",
+   "use": "Build tool",
+   "url": "https://vite.dev"
+  },
+  {
+   "name": "vite-plugin-pwa / Workbox",
+   "version": "2.0.0 / 7.4.1",
+   "licence": "MIT",
+   "use": "Offline app shell",
+   "url": "https://vite-pwa-org.netlify.app"
+  },
+  {
+   "name": "node-qrcode",
+   "version": "1.5.4",
+   "licence": "MIT",
+   "use": "QR codes for share links",
+   "url": "https://github.com/soldair/node-qrcode"
+  },
+  {
+   "name": "clsx",
+   "version": "2.1.1",
+   "licence": "MIT",
+   "use": "Class names",
+   "url": "https://github.com/lukeed/clsx"
+  },
+  {
+   "name": "Plus Jakarta Sans (Fontsource)",
+   "version": "5.3.0",
+   "licence": "OFL-1.1",
+   "use": "Latin typeface",
+   "url": "https://github.com/tokotype/PlusJakartaSans"
+  },
+  {
+   "name": "IBM Plex Sans Arabic (Fontsource)",
+   "version": "5.3.0",
+   "licence": "OFL-1.1",
+   "use": "Arabic typeface",
+   "url": "https://github.com/IBM/plex"
+  },
+  {
+   "name": "TypeScript",
+   "version": "5.9.3",
+   "licence": "Apache-2.0",
+   "use": "Type checking",
+   "url": "https://www.typescriptlang.org"
+  },
+  {
+   "name": "Vitest",
+   "version": "5.0.5",
+   "licence": "MIT",
+   "use": "Device-engine conformance tests",
+   "url": "https://vitest.dev"
+  },
+  {
+   "name": "NASA POWER hourly data",
+   "version": "2025 season",
+   "licence": "Public data; attribution requested",
+   "use": "Weather replay for the scenario and the forecast backtest",
+   "url": "https://power.larc.nasa.gov"
+  },
+  {
+   "name": "Open-Meteo forecast API",
+   "version": "live",
+   "licence": "CC BY 4.0",
+   "use": "Live 72-hour forecast mode",
+   "url": "https://open-meteo.com"
+  },
+  {
+   "name": "Unsplash photos",
+   "version": "9 photos",
+   "licence": "Unsplash Licence",
+   "use": "Landing and persona photos (free, no watermarks)",
+   "url": "https://unsplash.com/license"
+  }
+ ],
+ "photos": [
+  {
+   "file": "hero-slab",
+   "title": "Seven construction workers on a slab",
+   "author": "Scott Blake",
+   "author_url": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVg",
+   "source_url": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVg",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "rebar-crew",
+   "title": "People working on a building",
+   "author": "Josue Isai Ramos Figueroa",
+   "author_url": "https://unsplash.com/photos/people-working-on-building-during-daytime-qvBYnMuNJ9A",
+   "source_url": "https://unsplash.com/photos/people-working-on-building-during-daytime-qvBYnMuNJ9A",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "sunset-crane",
+   "title": "Silhouetted construction workers at sunset",
+   "author": "Shivendu Shukla",
+   "author_url": "https://unsplash.com/photos/silhouetted-construction-workers-at-sunset-3yoTPuYR9ZY",
+   "source_url": "https://unsplash.com/photos/silhouetted-construction-workers-at-sunset-3yoTPuYR9ZY",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "dubai-skyline",
+   "title": "Burj Khalifa and highway in Dubai",
+   "author": "David Rodrigo",
+   "author_url": "https://unsplash.com/photos/burj-khalifa-and-highway-in-dubai-Fr6zexbmjmc",
+   "source_url": "https://unsplash.com/photos/burj-khalifa-and-highway-in-dubai-Fr6zexbmjmc",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "rebar-inspect",
+   "title": "Construction worker inspects rebar",
+   "author": "Toni Reed",
+   "author_url": "https://unsplash.com/photos/construction-worker-inspects-rebar-on-a-building-site-dSjrv4w1g1Q",
+   "source_url": "https://unsplash.com/photos/construction-worker-inspects-rebar-on-a-building-site-dSjrv4w1g1Q",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "rebar-aerial",
+   "title": "Two men working",
+   "author": "Etienne Girardet",
+   "author_url": "https://unsplash.com/photos/two-men-working-sgYamIzhAhg",
+   "source_url": "https://unsplash.com/photos/two-men-working-sgYamIzhAhg",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "crane-lift",
+   "title": "Crane lifting a concrete panel",
+   "author": "Elvir K",
+   "author_url": "https://unsplash.com/photos/gray-steel-frame-Xtyh5b5GGX4",
+   "source_url": "https://unsplash.com/photos/gray-steel-frame-Xtyh5b5GGX4",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "tower-crane",
+   "title": "Low-angle view of a tower crane",
+   "author": "James Sullivan",
+   "author_url": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+   "source_url": "https://unsplash.com/photos/low-angle-photography-of-gray-tower-crane-ESZRBtkQ_f8",
+   "licence": "Unsplash Licence"
+  },
+  {
+   "file": "frame-worker",
+   "title": "Construction worker on a building frame",
+   "author": "Josh Olalde",
+   "author_url": "https://unsplash.com/photos/construction-worker-in-hard-hat-on-building-frame-X1P1_EDNnok",
+   "source_url": "https://unsplash.com/photos/construction-worker-in-hard-hat-on-building-frame-X1P1_EDNnok",
+   "licence": "Unsplash Licence"
+  }
+ ],
+ "note": "Photos are used unmodified apart from resizing and format conversion; Unsplash photos carry no watermarks. No model names appear in the interface."
+}

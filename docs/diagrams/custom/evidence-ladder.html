@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 46px; }
+  h1 { font-size: 50px; }
+  .lead { font-size: 22px; max-width: 1150px; }
+  .stairs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; align-items: end; margin-top: 30px; }
+  .step { border-radius: 20px 20px 14px 14px; padding: 16px 16px 16px; border: 2px solid; border-top-width: 7px; display: flex; flex-direction: column; }
+  .tier { display: flex; align-items: baseline; gap: 10px; }
+  .tier .e { font-size: 38px; font-weight: 800; letter-spacing: -.02em; }
+  .tier .w { font-size: 19px; font-weight: 800; line-height: 1.15; }
+  .step p { font-size: 17.5px; line-height: 1.38; font-weight: 650; color: rgba(244,247,252,.84); margin-top: 10px; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .kinds span { font-size: 14.5px; font-weight: 750; padding: 4px 9px; border-radius: 8px; background: rgba(11,19,36,.55); border: 1.5px solid rgba(244,247,252,.16); color: rgba(244,247,252,.86); }
+  .who { margin-top: auto; padding-top: 12px; font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .s0 { border-color: rgba(148,163,184,.5); background: rgba(148,163,184,.08); min-height: 205px; } .s0 .e, .s0 .who { color: #CBD5E1; }
+  .s1 { border-color: rgba(96,165,250,.55); background: rgba(37,99,235,.10); min-height: 255px; } .s1 .e, .s1 .who { color: #93C5FD; }
+  .s2 { border-color: rgba(253,186,116,.7); background: rgba(249,115,22,.12); min-height: 320px; } .s2 .e, .s2 .who { color: #FDBA74; }
+  .s3 { border-color: rgba(34,211,238,.7); background: rgba(8,145,178,.16); min-height: 385px; } .s3 .e, .s3 .who { color: #67E8F9; }
+  .s4 { border-color: rgba(59,130,246,.85); background: linear-gradient(180deg, rgba(37,99,235,.30), rgba(37,99,235,.10)); min-height: 450px; } .s4 .e, .s4 .who { color: #BFDBFE; }
+  .closes { margin-top: 14px; display: flex; gap: 9px; align-items: center; font-size: 17px; font-weight: 800; color: #0B1324; background: #93C5FD; padding: 9px 12px; border-radius: 12px; }
+  .closes .ic { font-size: 20px; }
+  .base { height: 10px; border-radius: 0 0 10px 10px; margin-top: -2px; background: linear-gradient(90deg, rgba(148,163,184,.4), rgba(59,130,246,.8)); }
+  .axis { display: flex; justify-content: space-between; margin-top: 10px; font-size: 16px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,247,252,.5); }
+  .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
+  .rule { border-radius: 18px; padding: 16px 16px; background: rgba(244,247,252,.05); border: 2px solid rgba(244,247,252,.13); }
+  .rule .ic { font-size: 26px; }
+  .rule h4 { font-size: 19.5px; font-weight: 800; line-height: 1.25; margin-top: 8px; }
+  .rule p { font-size: 16.5px; font-weight: 650; color: rgba(244,247,252,.72); line-height: 1.38; margin-top: 6px; }
+  .r1 .ic { color: #93C5FD; } .r2 .ic { color: #FDBA74; } .r3 .ic { color: #67E8F9; } .r4 .ic { color: #FCA5A5; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">Proof, not paperwork</div>
+  <h1>A task is not proof.<br><span class="a">Verification needs the right evidence.</span></h1>
+  <p class="lead">Every protective action carries the evidence tier its rule requires. “Restore water” needs E3: someone must have seen the water. A supervisor’s tick is E2, so it can never verify that task on its own.</p>
+  <div class="stairs">
+    <div class="step s0"><div class="tier"><span class="e">E0</span><span class="w">Requested</span></div>
+      <p>The task exists, with an owner and a start-by time. Nobody has acted yet.</p>
+      <div class="who">Bardan creates it</div></div>
+    <div class="step s1"><div class="tier"><span class="e">E1</span><span class="w">Acknowledged</span></div>
+      <p>The owner has accepted the task. If nobody does by the start-by time, it escalates to HSE.</p>
+      <div class="kinds"><span>acknowledgement</span></div>
+      <div class="who">Owner</div></div>
+    <div class="step s2"><div class="tier"><span class="e">E2</span><span class="w">Attested</span></div>
+      <p>Someone says it was done. A supervisor’s word stays E2 even with a photo attached.</p>
+      <div class="kinds"><span>supervisor attestation</span><span>worker confirmation</span><span>review record</span><span>training record</span></div>
+      <div class="who">Supervisor · worker</div></div>
+    <div class="step s3"><div class="tier"><span class="e">E3</span><span class="w">Observed</span></div>
+      <p>Someone saw or measured it. Photos count only if taken in the app, in the same zone, within 30 minutes.</p>
+      <div class="kinds"><span>in-app photo</span><span>water-point check</span><span>shade capacity record</span><span>instrument record</span><span>room temperature record</span></div>
+      <div class="who">Anyone on site</div></div>
+    <div class="step s4"><div class="tier"><span class="e">E4</span><span class="w">Independently checked</span></div>
+      <p>Checked in person by someone outside the supervisor’s line: the HSE lead or the reviewer. A supervisor cannot give this tier.</p>
+      <div class="kinds"><span>independent spot check</span></div>
+      <div class="closes"><i data-icon="badge-check"></i>Can close a worker’s dispute</div>
+      <div class="who">HSE lead · reviewer</div></div>
+  </div>
+  <div class="base"></div>
+  <div class="axis"><span>Weaker evidence</span><span>Stronger evidence</span></div>
+  <div class="rules">
+    <div class="rule r1"><i data-icon="badge-check"></i><h4>Verified needs the required tier and no open dispute</h4><p>The server refuses anything less, whoever asks.</p></div>
+    <div class="rule r2"><i data-icon="megaphone"></i><h4>“This didn’t happen” reopens the task</h4><p>It escalates to HSE. The supervisor never sees who disputed it.</p></div>
+    <div class="rule r3"><i data-icon="user-round"></i><h4>Closing a dispute needs a fresh, independent check</h4><p>E3 or E4, made after the dispute by someone outside the supervisor’s line, with a written finding.</p></div>
+    <div class="rule r4"><i data-icon="history"></i><h4>The worker is told, and can challenge again</h4><p>A new dispute reopens the task. Every step is in the hash-chained audit log.</p></div>
+  </div>
+</div>
+</body></html>

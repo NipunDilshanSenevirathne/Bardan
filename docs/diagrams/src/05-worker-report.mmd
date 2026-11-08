@@ -1,0 +1,25 @@
+sequenceDiagram
+    autonumber
+    actor W as Anwar (worker)
+    participant P as Phone (PWA)
+    participant S as Bardan server
+    participant M as Bardan Intelligence
+    participant G as Guardian
+    actor SV as Joseph (supervisor)
+    W->>P: Says or types «ما فيني دوخة، بس الماي خلص»
+    P->>P: Offline phrase matcher checks for urgent words
+    alt urgent symptom words
+        P-->>W: Emergency card opens at once, no model or network
+    else everything else
+        P->>S: Report (text or voice clip)
+        S->>M: Intake prompt with no names or IDs
+        M-->>S: Intents with the words that support them
+        S->>G: Check the draft
+        G-->>S: Allowed, and nothing the matcher found is dropped
+        S-->>P: "I heard": water finished (yes) · not dizzy (no)
+        W->>P: Confirms. Nothing is saved before this
+        P->>S: Confirmed report
+        S->>S: Policy engine creates WATER_RESTORE (needs E3, start by 09:55)
+        S-->>SV: Mandatory task with an owner and a deadline
+    end
+    Note over P,S: Offline: the report waits in the outbox and sends itself later

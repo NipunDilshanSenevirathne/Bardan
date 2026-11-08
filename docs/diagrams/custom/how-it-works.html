@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 44px; }
+  h1 { font-size: 50px; }
+  .wrap { display: grid; grid-template-columns: 1fr 440px; gap: 30px; margin-top: 30px; }
+  .spine { position: relative; display: flex; flex-direction: column; gap: 14px; }
+  .spine::before { content: ""; position: absolute; left: 31px; top: 30px; bottom: 30px; width: 4px; border-radius: 4px;
+                   background: linear-gradient(180deg, #60A5FA, #22D3EE 35%, #F97316 70%, #A78BFA); opacity: .75; }
+  .st { position: relative; display: grid; grid-template-columns: 66px 1fr; gap: 16px; align-items: start; }
+  .n { width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; font-size: 28px; font-weight: 800;
+       background: #0B1324; border: 3px solid; z-index: 1; }
+  .body { border-radius: 20px; padding: 16px 20px 15px; background: rgba(244,247,252,.06); border: 2px solid rgba(244,247,252,.12); }
+  .top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .name { font-size: 25px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .when { font-size: 17px; font-weight: 800; padding: 4px 11px; border-radius: 999px; background: rgba(244,247,252,.10); color: rgba(244,247,252,.8); }
+  .who { margin-left: auto; display: flex; gap: 6px; }
+  .who span { font-size: 16px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
+  .body p { font-size: 20.5px; line-height: 1.38; color: rgba(244,247,252,.86); font-weight: 600; margin-top: 7px; }
+  .body p b { color: #fff; }
+  .s1 .n { border-color: #60A5FA; color: #93C5FD; } .s1 .name { color: #93C5FD; }
+  .s2 .n { border-color: #3B82F6; color: #93C5FD; } .s2 .name { color: #93C5FD; }
+  .s3 .n { border-color: #22D3EE; color: #67E8F9; } .s3 .name { color: #67E8F9; }
+  .s4 .n { border-color: #F97316; color: #FDBA74; } .s4 .name { color: #FDBA74; }
+  .s5 .n { border-color: #A78BFA; color: #C4B5FD; } .s5 .name { color: #C4B5FD; }
+  .r-w { background: rgba(249,115,22,.22); color: #FDBA74; } .r-s { background: rgba(59,130,246,.24); color: #BFDBFE; }
+  .r-h { background: rgba(34,211,238,.18); color: #A5F3FC; } .r-c { background: rgba(148,163,184,.22); color: #E2E8F0; }
+  .r-a { background: rgba(167,139,250,.22); color: #DDD6FE; } .r-x { background: rgba(244,247,252,.12); color: rgba(244,247,252,.8); }
+  .side { display: flex; flex-direction: column; gap: 16px; }
+  .lane { border-radius: 22px; padding: 20px 20px 16px; border: 2px solid; }
+  .lane h3 { font-size: 23px; font-weight: 800; line-height: 1.25; display: flex; gap: 10px; align-items: flex-start; }
+  .lane h3 .ic { margin-top: 3px; font-size: 26px; }
+  .lane ol { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 10px; counter-reset: k; }
+  .lane li { counter-increment: k; display: grid; grid-template-columns: 30px 1fr; gap: 10px; font-size: 19.5px; line-height: 1.35;
+             font-weight: 650; color: rgba(244,247,252,.88); }
+  .lane li::before { content: counter(k); width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center;
+                     font-size: 16px; font-weight: 800; margin-top: 1px; }
+  .voice { border-color: rgba(249,115,22,.8); background: linear-gradient(180deg, rgba(249,115,22,.20), rgba(249,115,22,.05)); }
+  .voice h3 { color: #FED7AA; } .voice li::before { background: rgba(249,115,22,.28); color: #FDBA74; }
+  .care { border-color: rgba(96,165,250,.7); background: linear-gradient(180deg, rgba(37,99,235,.22), rgba(8,145,178,.08)); }
+  .care h3 { color: #BFDBFE; } .care li::before { background: rgba(59,130,246,.28); color: #BFDBFE; }
+  .net { border-color: rgba(34,211,238,.7); background: linear-gradient(180deg, rgba(8,145,178,.24), rgba(8,145,178,.06)); }
+  .net h3 { color: #A5F3FC; } .net li::before { background: rgba(34,211,238,.24); color: #A5F3FC; }
+  .again { margin-top: 14px; margin-left: 82px; display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 700; color: rgba(244,247,252,.62); }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">How Bardan works</div>
+  <h1>One loop, from tomorrow’s forecast<br><span class="c">to proof it was done.</span></h1>
+  <div class="wrap">
+    <div>
+      <div class="spine">
+        <div class="st s1"><div class="n">1</div><div class="body">
+          <div class="top"><span class="name">Foresee</span><span class="when">18:00, the evening before</span><span class="who"><span class="r-x">Engine</span></span></div>
+          <p>A <b>72-hour heat forecast for each zone</b> (Liljegren WBGT) with a 90% interval. Planning uses the cautious upper end.</p></div></div>
+        <div class="st s2"><div class="n">2</div><div class="body">
+          <div class="top"><span class="name">Plan</span><span class="when">the same evening</span><span class="who"><span class="r-s">Supervisor</span></span></div>
+          <p>An optimiser (CP-SAT) moves <b>heavy work out of the worst hours</b>, fits breaks to the 20 shaded seats and keeps new workers within acclimatization. The rule engine re-checks it; <b>a named supervisor approves</b>.</p></div></div>
+        <div class="st s3"><div class="n">3</div><div class="body">
+          <div class="top"><span class="name">Live day</span><span class="when">from 07:00</span><span class="who"><span class="r-w">Worker</span></span></div>
+          <p><b>Live readings govern:</b> a harsher reading tightens the plan at once; a stale one is “not confirmed safe”. Each worker gets one clear action card in English or Arabic, read aloud.</p></div></div>
+        <div class="st s4"><div class="n">4</div><div class="body">
+          <div class="top"><span class="name">Act</span><span class="when">within minutes</span><span class="who"><span class="r-s">Supervisor</span><span class="r-h">HSE</span></span></div>
+          <p>Every required action becomes <b>a task with an owner, a start-by time and the evidence it needs</b>. A task nobody accepts in time escalates to HSE.</p></div></div>
+        <div class="st s5"><div class="n">5</div><div class="body">
+          <div class="top"><span class="name">Prove</span><span class="when">all day, and after</span><span class="who"><span class="r-h">HSE</span><span class="r-a">Reviewer</span></span></div>
+          <p><b>Verified only with the required evidence and no open dispute.</b> The compliance pack checks itself, and every step is kept in a hash-chained audit log.</p></div></div>
+      </div>
+      <div class="again"><i data-icon="refresh-ccw"></i>Each evening the loop starts again, with the week’s fairness in view.</div>
+    </div>
+    <div class="side">
+      <div class="lane voice">
+        <h3><i data-icon="megaphone"></i>When a worker presses “This didn’t happen”</h3>
+        <ol>
+          <li>The task reopens and goes to HSE.</li>
+          <li>The supervisor never sees who said it.</li>
+          <li>HSE closes it only with its own check, made after the dispute, and a written finding.</li>
+          <li>The worker is told what was checked and can challenge again.</li>
+        </ol>
+      </div>
+      <div class="lane care">
+        <h3><i data-icon="heart-pulse"></i>When a kidney test is abnormal</h3>
+        <ol>
+          <li>Lab import checks identity and units.</li>
+          <li>A clinician reviews it; the referral cannot close silently.</li>
+          <li>The employer sees only “clinic visit 14:00–16:00”.</li>
+          <li>The worker keeps a Kidney Passport and sees who opened the record.</li>
+        </ol>
+      </div>
+      <div class="lane net">
+        <h3><i data-icon="wifi-off"></i>When the phone has no network</h3>
+        <ol>
+          <li>The emergency card still opens, with AI off too.</li>
+          <li>Reports and alerts wait on the phone, even through a reload.</li>
+          <li>“Received by the server” and “seen by the site team” are shown separately, only when true.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

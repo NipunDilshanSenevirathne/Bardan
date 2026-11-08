@@ -1,0 +1,57 @@
+name: Something does not work
+description: A screen, a rule or a document that behaves differently from what it says.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for checking Bardan. Please use **synthetic data only**: never paste a real person's name, health
+        information or any secret (API keys, tokens). For a security problem, use the private route in
+        [SECURITY.md](../blob/main/SECURITY.md) instead of an issue.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - Worker phone
+        - Site console (supervisor or HSE)
+        - Clinic workspace
+        - Trust Centre or drill console
+        - Heat rules, plan or forecast
+        - Bardan Intelligence (AI)
+        - Offline or emergency
+        - Documentation or diagrams
+        - Deployment
+    validations:
+      required: true
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - English
+        - Arabic
+        - Both
+  - type: input
+    id: persona
+    attributes:
+      label: Persona and scene
+      placeholder: "e.g. Ravi, scene 4 (Water runs out)"
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you did
+      placeholder: "1. ...\n2. ...\n3. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected, and what happened
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else
+      description: Browser and device, AI on or off, network on or off, a screenshot, or the run ID from the AI trace.

@@ -1,0 +1,174 @@
+{
+ "run": {
+  "at": "2026-11-07T22:45:17Z",
+  "server_cpus": "1 core (taskset -c 0)",
+  "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "python": "3.13.16",
+  "note": "Local run, one server process, client on the same machine (no network latency, no cold start). The per-address limit was raised for the test; every simulated judge has its own sandbox."
+ },
+ "panel": {
+  "judges": 100,
+  "wall_s": 30.5,
+  "steps": {
+   "compliance": {
+    "n": 100,
+    "p50_ms": 336,
+    "p95_ms": 751,
+    "max_ms": 1548,
+    "errors": 0,
+    "retried": 0
+   },
+   "evaluation_report": {
+    "n": 100,
+    "p50_ms": 190,
+    "p95_ms": 526,
+    "max_ms": 1779,
+    "errors": 0,
+    "retried": 0
+   },
+   "forecast": {
+    "n": 100,
+    "p50_ms": 356,
+    "p95_ms": 1739,
+    "max_ms": 2738,
+    "errors": 0,
+    "retried": 0
+   },
+   "operations": {
+    "n": 100,
+    "p50_ms": 454,
+    "p95_ms": 1853,
+    "max_ms": 3782,
+    "errors": 0,
+    "retried": 0
+   },
+   "sandbox_state": {
+    "n": 100,
+    "p50_ms": 4224,
+    "p95_ms": 7717,
+    "max_ms": 8462,
+    "errors": 0,
+    "retried": 0
+   },
+   "scene_jump_with_planner": {
+    "n": 100,
+    "p50_ms": 8513,
+    "p95_ms": 10409,
+    "max_ms": 13579,
+    "errors": 0,
+    "retried": 0
+   },
+   "session": {
+    "n": 300,
+    "p50_ms": 998,
+    "p95_ms": 6196,
+    "max_ms": 9946,
+    "errors": 0,
+    "retried": 0
+   },
+   "speak_intake_offline": {
+    "n": 100,
+    "p50_ms": 758,
+    "p95_ms": 3974,
+    "max_ms": 5240,
+    "errors": 0,
+    "retried": 0
+   },
+   "task_event": {
+    "n": 300,
+    "p50_ms": 593,
+    "p95_ms": 2627,
+    "max_ms": 5328,
+    "errors": 0,
+    "retried": 0
+   },
+   "tasks": {
+    "n": 100,
+    "p50_ms": 619,
+    "p95_ms": 3646,
+    "max_ms": 7727,
+    "errors": 0,
+    "retried": 0
+   },
+   "trace": {
+    "n": 100,
+    "p50_ms": 339,
+    "p95_ms": 495,
+    "max_ms": 2182,
+    "errors": 0,
+    "retried": 0
+   },
+   "warm_up": {
+    "n": 1,
+    "p50_ms": 42,
+    "p95_ms": 42,
+    "max_ms": 42,
+    "errors": 0,
+    "retried": 0
+   },
+   "worker_report": {
+    "n": 100,
+    "p50_ms": 714,
+    "p95_ms": 6190,
+    "max_ms": 6809,
+    "errors": 0,
+    "retried": 0
+   },
+   "worker_today": {
+    "n": 100,
+    "p50_ms": 548,
+    "p95_ms": 7569,
+    "max_ms": 11299,
+    "errors": 0,
+    "retried": 0
+   }
+  }
+ },
+ "steady": {
+  "judges": 2,
+  "seconds": 2.2,
+  "requests": 24,
+  "requests_per_s": 11.0,
+  "steps": {
+   "operations": {
+    "n": 8,
+    "p50_ms": 15,
+    "p95_ms": 18,
+    "max_ms": 18,
+    "errors": 0,
+    "retried": 0
+   },
+   "sandbox_state": {
+    "n": 8,
+    "p50_ms": 13,
+    "p95_ms": 15,
+    "max_ms": 16,
+    "errors": 0,
+    "retried": 0
+   },
+   "session": {
+    "n": 2,
+    "p50_ms": 14,
+    "p95_ms": 13,
+    "max_ms": 15,
+    "errors": 0,
+    "retried": 0
+   },
+   "tasks": {
+    "n": 8,
+    "p50_ms": 12,
+    "p95_ms": 14,
+    "max_ms": 14,
+    "errors": 0,
+    "retried": 0
+   }
+  }
+ },
+ "first_errors": [],
+ "memory_mb": {
+  "start": 212.8,
+  "after_panel": 296.4,
+  "after_steady": 296.1,
+  "per_sandbox_full_tour": 0.84
+ }
+}

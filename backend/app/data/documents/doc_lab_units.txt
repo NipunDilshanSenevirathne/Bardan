@@ -1,0 +1,11 @@
+MOBILE SCREENING VAN (FICTIONAL)
+Point-of-care urine test
+
+Patient name:  Mizan Hossain
+Patient ID:    PT-136-SYN
+
+Collected:     05 Aug 2025 07:50
+
+Test                                  Result     Units     Reference
+ACR                                   7.2        mg/mmol   
+Method: point-of-care device

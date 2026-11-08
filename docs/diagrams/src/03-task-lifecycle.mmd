@@ -1,0 +1,34 @@
+stateDiagram-v2
+    direction TB
+    [*] --> assigned: rule, plan or worker report
+    assigned --> accepted: owner accepts
+    assigned --> escalated: not accepted by the start-by time
+    assigned --> cancelled: HSE only
+    accepted --> in_progress: started
+    in_progress --> reported_complete: reported done
+    reported_complete --> verified: evidence at the required tier
+    reported_complete --> disputed: worker says "This didn't happen"
+    disputed --> escalated: to the HSE owner, reporter hidden
+    escalated --> accepted: HSE accepts
+    accepted --> escalated
+    in_progress --> escalated
+    disputed --> in_progress
+    verified --> reopened: worker disputes later
+    reopened --> assigned
+    verified --> [*]
+    cancelled --> [*]
+    note right of disputed
+        Resolved only by someone outside
+        the supervisor's line, with their own
+        E3 or E4 check made after the dispute
+        and a written finding. The worker is
+        told and can challenge again.
+    end note
+    classDef good fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warnS fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef bad fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef base fill:#13203A,stroke:#3B82F6,stroke-width:2px,color:#F4F7FC
+    class verified good
+    class reported_complete warnS
+    class disputed, escalated, reopened bad
+    class assigned, accepted, in_progress base

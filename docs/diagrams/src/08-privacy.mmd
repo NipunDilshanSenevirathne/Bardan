@@ -1,0 +1,39 @@
+flowchart TB
+    subgraph ROLES["Who asks"]
+        direction TB
+        W["<b>Worker</b>"]:::worker
+        SV["<b>Supervisor</b>"]:::sup
+        HS["<b>HSE lead</b>"]:::hse
+        CL["<b>Clinician or nurse</b>"]:::clin
+        RV["<b>Reviewer</b>"]:::ext
+    end
+    subgraph STORES["What exists"]
+        direction TB
+        OPS["<b>Operational store</b><br/>plans · tasks · evidence"]:::store
+        LBL["<b>Operational label only</b><br/>'clinic visit 14:00–16:00'"]:::ok
+        CV["<b>Clinical vault</b><br/>results · referrals · care plans<br/>separate key and access path"]:::store
+        AGG["<b>Aggregates only</b><br/>small groups and complements suppressed<br/>no ranking of workers"]:::hse
+        AUD["<b>Audit log</b><br/>hash-chained · append-only"]:::store
+    end
+    W -->|"own record · consent · sees who looked"| CV
+    W --> OPS
+    SV --> OPS
+    SV --> LBL
+    SV -.->|"denied (403) and logged"| CV
+    HS --> OPS
+    HS -->|"copilot · Watch"| AGG
+    CL --> CV
+    CV -->|"minimal label"| LBL
+    RV -->|"de-identified AI trace"| AUD
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0
+    linkStyle 4 stroke:#EF4444,stroke-width:3px,color:#FCA5A5

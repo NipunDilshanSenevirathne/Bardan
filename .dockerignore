@@ -1,0 +1,18 @@
+# Keep the build context small and free of local state.
+.git
+.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+frontend/node_modules
+frontend/dist
+frontend/reports
+frontend/tsconfig.tsbuildinfo
+e2e
+**/.ruff_cache
+docs
+deploy
+*.md
+!README.md
+.env
+.env.*

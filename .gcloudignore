@@ -1,0 +1,17 @@
+# Files not uploaded by `gcloud run deploy --source .` (the Dockerfile builds the web app itself).
+.gcloudignore
+.git
+.gitignore
+.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+frontend/node_modules
+frontend/dist
+frontend/reports
+frontend/tsconfig.tsbuildinfo
+e2e
+**/.ruff_cache
+docs/
+.env
+.env.*

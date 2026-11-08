@@ -1,0 +1,10 @@
+# Runtime dependencies (pinned). Free and open-source licences only; see docs/LICENSES-AND-CREDITS.md.
+fastapi==0.151.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.1
+httpx==0.28.1
+jsonschema==4.26.0
+numpy==2.5.4
+ortools==9.15.6755
+thermofeel==2.3.0
+tzdata==2026.5

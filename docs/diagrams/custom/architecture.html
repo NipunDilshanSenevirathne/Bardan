@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 46px; }
+  h1 { font-size: 48px; }
+  .wrap { display: grid; grid-template-columns: 1fr 268px; gap: 20px; margin-top: 30px; }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .band { display: grid; grid-template-columns: 168px 1fr; border-radius: 20px; border: 2px solid; overflow: hidden; }
+  .lab { padding: 16px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .lab b { font-size: 19px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; line-height: 1.15; }
+  .lab span { font-size: 15.5px; font-weight: 700; color: rgba(244,247,252,.66); line-height: 1.3; }
+  .lab .ic { font-size: 26px; margin-bottom: 4px; }
+  .items { display: flex; flex-wrap: wrap; gap: 9px; padding: 13px 13px; align-content: center; }
+  .it { flex: 1 1 auto; border-radius: 13px; padding: 9px 12px; background: rgba(11,19,36,.55); border: 1.5px solid rgba(244,247,252,.14); }
+  .it b { display: block; font-size: 17.5px; font-weight: 800; color: #fff; line-height: 1.2; }
+  .it span { display: block; font-size: 14.5px; font-weight: 650; color: rgba(244,247,252,.66); margin-top: 3px; line-height: 1.3; }
+  .b-people .items { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .b-people { border-color: rgba(148,163,184,.5); } .b-people .lab { background: rgba(148,163,184,.14); color: #E2E8F0; }
+  .b-phone { border-color: rgba(249,115,22,.7); } .b-phone .lab { background: rgba(249,115,22,.18); color: #FDBA74; }
+  .b-api { border-color: rgba(96,165,250,.7); } .b-api .lab { background: rgba(37,99,235,.22); color: #BFDBFE; }
+  .b-decide { border-color: rgba(34,211,238,.7); } .b-decide .lab { background: rgba(8,145,178,.24); color: #A5F3FC; }
+  .b-assist { border-color: rgba(167,139,250,.75); border-style: dashed; } .b-assist .lab { background: rgba(124,58,237,.24); color: #DDD6FE; }
+  .b-keep { border-color: rgba(148,163,184,.55); } .b-keep .lab { background: rgba(71,85,105,.3); color: #E2E8F0; }
+  .b-keep .vault { border-color: rgba(239,68,68,.6); background: rgba(220,38,38,.14); }
+  .b-decide .it { border-color: rgba(34,211,238,.3); }
+  .side { display: flex; flex-direction: column; gap: 12px; }
+  .ext { border-radius: 20px; padding: 16px 16px; border: 2px dashed rgba(244,247,252,.35); background: rgba(244,247,252,.04); }
+  .ext h4 { font-size: 16px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,247,252,.6); }
+  .ext .e { margin-top: 11px; display: grid; grid-template-columns: 30px 1fr; gap: 8px; }
+  .ext .e .ic { font-size: 24px; margin-top: 2px; }
+  .ext .e b { font-size: 18px; font-weight: 800; display: block; }
+  .ext .e span { font-size: 15px; font-weight: 650; color: rgba(244,247,252,.68); line-height: 1.3; display: block; margin-top: 2px; }
+  .gov { border-style: solid; border-color: rgba(239,68,68,.55); background: rgba(220,38,38,.10); }
+  .gov h4 { color: #FCA5A5; }
+  .gov p { font-size: 15.5px; font-weight: 650; color: rgba(244,247,252,.78); line-height: 1.38; margin-top: 8px; }
+  .gov p b { color: #fff; }
+  .host { border-radius: 20px; padding: 16px; border: 2px solid rgba(59,130,246,.7); background: linear-gradient(180deg, rgba(37,99,235,.24), rgba(37,99,235,.06)); }
+  .host h4 { font-size: 16px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #BFDBFE; }
+  .host .big { font-size: 22px; font-weight: 800; margin-top: 8px; line-height: 1.2; }
+  .host ul { list-style: none; margin-top: 9px; display: flex; flex-direction: column; gap: 6px; }
+  .host li { font-size: 15.5px; font-weight: 700; color: rgba(244,247,252,.78); line-height: 1.3; padding-left: 16px; position: relative; }
+  .host li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: #60A5FA; }
+  .agree { border-radius: 20px; padding: 16px; border: 2px solid rgba(34,211,238,.6); background: rgba(8,145,178,.12); }
+  .agree .n { font-size: 40px; font-weight: 800; color: var(--cyan); letter-spacing: -.02em; }
+  .agree p { font-size: 16px; font-weight: 700; color: rgba(244,247,252,.78); line-height: 1.35; margin-top: 4px; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">Architecture</div>
+  <h1>One container. <span class="b">Two engines that agree.</span><br><span class="a">A phone that keeps working on its own.</span></h1>
+  <div class="wrap">
+    <div class="stack">
+      <div class="band b-people"><div class="lab"><i data-icon="users-round"></i><b>People</b><span>five roles, two languages</span></div>
+        <div class="items">
+          <div class="it"><b>Worker</b><span>phone, English or Arabic</span></div>
+          <div class="it"><b>Supervisor</b><span>site console</span></div>
+          <div class="it"><b>HSE lead</b><span>compliance, copilot, audit</span></div>
+          <div class="it"><b>Clinician and nurse</b><span>clinic workspace</span></div>
+          <div class="it"><b>Guest reviewer</b><span>Trust Centre, drills</span></div>
+        </div></div>
+      <div class="band b-phone"><div class="lab"><i data-icon="smartphone"></i><b>On the phone</b><span>React 19 web app, installable</span></div>
+        <div class="items">
+          <div class="it"><b>Device policy engine</b><span>TypeScript · same rules as the server</span></div>
+          <div class="it"><b>Emergency words and phrase matcher</b><span>no network, no AI</span></div>
+          <div class="it"><b>Offline outbox</b><span>survives a reload · sends itself later</span></div>
+          <div class="it"><b>Downloaded plan and safety content</b><span>service worker</span></div>
+        </div></div>
+      <div class="band b-api"><div class="lab"><i data-icon="network"></i><b>API</b><span>FastAPI · /v1 · 85 routes</span></div>
+        <div class="items">
+          <div class="it"><b>Signed capability tokens</b><span>one per persona</span></div>
+          <div class="it"><b>Role permissions</b><span>employers never hold clinical rights</span></div>
+          <div class="it"><b>Problem details</b><span>RFC 9457 errors</span></div>
+          <div class="it"><b>Idempotency keys</b><span>safe offline retries</span></div>
+          <div class="it"><b>A sandbox per judge</b><span>resets after an hour</span></div>
+        </div></div>
+      <div class="band b-decide"><div class="lab"><i data-icon="cpu"></i><b>Decide</b><span>deterministic, always on</span></div>
+        <div class="items">
+          <div class="it"><b>Policy engine</b><span>signed rule packs · 49-case suite</span></div>
+          <div class="it"><b>Foresee</b><span>Liljegren WBGT · backtested forecast</span></div>
+          <div class="it"><b>Plan</b><span>CP-SAT · independent re-check · certificate</span></div>
+          <div class="it"><b>Protection ledger</b><span>evidence tiers · disputes · escalation</span></div>
+          <div class="it"><b>Watch</b><span>CUSUM · small groups suppressed</span></div>
+        </div></div>
+      <div class="band b-assist"><div class="lab"><i data-icon="sparkles"></i><b>Assist</b><span>AI, optional</span></div>
+        <div class="items">
+          <div class="it"><b>Safety router</b><span>before any model</span></div>
+          <div class="it"><b>One AI adapter</b><span>six tiers · measured fallback</span></div>
+          <div class="it"><b>Guardian</b><span>18 checks on every draft</span></div>
+          <div class="it"><b>Seven bounded agents</b><span>signed manifests · budgets</span></div>
+          <div class="it"><b>Evaluation and red team</b><span>frozen English and Arabic sets</span></div>
+        </div></div>
+      <div class="band b-keep"><div class="lab"><i data-icon="database"></i><b>Keep</b><span>separate stores</span></div>
+        <div class="items">
+          <div class="it"><b>Operational store</b><span>tasks · plans · reports</span></div>
+          <div class="it vault"><b>Clinical vault</b><span>its own key and access path</span></div>
+          <div class="it"><b>Hash-chained audit log</b><span>any edit breaks the chain</span></div>
+          <div class="it"><b>AI trace</b><span>each person sees their own</span></div>
+        </div></div>
+    </div>
+    <div class="side">
+      <div class="host"><h4>Hosting</h4><div class="big">Google Cloud Run, one container</div>
+        <ul><li>Scales to zero; at most one instance</li><li>Runs as a non-root user</li><li>Secrets in Secret Manager</li><li>Cloud Build runs the release tests before every deploy</li></ul></div>
+      <div class="agree"><div class="n">49 / 49</div><p>policy cases decided the same way by the phone’s engine and the server’s engine (Decision replay).</p></div>
+      <div class="ext"><h4>Outside services</h4>
+        <div class="e"><i data-icon="sparkles" class="violet"></i><div><b>Gemini API</b><span>optional · free tier · synthetic data only</span></div></div>
+        <div class="e"><i data-icon="cloud-sun" class="cyan"></i><div><b>Open-Meteo</b><span>forecast for live mode</span></div></div>
+        <div class="e"><i data-icon="phone" class="amber"></i><div><b>Emergency dialler</b><span>a mock in the prototype</span></div></div>
+      </div>
+      <div class="ext gov"><h4>Data governance switch</h4>
+        <p>The deployment declares its data class. <b>Real data with a free-tier AI: every AI call is refused.</b> Real data needs a paid, no-training tier under a data processing agreement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

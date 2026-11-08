@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 44px; }
+  h1 { font-size: 50px; }
+  .lead { font-size: 22px; }
+  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; }
+  .t { position: relative; border-radius: 20px; padding: 20px 20px 18px; background: rgba(244,247,252,.06); border: 2px solid rgba(244,247,252,.12); overflow: hidden; }
+  .t::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 7px; background: var(--k); }
+  .t .cat { font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--k2); }
+  .t .v { font-size: 50px; font-weight: 800; letter-spacing: -.03em; line-height: 1; margin-top: 10px; color: #fff; font-variant-numeric: tabular-nums; }
+  .t .v small { font-size: 26px; font-weight: 800; letter-spacing: -.01em; margin-left: 4px; color: rgba(244,247,252,.85); }
+  .t .l { font-size: 18px; font-weight: 750; line-height: 1.32; margin-top: 10px; color: rgba(244,247,252,.92); }
+  .t .c { font-size: 15.5px; font-weight: 650; line-height: 1.35; margin-top: 7px; color: rgba(244,247,252,.62); }
+  .k-test { --k: #3B82F6; --k2: #93C5FD; } .k-fc { --k: #22D3EE; --k2: #A5F3FC; } .k-ai { --k: #A78BFA; --k2: #DDD6FE; }
+  .k-load { --k: #F97316; --k2: #FDBA74; } .k-watch { --k: #0891B2; --k2: #67E8F9; }
+  .notyet { margin-top: 18px; border-radius: 20px; padding: 18px 22px; border: 2px solid rgba(239,68,68,.55); background: rgba(220,38,38,.10);
+            display: grid; grid-template-columns: 250px 1fr; gap: 18px; align-items: center; }
+  .notyet h3 { font-size: 24px; font-weight: 800; color: #FECACA; line-height: 1.2; }
+  .notyet ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+  .notyet li { font-size: 17.5px; font-weight: 700; color: rgba(244,247,252,.86); display: grid; grid-template-columns: 24px 1fr; gap: 8px; line-height: 1.32; }
+  .notyet li .ic { color: #FCA5A5; font-size: 20px; margin-top: 1px; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">Measured, as it is</div>
+  <h1>The evidence, <span class="c">with the method next to every number.</span></h1>
+  <p class="lead">Release tests run on every build. The forecast was tested on data it never saw. The AI was run live, in English and Arabic.</p>
+  <div class="tiles">
+    <div class="t k-test"><div class="cat">Release tests</div><div class="v">577<small>/ 577</small></div><div class="l">automated tests pass</div><div class="c">439 server, 138 device</div></div>
+    <div class="t k-test"><div class="cat">Specification</div><div class="v">97<small>/ 97</small></div><div class="l">acceptance cases covered</div><div class="c">each linked to its tests</div></div>
+    <div class="t k-test"><div class="cat">Decision replay</div><div class="v">49<small>/ 49</small></div><div class="l">policy cases decided alike on phone and server</div><div class="c">TypeScript and Python engines</div></div>
+    <div class="t k-test"><div class="cat">Workflows</div><div class="v">7<small>/ 7</small></div><div class="l">scripted situations behave as designed</div><div class="c">run through the real code; behaviour, not speed</div></div>
+    <div class="t k-fc"><div class="cat">Forecast, held out</div><div class="v">89.1<small>%</small></div><div class="l">coverage of the 90% interval</div><div class="c">2,340 zone-hours never used for fitting</div></div>
+    <div class="t k-fc"><div class="cat">Forecast, held out</div><div class="v">0.76<small>°C</small></div><div class="l">mean error</div><div class="c">persistence 0.84 °C, climatology 0.90 °C</div></div>
+    <div class="t k-ai"><div class="cat">Live AI · reports</div><div class="v">100<small>%</small></div><div class="l">critical recall, no false reassurance</div><div class="c">44 reports, English, Arabic and mixed</div></div>
+    <div class="t k-ai"><div class="cat">Live AI · red team</div><div class="v">10<small>/ 10</small></div><div class="l">unsafe drafts blocked by the Guardian</div><div class="c">after one fix (9 / 10 before it)</div></div>
+    <div class="t k-ai"><div class="cat">Live AI · speed</div><div class="v">1.3<small>s</small></div><div class="l">median per report, free tier</div><div class="c">90th percentile 1.5 s</div></div>
+    <div class="t k-load"><div class="cat">Load, one CPU core</div><div class="v">270<small>req/s</small></div><div class="l">for 50 judges clicking for a minute</div><div class="c">95th percentile under 45 ms</div></div>
+    <div class="t k-load"><div class="cat">Load, one CPU core</div><div class="v">100</div><div class="l">judges arriving in the same second</div><div class="c">all finished, 0 errors</div></div>
+    <div class="t k-watch"><div class="cat">Watch, synthetic</div><div class="v">93<small>%</small></div><div class="l">of sudden supply failures caught within 2 days</div><div class="c">0.18 false alerts per site per month</div></div>
+  </div>
+  <div class="notyet">
+    <h3>Not yet, said plainly</h3>
+    <ul>
+      <li><i data-icon="circle-x"></i>No observed drill published yet (console and protocol ready)</li>
+      <li><i data-icon="circle-x"></i>The heat rules await a qualified reviewer (labelled “demo”)</li>
+      <li><i data-icon="circle-x"></i>No clinical partner, customer, approval or pilot yet</li>
+      <li><i data-icon="circle-x"></i>Synthetic site, people and lab results; replayed weather</li>
+    </ul>
+  </div>
+</div>
+</body></html>

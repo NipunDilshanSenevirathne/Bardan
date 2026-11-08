@@ -1,0 +1,14 @@
+[
+ {
+  "id": "doc_lab_anwar",
+  "title": "Anwar - repeat ACR (matches record)"
+ },
+ {
+  "id": "doc_lab_mismatch",
+  "title": "Wrong identity (should be quarantined)"
+ },
+ {
+  "id": "doc_lab_units",
+  "title": "Ambiguous units (mg/mmol)"
+ }
+]

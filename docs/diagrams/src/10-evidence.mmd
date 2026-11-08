@@ -1,0 +1,32 @@
+flowchart TB
+    subgraph CODE["Checked by code, on every build"]
+        direction LR
+        T1["<b>577 automated tests</b><br/>439 server · 138 device"]:::ok
+        T2["<b>97 / 97</b><br/>acceptance cases from<br/>the specification"]:::ok
+        T3["<b>49 / 49</b><br/>decision replay:<br/>phone engine = server engine"]:::engine
+        T4["<b>45 red-team attacks</b><br/>gate · Speak · copilot · agents"]:::ai
+    end
+    subgraph LIVE["Measured live"]
+        direction LR
+        L1["<b>Live AI · 8 Nov 2026</b><br/>100% critical recall<br/>0 false reassurance<br/>10/10 unsafe drafts blocked"]:::ai
+        L2["<b>Forecast backtest</b><br/>held-out 2025 season<br/>89.1% interval coverage<br/>MAE 0.76 °C vs 0.84 persistence"]:::engine
+        L3["<b>Load test</b><br/>270 requests a second<br/>on one core · p95 under 45 ms"]:::sup
+        L4["<b>Browser rehearsals</b><br/>guided tour · offline phone<br/>drill · every AI feature"]:::sup
+    end
+    subgraph NEXT["Not claimed yet"]
+        direction LR
+        N1["<b>Observed drills</b><br/>protocol and console ready<br/>none published"]:::warn
+        N2["<b>Field benefit</b><br/>to be measured in a pilot"]:::warn
+        N3["<b>Qualified rule review</b><br/>demo heat rules until then"]:::warn
+    end
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

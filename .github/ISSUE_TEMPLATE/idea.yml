@@ -1,0 +1,25 @@
+name: An idea or a pilot question
+description: A change that would make workers safer, or a question about piloting Bardan.
+labels: ["idea"]
+body:
+  - type: textarea
+    id: who
+    attributes:
+      label: Who it helps
+      description: Worker, supervisor, HSE lead, clinician or nurse, reviewer, or a pilot partner.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What should change, and why
+    validations:
+      required: true
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Bardan's rules
+      options:
+        - label: It keeps AI out of decisions that protect a person (AI proposes, engines decide, people approve).
+        - label: It shows the employer no health data and no sign of who spoke up.
+        - label: It works in English and Arabic.

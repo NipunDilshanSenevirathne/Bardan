@@ -1,0 +1,20 @@
+flowchart TB
+    T(["<b>Emergency</b> tapped<br/>or urgent words heard"]):::danger --> C["<b>Emergency card opens at once</b><br/>on-device engine and cached content<br/>works with AI and internet off"]:::danger
+    C --> S1["<b>Do this now</b><br/>stop work · call 998 · stay with the worker<br/>shade and cooling · no drinks if they cannot swallow"]:::danger
+    C --> D["<b>Dialler opened</b><br/>mock in the prototype"]:::warn
+    C --> Q["<b>Alert saved on this phone</b><br/>offline outbox · survives a reload"]:::store
+    Q -->|"network returns"| SRV["<b>Received by the Bardan server</b><br/>a real receipt"]:::ok
+    SRV --> ACK["<b>Seen by the site team</b><br/>only after someone presses 'I'm responding'"]:::ok
+    ACK --> H["<b>Help received</b><br/>confirmed by the worker or a buddy"]:::ok
+    C -.- N["<b>Never claims 'help is coming'</b><br/>each line turns on only when it is true"]:::warn
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

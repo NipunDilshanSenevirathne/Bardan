@@ -1,0 +1,29 @@
+flowchart TB
+    W(["<b>Worker reports</b><br/>voice · text · icons<br/>English or Arabic"]):::worker
+    F["<b>1 · Foresee</b><br/>72-hour zone heat forecast<br/>WBGT with a 90% interval"]:::engine
+    P["<b>2 · Plan</b><br/>CP-SAT moves heavy work out of<br/>harsh hours, fits breaks to shade,<br/>respects acclimatization"]:::engine
+    V["<b>3 · Check</b><br/>independent rule re-validation<br/>and capacity certificate"]:::engine
+    A["<b>4 · Approve</b><br/>the supervisor approves;<br/>activation refused if anything changed"]:::sup
+    L["<b>5 · Live day</b><br/>live readings beat the forecast;<br/>harsher means tighter at once"]:::engine
+    T["<b>6 · Act</b><br/>protective task with an owner,<br/>a deadline and an evidence level"]:::sup
+    E["<b>7 · Prove</b><br/>evidence E0 to E4; verified only<br/>at the required level"]:::ok
+    D["<b>8 · Dispute</b><br/>'This didn't happen' reopens and<br/>escalates; the reporter stays anonymous"]:::warn
+    R["<b>9 · Resolve</b><br/>only a fresh independent check<br/>made after the dispute"]:::hse
+    F --> P --> V --> A --> L --> T --> E
+    W --> T
+    E -->|"worker disagrees"| D
+    D --> R
+    R -->|"record changes"| E
+    T -->|"not accepted in time"| X["<b>Escalate</b><br/>to the HSE owner"]:::danger
+    X --> T
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

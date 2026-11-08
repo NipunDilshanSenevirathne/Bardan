@@ -1,0 +1,16 @@
+PARTNER LAB (FICTIONAL) - Abu Dhabi
+Clinical Chemistry Report
+
+Patient name:  Anwar Hussain
+Patient ID:    PT-118-SYN
+Employer ref:  not shown
+Specimen:      Spot urine, start of shift
+Collected:     28 Jul 2025 07:35
+Reported:      29 Jul 2025 11:02
+
+Test                                  Result     Units     Reference
+Urine albumin/creatinine ratio (ACR)  64         mg/g      < 30
+Method: immunoturbidimetric; creatinine enzymatic
+
+Comment: Single result. Confirmation per clinical protocol.
+Verified by: Lab scientist (fictional)

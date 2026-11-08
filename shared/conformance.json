@@ -1,0 +1,2132 @@
+{
+ "suite": "bardan-policy-conformance",
+ "version": "1.2.0",
+ "packs": [
+  "AE-AD-HEAT@0.1.1-demo",
+  "AE-FED-MIDDAY@2026.1-demo"
+ ],
+ "cases": [
+  {
+   "id": "C01",
+   "description": "TWL 230, acclimatized, outdoor heavy: unrestricted",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C02",
+   "description": "TWL 220 is the top of the acclimatization zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 220,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "acclimatization",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:acclimatization"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C03",
+   "description": "TWL 221 is unrestricted",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 221,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C04",
+   "description": "TWL 140 is the bottom of the acclimatization zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 140,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "acclimatization",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:acclimatization"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C05",
+   "description": "TWL 139 is the buffer zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 139,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "buffer",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "NO_LONE_WORK",
+     "SHADE_AND_VENTILATION"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:buffer"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C06",
+   "description": "TWL 115 is the bottom of the buffer zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 115,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "buffer",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "NO_LONE_WORK",
+     "SHADE_AND_VENTILATION"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:buffer"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C07",
+   "description": "TWL 114 is the withdrawal zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 114,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "withdrawal",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "ESSENTIAL_WORK_ONLY",
+     "NO_LONE_WORK"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:withdrawal"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C08",
+   "description": "New worker day 2 in the buffer zone stops heat work",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "new",
+     "day": 2
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 116,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "buffer",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "NO_LONE_WORK",
+     "SHADE_AND_VENTILATION",
+     "UNACCLIMATIZED_STOP_HEAT_WORK"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:buffer",
+     "AE-AD-HEAT:unacclimatized"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C09",
+   "description": "New worker day 2 in the acclimatization zone: no lone work, 40% exposure",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "new",
+     "day": 2
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 160,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "acclimatization",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "LIMIT_EXPOSURE",
+     "NO_LONE_WORK"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:acclimatization"
+    ],
+    "exposure_percent": 40
+   }
+  },
+  {
+   "id": "C10",
+   "description": "New worker day 1 on an unrestricted day: 20% exposure",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "new",
+     "day": 1
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "LIMIT_EXPOSURE",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 20
+   }
+  },
+  {
+   "id": "C11",
+   "description": "Returning worker day 2: 60% exposure",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "returning",
+     "day": 2
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "LIMIT_EXPOSURE",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 60
+   }
+  },
+  {
+   "id": "C12",
+   "description": "Midday window starts at 12:30 in season",
+   "input": {
+    "now": "2026-08-06T12:30:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T12:25:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C13",
+   "description": "12:29 is before the midday window",
+   "input": {
+    "now": "2026-08-06T12:29:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T12:25:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C14",
+   "description": "15:00 is after the midday window",
+   "input": {
+    "now": "2026-08-06T15:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T14:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C15",
+   "description": "14:59 is inside the midday window",
+   "input": {
+    "now": "2026-08-06T14:59:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T14:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C16",
+   "description": "14 June is outside the season",
+   "input": {
+    "now": "2026-06-14T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-06-14T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C17",
+   "description": "15 June is inside the season",
+   "input": {
+    "now": "2026-06-15T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-06-15T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C18",
+   "description": "15 September is inside the season",
+   "input": {
+    "now": "2026-09-15T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-09-15T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C19",
+   "description": "16 September is outside the season",
+   "input": {
+    "now": "2026-09-16T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-09-16T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C20",
+   "description": "Authorised exemption during the midday window",
+   "input": {
+    "now": "2026-08-06T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": {
+     "authorised": true,
+     "type": "technically_continuous_work"
+    }
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C21",
+   "description": "Indoor, shaded task during the midday window",
+   "input": {
+    "now": "2026-08-06T13:00:00+04:00",
+    "zone": {
+     "outdoor": false,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "light",
+     "outdoor": false
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C22",
+   "description": "Observation 45 minutes old is stale",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:15:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "freshness:missing_or_stale"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C23",
+   "description": "No observation at all",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": null,
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "freshness:missing_or_stale"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C24",
+   "description": "A forecast never counts as a live observation",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "wbgt",
+     "value": 29.0,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "forecast"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "freshness:missing_or_stale"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C25",
+   "description": "Urgent symptom with stale data is still an emergency",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": null,
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [
+     "confusion"
+    ],
+    "exemption": null
+   },
+   "expected": {
+    "state": "emergency",
+    "band": null,
+    "actions": [
+     "BUDDY_STAY",
+     "CALL_998",
+     "EMERGENCY_CARD",
+     "START_COOLING"
+    ],
+    "reasons": [
+     "emergency:urgent_symptom"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C26",
+   "description": "Urgent symptom during the midday window",
+   "input": {
+    "now": "2026-08-06T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [
+     "collapse"
+    ],
+    "exemption": null
+   },
+   "expected": {
+    "state": "emergency",
+    "band": null,
+    "actions": [
+     "BUDDY_STAY",
+     "CALL_998",
+     "EMERGENCY_CARD",
+     "START_COOLING"
+    ],
+    "reasons": [
+     "emergency:urgent_symptom"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C27",
+   "description": "Concerning symptom on an unrestricted day stops the activity",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [
+     "dizziness"
+    ],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "FIRST_AIDER_CHECK",
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_ACTIVITY"
+    ],
+    "reasons": [
+     "triage:concerning_symptom",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C28",
+   "description": "Muscle pain with dark urine needs urgent clinical assessment, no test first",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [
+     "muscle_pain_dark_urine"
+    ],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "FIRST_AIDER_CHECK",
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_ACTIVITY",
+     "URGENT_CLINICAL_ASSESSMENT"
+    ],
+    "reasons": [
+     "triage:concerning_symptom",
+     "triage:possible_muscle_breakdown",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C29",
+   "description": "Water unavailable stops affected outdoor work",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": false
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "RESTORE_WATER",
+     "STANDARD_CONTROLS",
+     "STOP_AFFECTED_WORK"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted",
+     "resources:water_unavailable"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C30",
+   "description": "Water unavailable does not stop an indoor shaded task",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": false,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "light",
+     "outdoor": false
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": false
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C31",
+   "description": "Clinician restriction label with a heavy task",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "shaded_light_duty"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "REASSIGN_SHADED_LIGHT",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "clinical:restriction",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C32",
+   "description": "Clinician restriction label with a light indoor task",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": false,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "light",
+     "outdoor": false
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "shaded_light_duty"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C33",
+   "description": "Measured WBGT 32.0 maps to the demonstration buffer band",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "wbgt",
+     "value": 32.0,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "buffer",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "NO_LONE_WORK",
+     "SHADE_AND_VENTILATION"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:wbgt_demo:buffer"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C34",
+   "description": "An observation from the future is not trusted",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T10:10:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "freshness:missing_or_stale"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C35",
+   "description": "New worker in the withdrawal zone",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "new",
+     "day": 3
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 100,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "withdrawal",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "ESSENTIAL_WORK_ONLY",
+     "NO_LONE_WORK",
+     "UNACCLIMATIZED_STOP_HEAT_WORK"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:withdrawal",
+     "AE-AD-HEAT:unacclimatized"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C36",
+   "description": "Midday window, water out and acclimatization zone combine",
+   "input": {
+    "now": "2026-08-06T13:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 145,
+     "observed_at": "2026-08-06T12:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": false
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "acclimatization",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "MOVE_TO_SHADE",
+     "RESTORE_WATER",
+     "STOP_AFFECTED_WORK",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:acclimatization",
+     "resources:water_unavailable"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C37",
+   "description": "Derived estimate 60 minutes old is still fresh",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 150,
+     "observed_at": "2026-08-06T09:00:00+04:00",
+     "provenance": "derived"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "acclimatization",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:acclimatization"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C38",
+   "description": "Official external index 100 minutes old is stale",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 150,
+     "observed_at": "2026-08-06T08:20:00+04:00",
+     "provenance": "official_external"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "freshness:missing_or_stale"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C39",
+   "description": "No-heat-work label stops a moderate outdoor task in shade",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "moderate",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "no_heat_work"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "REASSIGN_SHADED_LIGHT",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "clinical:restriction",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C40",
+   "description": "Shaded-light-duty label allows a moderate outdoor task in shade",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "moderate",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "shaded_light_duty"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C41",
+   "description": "No-heat-work label with a light indoor task",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": false,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "light",
+     "outdoor": false
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "no_heat_work"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C42",
+   "description": "Policy pack past its review date: assessment unavailable (T21)",
+   "input": {
+    "now": "2027-07-15T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2027-07-15T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "unavailable",
+    "band": null,
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN"
+    ],
+    "reasons": [
+     "policy:pack_review_overdue"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C43",
+   "description": "Urgent symptom with an overdue pack is still an emergency",
+   "input": {
+    "now": "2027-07-15T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2027-07-15T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [
+     "confusion"
+    ],
+    "exemption": null
+   },
+   "expected": {
+    "state": "emergency",
+    "band": null,
+    "actions": [
+     "BUDDY_STAY",
+     "CALL_998",
+     "EMERGENCY_CARD",
+     "START_COOLING"
+    ],
+    "reasons": [
+     "emergency:urgent_symptom"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C44",
+   "description": "Unknown workload: approved conservative plan (T12)",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "unknown",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "unrestricted",
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "unknown:workload_or_ppe",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C45",
+   "description": "Unknown PPE is treated as heavy work for a shaded-light-duty label",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": false
+    },
+    "task": {
+     "workload": "light",
+     "outdoor": true,
+     "ppe": "unknown"
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30,
+     "restriction": "shaded_light_duty"
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "FOLLOW_FALLBACK_PLAN",
+     "REASSIGN_SHADED_LIGHT",
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "unknown:workload_or_ppe",
+     "clinical:restriction",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C46",
+   "description": "Two fresh sources disagree: most protective band, all controls, conflict to a person (T15)",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 160,
+     "observed_at": "2026-08-06T09:55:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null,
+    "observations": [
+     {
+      "kind": "twl",
+      "value": 130,
+      "observed_at": "2026-08-06T09:30:00+04:00",
+      "provenance": "official_external"
+     }
+    ]
+   },
+   "expected": {
+    "state": "enhanced",
+    "band": "buffer",
+    "actions": [
+     "ASSURED_FLUIDS",
+     "EXTRA_BREAKS",
+     "NO_LONE_WORK",
+     "RESOLVE_SOURCE_CONFLICT",
+     "SHADE_AND_VENTILATION"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:buffer",
+     "conflict:sources_disagree"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C47",
+   "description": "A stale second source is ignored; no conflict",
+   "input": {
+    "now": "2026-08-06T10:00:00+04:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 130,
+     "observed_at": "2026-08-06T08:00:00+04:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null,
+    "observations": [
+     {
+      "kind": "twl",
+      "value": 230,
+      "observed_at": "2026-08-06T09:55:00+04:00",
+      "provenance": "measured"
+     }
+    ]
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  },
+  {
+   "id": "C48",
+   "description": "Device clock in UTC: 08:30Z is 12:30 at the site, inside the midday window (T18)",
+   "input": {
+    "now": "2026-08-06T08:30:00+00:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T08:25:00+00:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "stop",
+    "band": "unrestricted",
+    "actions": [
+     "MOVE_TO_SHADE",
+     "STANDARD_CONTROLS",
+     "STOP_OUTDOOR_WORK"
+    ],
+    "reasons": [
+     "AE-FED-MIDDAY:window",
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 0
+   }
+  },
+  {
+   "id": "C49",
+   "description": "Device clock in UTC: 11:00Z is 15:00 at the site, after the window (T18)",
+   "input": {
+    "now": "2026-08-06T11:00:00+00:00",
+    "zone": {
+     "outdoor": true,
+     "direct_sun": true
+    },
+    "task": {
+     "workload": "heavy",
+     "outdoor": true
+    },
+    "worker": {
+     "acclimatization": "acclimatized",
+     "day": 30
+    },
+    "observation": {
+     "kind": "twl",
+     "value": 230,
+     "observed_at": "2026-08-06T10:55:00+00:00",
+     "provenance": "measured"
+    },
+    "resources": {
+     "water_available": true
+    },
+    "symptoms": [],
+    "exemption": null
+   },
+   "expected": {
+    "state": "routine",
+    "band": "unrestricted",
+    "actions": [
+     "STANDARD_CONTROLS"
+    ],
+    "reasons": [
+     "AE-AD-HEAT:twl:unrestricted"
+    ],
+    "exposure_percent": 100
+   }
+  }
+ ]
+}

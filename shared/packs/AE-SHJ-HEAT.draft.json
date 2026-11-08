@@ -1,0 +1,17 @@
+{
+  "policy_id": "AE-SHJ-HEAT",
+  "version": "0.0.1-draft",
+  "status": "draft_needs_two_approvals",
+  "jurisdiction": "Sharjah, UAE",
+  "sources": [
+    {
+      "authority": "Sharjah Prevention and Safety Authority",
+      "document": "OSHJ-CoP-33 Safety in Heat",
+      "edition": "Version 2, July 2024",
+      "mandatory": true
+    }
+  ],
+  "notice": "Draft produced for demonstration of the policy-pack compiler. Every value must be checked against the official PDF and approved by two qualified people before activation.",
+  "rules": [],
+  "approvals": []
+}

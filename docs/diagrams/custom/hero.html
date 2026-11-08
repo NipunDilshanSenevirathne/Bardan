@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; height: 660px; padding: 52px 60px; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand img { width: 64px; height: 64px; border-radius: 16px; }
+  .brand .w { font-size: 30px; font-weight: 800; letter-spacing: .02em; }
+  .brand .ar { font-size: 30px; font-weight: 700; color: var(--cyan); }
+  .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(244,247,252,.35); }
+  .left { width: 820px; }
+  h1 { font-size: 64px; margin-top: 26px; }
+  .h2 { font-size: 34px; font-weight: 800; letter-spacing: -.015em; margin-top: 10px; color: rgba(244,247,252,.92); }
+  .lead { font-size: 22px; max-width: 790px; margin-top: 18px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; max-width: 800px; }
+  .chip { font-size: 18px; padding: 8px 14px; }
+  .chip b { color: var(--ink); }
+  .kick { position: absolute; top: 60px; right: 60px; text-align: right; }
+  .kick .k1 { font-size: 15px; font-weight: 800; letter-spacing: .16em; color: var(--cyan); text-transform: uppercase; }
+  .kick .k2 { font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 4px; }
+  .phones { position: absolute; right: 40px; top: 120px; width: 520px; height: 600px; }
+  .p1 { position: absolute; width: 238px; left: 18px; top: 58px; transform: rotate(-7deg); opacity: .96; }
+  .p2 { position: absolute; width: 258px; left: 238px; top: 6px; transform: rotate(5deg); }
+  .glow { position: absolute; width: 520px; height: 520px; right: -40px; top: 80px; border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(249,115,22,.30), rgba(249,115,22,0)); }
+  .tagA { position: absolute; left: -14px; top: 418px; transform: rotate(-7deg); }
+  .tagB { position: absolute; left: 262px; top: 462px; transform: rotate(5deg); }
+  .tag { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 12px; font-size: 17px;
+         font-weight: 800; background: #0B1324; border: 2px solid rgba(244,247,252,.18); box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="glow bleed"></div>
+  <div class="kick"><div class="k1">Future Health Digital Innovation Challenge 2026</div><div class="k2">Challenge 07 · Climate-Resilient Worker Health</div></div>
+  <div class="left">
+    <div class="brand"><img src="../../../frontend/public/icons/logo-512.png" alt=""><span class="w">BARDAN</span><span class="dot"></span><span class="ar">بَرْدًا</span></div>
+    <h1>Heat protection<br>that <span class="a">gets done.</span></h1>
+    <div class="h2">Kidney care that <span class="blue">stays with the worker.</span></div>
+    <p class="lead">Plans heat-safe work the evening before, turns each heat rule into a task that is assigned,
+      evidenced and escalated, and lets a worker say “this didn’t happen” without being named.</p>
+    <div class="chips">
+      <span class="chip"><i style="background:var(--blue)"></i><span><b class="num">577 / 577</b> tests pass</span></span>
+      <span class="chip"><i style="background:var(--cyan)"></i><span><b class="num">97 / 97</b> acceptance cases</span></span>
+      <span class="chip"><i style="background:var(--violet)"></i><span>AI optional · <b>works offline</b></span></span>
+      <span class="chip"><i style="background:var(--amber)"></i><span><b>English</b> · <b class="ar">العربية</b></span></span>
+      <span class="chip"><i style="background:var(--slate)"></i>Synthetic data only</span>
+    </div>
+  </div>
+  <div class="phones bleed">
+    <div class="phone p1"><img src="../../images/screens/phone-arabic-report-heard.jpg" alt=""></div>
+    <div class="phone p2"><img src="../../images/screens/phone-action-card-offline.jpg" alt=""></div>
+    <div class="tagA"><span class="tag"><i data-icon="mic" class="cyan"></i>Arabic voice report, heard back</span></div>
+    <div class="tagB"><span class="tag"><i data-icon="wifi-off" class="amber"></i>Works with no network</span></div>
+  </div>
+</div>
+</body></html>

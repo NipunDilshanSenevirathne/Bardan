@@ -1,0 +1,26 @@
+flowchart TB
+    Q["<b>A request</b><br/>question · report · lab document · rule text · plan to explain"]:::sup
+    Q --> S{"<b>Safety-critical?</b>"}:::danger
+    S -->|"urgent symptom words"| EM["<b>Emergency card at once</b><br/>no model · no network"]:::danger
+    S -->|"kidney · diagnosis · medicine"| AM["<b>Approved message</b><br/>a model may only pick its ID"]:::ok
+    S -->|"no"| R["<b>Retrieve approved content</b><br/>in-jurisdiction passages<br/>embeddings or lexical"]:::engine
+    R --> M["<b>Model adapter</b><br/>tiers: fast · audio · reasoning · speech<br/>measured fallback order · daily quotas · cache<br/>no names or IDs ever sent"]:::ai
+    M -->|"timeout · no quota · AI off"| FB["<b>Deterministic path</b><br/>approved template · phrase matcher<br/>copilot router · template parser"]:::engine
+    M --> G["<b>Bardan Guardian · gate-1.5.0</b><br/>schema · allowed actions · numeric grounding<br/>approved sources · forbidden claims · plain language<br/>policy floor · role · consent · limitations<br/>language · prompt injection · sensitive requests"]:::ai
+    G -->|"allowed"| OUT["<b>Shown to the person</b><br/>labelled 'Bardan Intelligence'<br/>checked by Guardian"]:::ok
+    G -->|"blocked"| TPL["<b>Approved template</b><br/>in the person's language"]:::ok
+    G --> TR["<b>AI trace</b><br/>inputs by reference · every check<br/>blocked drafts kept"]:::store
+    OUT -.->|"proposes only"| ENG["<b>Engines decide</b><br/>policy · plan · ledger"]:::engine
+    FB -.-> ENG
+    ENG --> PPL["<b>People approve</b><br/>supervisor · HSE · two approvals for rules<br/>clinician verifies every extracted field"]:::sup
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

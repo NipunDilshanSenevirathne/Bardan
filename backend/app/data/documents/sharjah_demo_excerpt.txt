@@ -1,0 +1,19 @@
+DEMONSTRATION EXCERPT - paraphrased for the Bardan prototype from public descriptions of the Sharjah heat-stress code (OSHJ-CoP-33 "Safety in Heat", Version 2, July 2024). This is NOT the official wording. A real pack must be compiled from the official PDF and transcribed by two qualified people.
+
+Section 5. Thermal Work Limit zones
+
+Clause 5.2. Where the Thermal Work Limit is below 115 W/m2, ordinary work shall not continue; only essential maintenance or rescue work may be carried out, and workers shall rehydrate at 1.5 litres per hour.
+
+Clause 5.3. Where the Thermal Work Limit is from 115 to 140 W/m2, shade and ventilation shall be provided, no employee shall work alone, and workers shall rehydrate at 1.2 litres per hour.
+
+Clause 5.4. Where the Thermal Work Limit is from 140 to 220 W/m2, acclimatized workers shall not work alone, and workers shall rehydrate at 1.0 litre per hour.
+
+Clause 5.5. Where the Thermal Work Limit is above 220 W/m2, there are no thermal stress limits, and workers shall rehydrate at 0.5 litres per hour.
+
+Table 3 (as extracted from the PDF):
+TWL 115-140 | unacclimat ed employ ees sh all n ot w ork | heavy 40/20 | light cont.
+TWL <115 | high r isk | 45/15 light ; 20/40 he avy
+
+Section 6. Definitions
+
+Clause 6.1. An unacclimatized employee means a new employee, or an employee who has been off work for more than 14 days through illness or leave.

@@ -1,0 +1,73 @@
+# Continuous delivery on Google Cloud Build: test, build, push, deploy to Cloud Run.
+#
+#   gcloud artifacts repositories create bardan --repository-format=docker --location=europe-west1   # once
+#   gcloud builds submit --config deploy/cloudbuild.yaml --substitutions=_REGION=europe-west1 .
+#
+# Run deploy/deploy.sh once first (it creates the token secret and grants the runtime account access).
+# The release tests run first; a failing test stops the pipeline before anything is deployed.
+# No machineType is set on purpose: the free build-minutes apply only to the default e2-standard-2.
+substitutions:
+  _REGION: europe-west1
+  _SERVICE: bardan
+  _REPO: bardan
+options:
+  logging: CLOUD_LOGGING_ONLY
+timeout: 1800s
+
+steps:
+  - id: device-engine-tests
+    name: node:22-bookworm-slim
+    dir: frontend
+    entrypoint: bash
+    args: ["-c", "npm ci --no-audit --no-fund && npx tsc -b --noEmit && npm run -s test:report"]
+
+  - id: server-tests
+    name: python:3.13-slim
+    dir: backend
+    entrypoint: bash
+    args: ["-c", "pip install -q -r requirements-dev.txt && python -m pytest --bardan-report -q -p no:cacheprovider"]
+
+  - id: build
+    name: gcr.io/cloud-builders/docker
+    args: ["build", "-t", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/${_SERVICE}:${BUILD_ID}", "."]
+
+  - id: push
+    name: gcr.io/cloud-builders/docker
+    args: ["push", "${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/${_SERVICE}:${BUILD_ID}"]
+
+  - id: deploy
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        SECRETS="BARDAN_TOKEN_SECRET=bardan-token-secret:latest"
+        # deploy/deploy.sh creates the manifest-signing secret on the first deploy; use it when present.
+        if gcloud secrets describe bardan-manifest-key >/dev/null 2>&1; then
+          SECRETS="$${SECRETS},BARDAN_MANIFEST_KEY=bardan-manifest-key:latest"
+        fi
+        # The Gemini key is optional: without it the app runs with AI off (approved templates).
+        if gcloud secrets describe gemini-api-key >/dev/null 2>&1; then
+          SECRETS="$${SECRETS},GEMINI_API_KEY=gemini-api-key:latest"
+        else
+          echo "No gemini-api-key secret visible to Cloud Build: deploying with AI off"
+        fi
+        gcloud run deploy ${_SERVICE} \
+          --image=${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/${_SERVICE}:${BUILD_ID} \
+          --region=${_REGION} \
+          --allow-unauthenticated \
+          --min-instances=0 \
+          --max-instances=1 \
+          --concurrency=80 \
+          --cpu=1 \
+          --memory=1Gi \
+          --timeout=60 \
+          --cpu-throttling \
+          --session-affinity \
+          --set-env-vars=BARDAN_DATA_CLASS=synthetic,BARDAN_AI_TIER=free,BARDAN_RATE_PER_MIN=900,LOG_LEVEL=INFO \
+          --set-secrets="$${SECRETS}" \
+          --labels=app=bardan,data=synthetic
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/${_SERVICE}:${BUILD_ID}

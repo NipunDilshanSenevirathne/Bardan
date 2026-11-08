@@ -1,0 +1,56 @@
+flowchart TB
+    subgraph PHONE["Phone or laptop · installable web app (PWA) · English and Arabic"]
+        direction LR
+        UI["<b>React 19 interface</b><br/>worker · site · clinic · HSE · Trust Centre"]:::sup
+        DE["<b>Device policy engine</b><br/>TypeScript · same rules as the server"]:::engine
+        LX["<b>Offline phrase matcher</b><br/>lexicon 1.1.0 · English and Arabic"]:::engine
+        OB["<b>Offline outbox</b><br/>reports and alerts wait, then sync"]:::store
+    end
+    subgraph RUN["One container on Google Cloud Run · FastAPI /v1"]
+        direction TB
+        API["<b>API</b> · capability tokens · roles<br/>RFC 9457 errors · rate limits · 85 endpoints"]:::sup
+        subgraph DET["Deterministic engines decide"]
+            direction LR
+            PE["<b>Policy engine</b><br/>signed heat-rule packs"]:::engine
+            FC["<b>Foresee</b><br/>WBGT · 72-hour zone forecast"]:::engine
+            PL["<b>Plan</b><br/>CP-SAT optimiser<br/>re-validation · certificate"]:::engine
+            LG["<b>Protection ledger</b><br/>tasks · evidence E0–E4<br/>disputes · escalation"]:::engine
+            WT["<b>Watch</b><br/>aggregate CUSUM signals"]:::engine
+        end
+        subgraph AIL["Bardan Intelligence proposes"]
+            direction LR
+            GD["<b>Bardan Guardian</b><br/>checks every draft"]:::ai
+            AD["<b>Model adapter</b><br/>fallback · quotas · cache"]:::ai
+            AG["<b>Bounded agents</b><br/>signed tools · budgets"]:::ai
+        end
+        subgraph DATA["Stores"]
+            direction LR
+            OPS["<b>Operational store</b><br/>plans · tasks · evidence"]:::store
+            CLV["<b>Clinical vault</b><br/>separate key and path"]:::store
+            CON["<b>Consent ledger</b>"]:::store
+            AUD["<b>Audit log</b><br/>hash-chained"]:::store
+        end
+    end
+    GEM["<b>Gemini API</b> · free tier<br/>optional · synthetic data only"]:::ext
+    OM["<b>Open-Meteo</b><br/>live forecast · optional"]:::ext
+    UI -->|"HTTPS /v1"| API
+    OB -->|"sync when online"| API
+    DE -.-|"same decisions · 49/49 replay"| PE
+    API --> DET
+    API --> AIL
+    API --> DATA
+    AG --> GD
+    GD --> AD
+    AD -.->|"optional"| GEM
+    FC -.->|"live mode"| OM
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

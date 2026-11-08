@@ -1,0 +1,4 @@
+{
+  "note": "Observed drill results published with this release. Each entry is an unedited export from the drill console; the app re-checks its hash and recomputes every result from the recorded moments before showing it. No drills have been published yet.",
+  "series": []
+}

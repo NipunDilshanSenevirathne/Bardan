@@ -1,0 +1,699 @@
+{
+ "version": "lexicon@1.1.0",
+ "note": "Offline phrase lexicon for English and Arabic (Gulf dialect, code-switching). One source for the server matcher (backend/app/ai/intake.py) and the device matcher (frontend/src/engine/lexicon.ts); a parity test keeps them identical.",
+ "neg_en": [
+  "aren't",
+  "arent",
+  "didn't",
+  "didnt",
+  "don't",
+  "dont",
+  "isn't",
+  "isnt",
+  "never",
+  "no",
+  "nor",
+  "not",
+  "wasn't",
+  "wasnt",
+  "without"
+ ],
+ "neg_ar": [
+  "بدون",
+  "لا",
+  "لست",
+  "لم",
+  "ليس",
+  "ليست",
+  "ما",
+  "ماعندي",
+  "مافي",
+  "مافيني",
+  "ماني",
+  "مب",
+  "مش",
+  "مو"
+ ],
+ "about_other": [
+  "friend",
+  "he",
+  "his",
+  "him",
+  "colleague",
+  "صاحبي",
+  "زميلي",
+  "هو",
+  "صديقي",
+  "ربيعي"
+ ],
+ "ar_prefixes": [
+  "وال",
+  "بال",
+  "فال",
+  "ال",
+  "و",
+  "ب",
+  "ف",
+  "ل"
+ ],
+ "phrases": [
+  [
+   "SYMPTOM_WEAKNESS",
+   [
+    [
+     "ما",
+     "فيني",
+     "حيل"
+    ],
+    [
+     "مافيني",
+     "حيل"
+    ],
+    [
+     "no",
+     "energy"
+    ],
+    [
+     "no",
+     "strength"
+    ]
+   ]
+  ],
+  [
+   "RESOURCE_WATER_UNAVAILABLE",
+   [
+    [
+     "no",
+     "water"
+    ],
+    [
+     "no",
+     "drinking",
+     "water"
+    ],
+    [
+     "out",
+     "of",
+     "water"
+    ],
+    [
+     "ما",
+     "في",
+     "ماي"
+    ],
+    [
+     "مافي",
+     "ماي"
+    ],
+    [
+     "ما",
+     "في",
+     "ماء"
+    ],
+    [
+     "مافي",
+     "ماء"
+    ],
+    [
+     "لا",
+     "يوجد",
+     "ماء"
+    ],
+    [
+     "ما",
+     "في",
+     "مي"
+    ],
+    [
+     "ما",
+     "فيه",
+     "ماي"
+    ]
+   ]
+  ],
+  [
+   "RESOURCE_SHADE_FULL",
+   [
+    [
+     "no",
+     "seat"
+    ],
+    [
+     "no",
+     "place",
+     "to",
+     "rest"
+    ],
+    [
+     "ما",
+     "في",
+     "مكان"
+    ],
+    [
+     "مافي",
+     "مكان"
+    ],
+    [
+     "no",
+     "shade"
+    ],
+    [
+     "ما",
+     "في",
+     "ظل"
+    ]
+   ]
+  ],
+  [
+   "CANNOT_TAKE_BREAK",
+   [
+    [
+     "can't",
+     "take",
+     "my",
+     "break"
+    ],
+    [
+     "cannot",
+     "take",
+     "my",
+     "break"
+    ],
+    [
+     "no",
+     "break"
+    ],
+    [
+     "not",
+     "allowed",
+     "to",
+     "rest"
+    ],
+    [
+     "ما",
+     "خلوني",
+     "ارتاح"
+    ],
+    [
+     "ما",
+     "في",
+     "استراحه"
+    ],
+    [
+     "ما",
+     "اقدر",
+     "اخذ",
+     "استراحه"
+    ]
+   ]
+  ],
+  [
+   "SYMPTOM_BREATHING",
+   [
+    [
+     "can't",
+     "breathe"
+    ],
+    [
+     "cannot",
+     "breathe"
+    ],
+    [
+     "ما",
+     "اقدر",
+     "اتنفس"
+    ],
+    [
+     "ما",
+     "يقدر",
+     "يتنفس"
+    ],
+    [
+     "short",
+     "of",
+     "breath"
+    ],
+    [
+     "hard",
+     "to",
+     "breathe"
+    ],
+    [
+     "difficulty",
+     "breathing"
+    ],
+    [
+     "trouble",
+     "breathing"
+    ],
+    [
+     "ضيق",
+     "تنفس"
+    ],
+    [
+     "ضيق",
+     "في",
+     "التنفس"
+    ]
+   ]
+  ],
+  [
+   "SYMPTOM_COLLAPSE",
+   [
+    [
+     "won't",
+     "wake"
+    ],
+    [
+     "not",
+     "waking"
+    ],
+    [
+     "ما",
+     "يصحى"
+    ],
+    [
+     "ما",
+     "يرد"
+    ],
+    [
+     "lost",
+     "consciousness"
+    ],
+    [
+     "فقد",
+     "الوعي"
+    ],
+    [
+     "passed",
+     "out"
+    ],
+    [
+     "passed",
+     "away"
+    ]
+   ]
+  ],
+  [
+   "SYMPTOM_CRAMPS",
+   [
+    [
+     "تشنجات",
+     "عضليه"
+    ],
+    [
+     "تشنج",
+     "عضلي"
+    ],
+    [
+     "شد",
+     "عضلي"
+    ],
+    [
+     "تقلصات",
+     "عضليه"
+    ],
+    [
+     "muscle",
+     "cramps"
+    ],
+    [
+     "muscle",
+     "cramp"
+    ]
+   ]
+  ],
+  [
+   "SYMPTOM_CONFUSION",
+   [
+    [
+     "talking",
+     "strangely"
+    ],
+    [
+     "not",
+     "making",
+     "sense"
+    ],
+    [
+     "won't",
+     "answer"
+    ],
+    [
+     "doesn't",
+     "know",
+     "where"
+    ],
+    [
+     "ما",
+     "يعرف",
+     "وين"
+    ],
+    [
+     "كلامه",
+     "غريب"
+    ],
+    [
+     "يتكلم",
+     "كلام",
+     "غريب"
+    ]
+   ]
+  ],
+  [
+   "SYMPTOM_SEIZURE",
+   [
+    [
+     "having",
+     "a",
+     "fit"
+    ]
+   ]
+  ]
+ ],
+ "cooccur": [
+  [
+   "AC_BROKEN_HOUSING",
+   [
+    "room",
+    "sleep",
+    "السكن",
+    "الغرفه",
+    "النوم",
+    "انام",
+    "سكن",
+    "غرفتي",
+    "غرفه",
+    "نوم"
+   ],
+   [
+    "ac",
+    "hot",
+    "الحر",
+    "المكيف",
+    "حاره",
+    "حر",
+    "خربان",
+    "مكيف"
+   ]
+  ],
+  [
+   "RESOURCE_WATER_UNAVAILABLE",
+   [
+    "cooler",
+    "water",
+    "البراده",
+    "الماء",
+    "الماي",
+    "براده",
+    "ماء",
+    "ماي",
+    "مي"
+   ],
+   [
+    "empty",
+    "finished",
+    "gone",
+    "over",
+    "انتهى",
+    "انتهي",
+    "خالص",
+    "خلاص",
+    "خلص",
+    "خلصت",
+    "فاضي",
+    "فاضيه"
+   ]
+  ],
+  [
+   "RESOURCE_COOLING_BROKEN",
+   [
+    "ac",
+    "cooler",
+    "fan",
+    "fans",
+    "التكييف",
+    "المروحه",
+    "المكيف",
+    "مروحه",
+    "مكيف"
+   ],
+   [
+    "broken",
+    "working",
+    "تشتغل",
+    "خربان",
+    "خربانه",
+    "خربت",
+    "عطلان",
+    "معطل",
+    "يشتغل"
+   ]
+  ]
+ ],
+ "keywords": {
+  "SYMPTOM_DIZZY": [
+   "dizziness",
+   "dizzy",
+   "light-headed",
+   "lightheaded",
+   "ادوخ",
+   "بدوخه",
+   "دائخ",
+   "دايخ",
+   "دوار",
+   "دوخة",
+   "دوخه"
+  ],
+  "SYMPTOM_HEADACHE": [
+   "headache",
+   "راسي",
+   "صداع"
+  ],
+  "SYMPTOM_NAUSEA": [
+   "nausea",
+   "nauseous",
+   "vomit",
+   "vomiting",
+   "استفراغ",
+   "استفرغ",
+   "ترجيع",
+   "غثيان",
+   "لوعه"
+  ],
+  "SYMPTOM_CRAMPS": [
+   "cramp",
+   "cramps",
+   "تقلصات",
+   "شد"
+  ],
+  "SYMPTOM_WEAKNESS": [
+   "exhausted",
+   "tired",
+   "weak",
+   "weakness",
+   "تعبان",
+   "ضعف",
+   "ضعيف",
+   "مرهق"
+  ],
+  "SYMPTOM_CONFUSION": [
+   "confused",
+   "confusion",
+   "delirious",
+   "disoriented",
+   "incoherent",
+   "slurred",
+   "ارتباك",
+   "مرتبك",
+   "مشوش",
+   "يخربط",
+   "يهذي"
+  ],
+  "SYMPTOM_COLLAPSE": [
+   "collapse",
+   "collapsed",
+   "faint",
+   "fainted",
+   "fainting",
+   "unconscious",
+   "اغماء",
+   "اغمي",
+   "انهار",
+   "انهارت",
+   "سقط",
+   "طاح",
+   "مغشي",
+   "مغمي"
+  ],
+  "SYMPTOM_SEIZURE": [
+   "convulsing",
+   "convulsion",
+   "convulsions",
+   "fitting",
+   "seizing",
+   "seizure",
+   "تتشنج",
+   "تشنج",
+   "تشنجات",
+   "صرع",
+   "متشنج",
+   "نوبه",
+   "يتشنج",
+   "ينتفض"
+  ],
+  "SYMPTOM_CHEST_PAIN": [
+   "chest",
+   "الصدر",
+   "صدر",
+   "صدري"
+  ],
+  "SYMPTOM_MUSCLE_DARK_URINE": [
+   "pee",
+   "urine",
+   "البول",
+   "بول",
+   "بولي"
+  ],
+  "HELP_REQUEST": [
+   "help",
+   "النجده",
+   "ساعدني",
+   "مساعده"
+  ]
+ },
+ "dark": [
+  "brown",
+  "cola",
+  "dark",
+  "بني",
+  "داكن",
+  "غامق",
+  "كولا"
+ ],
+ "chest_pain": [
+  "hurt",
+  "hurts",
+  "pain",
+  "ألم",
+  "الم",
+  "وجع",
+  "يألمني",
+  "يوجعني"
+ ],
+ "intents": {
+  "SYMPTOM_CONFUSION": {
+   "urgent": true,
+   "symptom": "confusion",
+   "icon": "brain",
+   "en": "Confused or talking strangely",
+   "ar": "ارتباك أو كلام غريب"
+  },
+  "SYMPTOM_COLLAPSE": {
+   "urgent": true,
+   "symptom": "collapse",
+   "icon": "person-standing",
+   "en": "Collapsed or fainted",
+   "ar": "سقوط أو إغماء"
+  },
+  "SYMPTOM_SEIZURE": {
+   "urgent": true,
+   "symptom": "seizure",
+   "icon": "zap",
+   "en": "Seizure",
+   "ar": "نوبة تشنج"
+  },
+  "SYMPTOM_CHEST_PAIN": {
+   "urgent": true,
+   "symptom": "chest_pain",
+   "icon": "heart-pulse",
+   "en": "Chest pain",
+   "ar": "ألم في الصدر"
+  },
+  "SYMPTOM_BREATHING": {
+   "urgent": true,
+   "symptom": "breathing_difficulty",
+   "icon": "wind",
+   "en": "Hard to breathe",
+   "ar": "صعوبة في التنفس"
+  },
+  "SYMPTOM_MUSCLE_DARK_URINE": {
+   "urgent": false,
+   "symptom": "muscle_pain_dark_urine",
+   "icon": "droplet",
+   "en": "Strong muscle pain or dark urine",
+   "ar": "ألم عضلي شديد أو بول داكن"
+  },
+  "SYMPTOM_DIZZY": {
+   "urgent": false,
+   "symptom": "dizziness",
+   "icon": "rotate-ccw",
+   "en": "Dizzy",
+   "ar": "دوخة"
+  },
+  "SYMPTOM_HEADACHE": {
+   "urgent": false,
+   "symptom": "headache",
+   "icon": "frown",
+   "en": "Headache",
+   "ar": "صداع"
+  },
+  "SYMPTOM_NAUSEA": {
+   "urgent": false,
+   "symptom": "nausea",
+   "icon": "waves",
+   "en": "Nausea",
+   "ar": "غثيان"
+  },
+  "SYMPTOM_CRAMPS": {
+   "urgent": false,
+   "symptom": "cramps",
+   "icon": "activity",
+   "en": "Cramps",
+   "ar": "تشنجات عضلية"
+  },
+  "SYMPTOM_WEAKNESS": {
+   "urgent": false,
+   "symptom": "weakness",
+   "icon": "battery-low",
+   "en": "Unusual weakness",
+   "ar": "ضعف غير معتاد"
+  },
+  "RESOURCE_WATER_UNAVAILABLE": {
+   "urgent": false,
+   "icon": "glass-water",
+   "en": "No drinking water",
+   "ar": "لا يوجد ماء للشرب"
+  },
+  "RESOURCE_SHADE_FULL": {
+   "urgent": false,
+   "icon": "umbrella",
+   "en": "Shade or rest area full",
+   "ar": "مكان الراحة أو الظل ممتلئ"
+  },
+  "RESOURCE_COOLING_BROKEN": {
+   "urgent": false,
+   "icon": "fan",
+   "en": "Cooling not working",
+   "ar": "التبريد لا يعمل"
+  },
+  "CANNOT_TAKE_BREAK": {
+   "urgent": false,
+   "icon": "timer-off",
+   "en": "I can't take my break",
+   "ar": "لا أستطيع أخذ استراحتي"
+  },
+  "AC_BROKEN_HOUSING": {
+   "urgent": false,
+   "icon": "bed",
+   "en": "Room AC broken",
+   "ar": "مكيف الغرفة معطل"
+  },
+  "HELP_REQUEST": {
+   "urgent": false,
+   "icon": "life-buoy",
+   "en": "I need help",
+   "ar": "أحتاج مساعدة"
+  }
+ }
+}

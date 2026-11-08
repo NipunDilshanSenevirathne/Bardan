@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 44px; }
+  h1 { font-size: 48px; }
+  .strip { position: relative; margin-top: 34px; height: 18px; border-radius: 999px;
+           background: linear-gradient(90deg, #2563EB 0%, #0891B2 14%, #22D3EE 22%, #F59E0B 38%, #F97316 52%, #EF4444 66%, #DC2626 80%, #F97316 100%); }
+  .ticks { position: relative; height: 44px; margin-top: 8px; }
+  .tick { position: absolute; transform: translateX(-50%); font-size: 17px; font-weight: 800; color: rgba(244,247,252,.72); white-space: nowrap; }
+  .tick::before { content: ""; position: absolute; left: 50%; top: -22px; width: 3px; height: 14px; background: rgba(244,247,252,.85); border-radius: 2px; transform: translateX(-50%); }
+  .tick.first { transform: translateX(-8px); }
+  .tick.first::before { left: 8px; transform: none; }
+  .scale { display: flex; justify-content: space-between; font-size: 16px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,247,252,.5); margin-top: -2px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 18px; }
+  .sc { border-radius: 20px; padding: 18px 18px 16px; background: rgba(244,247,252,.06); border: 2px solid rgba(244,247,252,.12);
+        border-top: 6px solid var(--h); display: flex; flex-direction: column; }
+  .hd { display: flex; align-items: center; gap: 10px; }
+  .no { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 18px; font-weight: 800; color: #0B1324; background: var(--h); }
+  .tm { font-size: 19px; font-weight: 800; color: var(--h2); font-variant-numeric: tabular-nums; }
+  .sc h3 { font-size: 23px; font-weight: 800; line-height: 1.2; margin-top: 12px; }
+  .sc p { font-size: 18.5px; line-height: 1.38; color: rgba(244,247,252,.80); font-weight: 600; margin-top: 7px; flex: 1; }
+  .who { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .who span { font-size: 15.5px; font-weight: 800; padding: 4px 10px; border-radius: 999px; background: rgba(244,247,252,.10); color: rgba(244,247,252,.85); }
+  .foot { margin-top: 20px; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">The demonstration day · eight scenes</div>
+  <h1>One day on a 40-worker site in Abu Dhabi, <span class="a">from the evening before to the clinic.</span></h1>
+  <div class="strip"></div>
+  <div class="ticks">
+    <span class="tick first" style="left:1.5%">18 Aug 18:00</span>
+    <span class="tick" style="left:16%">19 Aug 07:00</span>
+    <span class="tick" style="left:30%">09:05</span>
+    <span class="tick" style="left:41%">09:45</span>
+    <span class="tick" style="left:53%">10:30</span>
+    <span class="tick" style="left:64%">11:10</span>
+    <span class="tick" style="left:80%">12:40</span>
+    <span class="tick" style="left:96%">14:05</span>
+  </div>
+  <div class="grid">
+    <div class="sc" style="--h:#3B82F6;--h2:#93C5FD"><div class="hd"><span class="no">1</span><span class="tm">18 Aug · 18:00</span></div>
+      <h3>The evening before</h3><p>Joseph evaluates the draft plan, lets Bardan optimise it, and approves it.</p>
+      <div class="who"><span>Supervisor</span></div></div>
+    <div class="sc" style="--h:#22D3EE;--h2:#A5F3FC"><div class="hd"><span class="no">2</span><span class="tm">19 Aug · 07:00</span></div>
+      <h3>Shift start</h3><p>The plan is active. The day’s required actions become tasks with owners.</p>
+      <div class="who"><span>Everyone</span></div></div>
+    <div class="sc" style="--h:#F59E0B;--h2:#FCD34D"><div class="hd"><span class="no">3</span><span class="tm">09:05</span></div>
+      <h3>Zone A turns harsher</h3><p>The live reading beats the forecast. Ravi, a new worker, is moved to shaded work, with the reason.</p>
+      <div class="who"><span>Worker</span></div></div>
+    <div class="sc" style="--h:#F97316;--h2:#FDBA74"><div class="hd"><span class="no">4</span><span class="tm">09:45</span></div>
+      <h3>Water runs out</h3><p>Anwar reports it in Arabic. Heat work in Zone A stops until water is verified.</p>
+      <div class="who"><span>Worker</span><span>HSE</span></div></div>
+    <div class="sc" style="--h:#F97316;--h2:#FDBA74"><div class="hd"><span class="no">5</span><span class="tm">10:30</span></div>
+      <h3>A frightening question</h3><p>“Are my kidneys failing?” gets an approved answer, never a guess.</p>
+      <div class="who"><span>Worker</span></div></div>
+    <div class="sc" style="--h:#EF4444;--h2:#FCA5A5"><div class="hd"><span class="no">6</span><span class="tm">11:10</span></div>
+      <h3>Emergency drill</h3><p>AI and internet off: the emergency card still works and says only what really happened.</p>
+      <div class="who"><span>Worker</span><span>Site team</span></div></div>
+    <div class="sc" style="--h:#DC2626;--h2:#FCA5A5"><div class="hd"><span class="no">7</span><span class="tm">12:40</span></div>
+      <h3>Midday break</h3><p>The federal 12:30–15:00 outdoor-work break is enforced by the rule engine.</p>
+      <div class="who"><span>Everyone</span></div></div>
+    <div class="sc" style="--h:#F97316;--h2:#FDBA74"><div class="hd"><span class="no">8</span><span class="tm">14:05</span></div>
+      <h3>Clinic visit</h3><p>Results and a referral. The employer sees only “clinic visit 14:00–16:00”.</p>
+      <div class="who"><span>Clinician</span><span>Worker</span></div></div>
+  </div>
+  <div class="foot">Synthetic site, people and lab results. Weather replayed from 19 August 2025. Each scene is one click in the app’s scene picker.</div>
+</div>
+</body></html>

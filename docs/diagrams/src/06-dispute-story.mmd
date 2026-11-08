@@ -1,0 +1,17 @@
+sequenceDiagram
+    autonumber
+    actor SV as Joseph (supervisor)
+    participant L as Protection ledger
+    actor RV as Ravi (worker)
+    actor HS as Sara (HSE lead)
+    SV->>L: Accept, start, report complete (his attestation, E2)
+    L-->>RV: Restore water: reported complete
+    RV->>L: "This didn't happen"
+    L->>L: disputed, then escalated to HSE
+    L-->>SV: "A worker disputed this" (no name shown)
+    HS->>L: Accept, then resolve with a written finding
+    L-->>HS: Refused: needs her own fresh check made after the dispute
+    HS->>L: Independent spot check (E4) and finding
+    L->>L: Dispute resolved, task verified at E4
+    L-->>RV: "The HSE lead checked. Press again if it is still missing"
+    Note over SV,HS: Every step is written to the hash-chained audit log

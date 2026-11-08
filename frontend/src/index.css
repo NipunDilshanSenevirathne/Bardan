@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource/ibm-plex-sans-arabic/400.css";
+@import "@fontsource/ibm-plex-sans-arabic/500.css";
+@import "@fontsource/ibm-plex-sans-arabic/600.css";
+@import "@fontsource/ibm-plex-sans-arabic/700.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic tokens: vivid blue and cyan from the logo, sunset orange for action. No greens anywhere:
+   "normal / done" is a vivid sky blue and is always paired with an icon and words (never colour alone). */
+:root {
+  --canvas: #f4f7fc;
+  --surface: #ffffff;
+  --surface-2: #eef3fb;
+  --surface-3: #e3eaf6;
+  --line: #dbe3ef;
+  --ink: #0b1324;
+  --ink-2: #1e2a44;
+  --muted: #55657f;
+  --brand: #2563eb;
+  --brand-ink: #ffffff;
+  --brand-soft: #e0eaff;
+  --cyan: #0891b2;
+  --cyan-soft: #d9f6fd;
+  --sun: #ea580c;
+  --sun-bright: #f97316;
+  --sun-soft: #ffedd5;
+  --ok: #0369a1;
+  --ok-soft: #e0f2fe;
+  --warn: #b45309;
+  --warn-soft: #fef3c7;
+  --stop: #dc2626;
+  --stop-soft: #fee2e2;
+  --unknown: #475569;
+  --unknown-soft: #e2e8f0;
+  --band-u: #38bdf8;
+  --band-a: #facc15;
+  --band-b: #fb923c;
+  --band-w: #ef4444;
+  --shadow: 0 1px 2px rgb(11 19 36 / 0.06), 0 8px 24px -8px rgb(11 19 36 / 0.12);
+  --shadow-lg: 0 24px 60px -20px rgb(37 99 235 / 0.28), 0 8px 20px -8px rgb(11 19 36 / 0.16);
+}
+.dark {
+  --canvas: #060a14;
+  --surface: #0d1526;
+  --surface-2: #121c31;
+  --surface-3: #18243d;
+  --line: #22304d;
+  --ink: #eef3ff;
+  --ink-2: #cfd9ee;
+  --muted: #98a6c1;
+  --brand: #4f8dff;
+  --brand-ink: #04102a;
+  --brand-soft: #142852;
+  --cyan: #22d3ee;
+  --cyan-soft: #0d3340;
+  --sun: #fb8a3c;
+  --sun-bright: #fb923c;
+  --sun-soft: #3a2010;
+  --ok: #38bdf8;
+  --ok-soft: #0b2a40;
+  --warn: #fbbf24;
+  --warn-soft: #3a2c0a;
+  --stop: #f87171;
+  --stop-soft: #3e1414;
+  --unknown: #a3b1c9;
+  --unknown-soft: #1f2a40;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+  --shadow-lg: 0 30px 70px -24px rgb(79 141 255 / 0.35), 0 10px 30px -12px rgb(0 0 0 / 0.6);
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-cyan: var(--cyan);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-sun: var(--sun);
+  --color-sun-bright: var(--sun-bright);
+  --color-sun-soft: var(--sun-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-stop: var(--stop);
+  --color-stop-soft: var(--stop-soft);
+  --color-unknown: var(--unknown);
+  --color-unknown-soft: var(--unknown-soft);
+  --color-band-u: var(--band-u);
+  --color-band-a: var(--band-a);
+  --color-band-b: var(--band-b);
+  --color-band-w: var(--band-w);
+  --shadow-card: var(--shadow);
+  --shadow-float: var(--shadow-lg);
+  --font-sans: "Plus Jakarta Sans Variable", "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  /* Keep focused and scrolled-to elements clear of the sticky header and the phone's bottom bar
+     (WCAG 2.2, 2.4.11 Focus Not Obscured). */
+  html { -webkit-text-size-adjust: 100%; text-rendering: optimizeLegibility; scroll-padding-top: 5.5rem;
+         scroll-padding-bottom: 5.5rem; }
+  body {
+    @apply bg-canvas text-ink antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  [dir="rtl"] body, [lang="ar"] body { font-family: var(--font-arabic); letter-spacing: 0; }
+  :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 10px; }
+  button, [role="button"], a { cursor: pointer; }
+  ::selection { background: var(--brand-soft); }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .card { @apply rounded-2xl border border-line bg-surface shadow-card; }
+  .overline { @apply text-xs font-semibold uppercase tracking-[0.18em] text-sun; }
+  [dir="rtl"] .overline { letter-spacing: 0; }
+  .num { font-variant-numeric: tabular-nums; }
+  .glass { @apply bg-white/10 backdrop-blur-md border border-white/20; }
+  .link-arrow { @apply inline-flex items-center gap-2 text-sm font-semibold text-sun hover:gap-3 transition-all; }
+  .skeleton { @apply animate-pulse rounded-lg bg-surface-3; }
+  .scroll-thin { scrollbar-width: thin; }
+}
+
+.flip-rtl { }
+[dir="rtl"] .flip-rtl { transform: scaleX(-1); }
+
+/* In the Arabic interface, English source text (policy notices, labels from data) keeps correct punctuation:
+   each paragraph takes its bidi direction from its own first strong character, while alignment still follows
+   the page direction. */
+[dir="rtl"] :is(p, li, td, th, dd, dt, blockquote, summary, h1, h2, h3, h4) { unicode-bidi: plaintext; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+@keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 0.7 } 70% { transform: scale(1.6); opacity: 0 } 100% { opacity: 0 } }
+.hotspot-ring { animation: pulse-ring 2.2s cubic-bezier(.2,.6,.3,1) infinite; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .card { box-shadow: none; border-color: #ccc; }
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 46px; }
+  h1 { font-size: 54px; }
+  .lead { font-size: 23px; max-width: 1180px; }
+  .row3 { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: stretch; }
+  .row3.first { margin-top: 30px; }
+  .blk { border-radius: 22px; padding: 20px 20px 18px; border: 2px solid; position: relative; }
+  .bh { display: flex; align-items: center; gap: 11px; }
+  .bn { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; font-size: 19px; font-weight: 800; color: #0B1324; flex: none; }
+  .bt { font-size: 20px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; line-height: 1.15; }
+  .bt small { display: block; font-size: 15px; letter-spacing: .06em; opacity: .8; margin-top: 2px; }
+  ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 9px; }
+  li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; font-size: 19px; line-height: 1.36; font-weight: 650; color: rgba(244,247,252,.88); }
+  li .ic { font-size: 21px; margin-top: 2px; }
+  li b { color: #fff; }
+  .arr { display: grid; place-items: center; font-size: 30px; color: rgba(244,247,252,.55); }
+  .in { border-color: rgba(148,163,184,.55); background: rgba(244,247,252,.05); } .in .bn { background: #CBD5E1; } .in .bt { color: #E2E8F0; } .in li .ic { color: #CBD5E1; }
+  .rt { border-color: rgba(239,68,68,.75); background: linear-gradient(180deg, rgba(220,38,38,.22), rgba(220,38,38,.05)); } .rt .bn { background: #FCA5A5; } .rt .bt { color: #FCA5A5; } .rt li .ic { color: #FCA5A5; }
+  .ad { border-color: rgba(167,139,250,.8); background: linear-gradient(180deg, rgba(124,58,237,.26), rgba(124,58,237,.06)); } .ad .bn { background: #C4B5FD; } .ad .bt { color: #DDD6FE; } .ad li .ic { color: #C4B5FD; }
+  .gd { border-color: rgba(96,165,250,.8); background: linear-gradient(180deg, rgba(37,99,235,.24), rgba(37,99,235,.06)); } .gd .bn { background: #93C5FD; } .gd .bt { color: #BFDBFE; }
+  .oc { border-color: rgba(34,211,238,.75); background: linear-gradient(180deg, rgba(8,145,178,.24), rgba(8,145,178,.06)); } .oc .bn { background: #67E8F9; } .oc .bt { color: #A5F3FC; } .oc li .ic { color: #67E8F9; }
+  .dp { border-color: rgba(249,115,22,.8); background: linear-gradient(180deg, rgba(249,115,22,.22), rgba(249,115,22,.05)); } .dp .bn { background: #FDBA74; } .dp .bt { color: #FED7AA; } .dp li .ic { color: #FDBA74; }
+  .pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+  .pills span { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 750; padding: 5px 10px; border-radius: 999px;
+                background: rgba(59,130,246,.18); color: #DBEAFE; border: 1.5px solid rgba(96,165,250,.35); }
+  .pills span.f { background: rgba(239,68,68,.16); color: #FECACA; border-color: rgba(239,68,68,.4); }
+  .gnote { font-size: 17.5px; font-weight: 650; color: rgba(244,247,252,.72); margin-top: 12px; line-height: 1.35; }
+  .gap { position: relative; height: 54px; }
+  .gap svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ppl { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+  .ppl span { font-size: 15.5px; font-weight: 800; padding: 5px 10px; border-radius: 10px; background: rgba(249,115,22,.16); color: #FED7AA; border: 1.5px solid rgba(249,115,22,.35); }
+  .off { margin-top: 22px; border-radius: 22px; padding: 18px 22px; border: 2px dashed rgba(244,247,252,.32); background: rgba(244,247,252,.04); }
+  .off .t { display: flex; align-items: center; gap: 12px; font-size: 21px; font-weight: 800; color: #F4F7FC; }
+  .off .t .ic { color: var(--cyan); font-size: 24px; }
+  .off .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+  .off .chip { font-size: 17px; padding: 7px 13px; }
+  .off .chip b { color: var(--cyan); margin-right: 4px; }
+  .off .n2 { font-size: 17.5px; color: rgba(244,247,252,.66); font-weight: 650; margin-top: 11px; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">How AI is integrated · Bardan Intelligence</div>
+  <h1>AI proposes. <span class="c">Engines decide.</span> <span class="a">People approve.</span></h1>
+  <p class="lead">Every model call passes a safety router before it and the Guardian after it. Nothing a model writes can decide an emergency, relax a limit, diagnose, rank a worker or act without the named person’s approval.</p>
+
+  <div class="row3 first">
+    <div class="blk in"><div class="bh"><span class="bn">1</span><span class="bt">What comes in</span></div>
+      <ul>
+        <li><i data-icon="mic"></i><span>A voice clip or typed report, <b>English or Arabic</b> (or both)</span></li>
+        <li><i data-icon="message-circle-question"></i><span>A worker’s question, an HSE question</span></li>
+        <li><i data-icon="file-scan"></i><span>A lab report image or PDF</span></li>
+        <li><i data-icon="scroll-text"></i><span>A regulation excerpt to encode</span></li>
+        <li><i data-icon="calendar-clock"></i><span>Tomorrow’s plan, to explain</span></li>
+      </ul></div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="blk rt"><div class="bh"><span class="bn">2</span><span class="bt">Safety router<small>before any model</small></span></div>
+      <ul>
+        <li><i data-icon="siren"></i><span><b>Urgent words open the emergency card</b>, with no model and no network.</span></li>
+        <li><i data-icon="heart-pulse"></i><span>Kidney, diagnosis and medicine questions get <b>approved messages</b>; a model may only pick one.</span></li>
+        <li><i data-icon="eye-off"></i><span>Names, worker IDs and clinical pseudonyms never enter a prompt.</span></li>
+        <li><i data-icon="ban"></i><span>Real data on a free tier: <b>every AI call is refused.</b></span></li>
+      </ul></div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="blk ad"><div class="bh"><span class="bn">3</span><span class="bt">One AI adapter<small>Gemini API, free tier, optional</small></span></div>
+      <ul>
+        <li><i data-icon="layers"></i><span>Six tiers: <b>fast, audio, reasoning, bulk, embedding, speech</b>.</span></li>
+        <li><i data-icon="route"></i><span>A <b>measured fallback order</b> per tier; a busy or used-up model is skipped.</span></li>
+        <li><i data-icon="timer"></i><span>Time budgets of 8–20 s; a timeout ends the try at once.</span></li>
+        <li><i data-icon="eye-off"></i><span>The interface only ever says <b>“Bardan Intelligence”</b>.</span></li>
+      </ul></div>
+  </div>
+
+  <div class="gap"><svg viewBox="0 0 1280 54" preserveAspectRatio="none">
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="rgba(244,247,252,.6)"/></marker></defs>
+    <path d="M1080,0 V24 Q1080,28 1076,28 H204 Q200,28 200,32 V50" fill="none" stroke="rgba(244,247,252,.45)" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" marker-end="url(#ah)"/>
+    <text x="640" y="20" text-anchor="middle" font-size="16" font-weight="800" fill="rgba(244,247,252,.55)" font-family="Plus Jakarta Sans" letter-spacing="2">EVERY DRAFT, BEFORE ANYONE SEES IT</text>
+  </svg></div>
+
+  <div class="row3">
+    <div class="blk gd"><div class="bh"><span class="bn">4</span><span class="bt">Bardan Guardian<small>18 checks on every draft</small></span></div>
+      <div class="pills">
+        <span>Schema</span><span>Approved actions</span><span>Numbers grounded</span><span>Approved sources</span>
+        <span class="f">No diagnosis</span><span class="f">No kidney-risk numbers</span><span class="f">No fitness claims</span><span class="f">No doses</span>
+        <span class="f">No false reassurance</span><span class="f">No absolute certainty</span><span>Plain language</span><span>Never below the rules</span>
+        <span>Role permission</span><span>Consent</span><span>Limits disclosed</span><span>Language</span><span>Prompt injection</span><span>Sensitive request</span>
+      </div>
+      <div class="gnote">Red: claims a model may never make about a person’s health.</div></div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="blk oc"><div class="bh"><span class="bn">5</span><span class="bt">What the person sees</span></div>
+      <ul>
+        <li><i data-icon="circle-check"></i><span><b>Passes:</b> shown, with a trace of every check.</span></li>
+        <li><i data-icon="shield-x"></i><span><b>Blocked:</b> an approved message in the person’s language instead.</span></li>
+        <li><i data-icon="history"></i><span>The blocked draft is kept in the trace for review, never shown.</span></li>
+        <li><i data-icon="mic"></i><span>Reports: the heard words are shown back, and <b>nothing is saved until the worker confirms</b>.</span></li>
+      </ul></div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="blk dp"><div class="bh"><span class="bn">6</span><span class="bt">Decide, then approve</span></div>
+      <ul>
+        <li><i data-icon="cpu"></i><span><b>Deterministic engines decide:</b> the rule engine, the planner and the task ledger.</span></li>
+        <li><i data-icon="badge-check"></i><span><b>Named people approve:</b></span></li>
+      </ul>
+      <div class="ppl"><span>Worker confirms a report</span><span>Supervisor activates a plan</span><span>HSE publishes a report</span><span>Clinician sends a message</span><span>Two qualified people activate a rule pack</span></div>
+    </div>
+  </div>
+
+  <div class="off">
+    <div class="t"><i data-icon="wifi-off"></i>AI off, out of quota or too slow: the deterministic path takes over, and every screen keeps working.</div>
+    <div class="chips">
+      <span class="chip"><b>Speak</b>offline phrase matcher on the phone</span>
+      <span class="chip"><b>Ask</b>approved answers</span>
+      <span class="chip"><b>Copilot</b>question router</span>
+      <span class="chip"><b>Compile</b>template rule parser</span>
+      <span class="chip"><b>Lab reports</b>text-layer parser</span>
+      <span class="chip"><b>Listen</b>the phone’s own voice</span>
+    </div>
+    <div class="n2">A provider timeout ends the attempt at once, and the approved message follows within 2 seconds (acceptance case T51).</div>
+  </div>
+</div>
+</body></html>

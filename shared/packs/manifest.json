@@ -1,0 +1,15 @@
+{
+ "note": "SHA-256 of each pack's canonical JSON (sorted keys, no spaces). A pack whose hash does not match, or whose review date has passed, is not used; the engine falls back to 'assessment unavailable' and the site fallback plan (tests T20, T21).",
+ "packs": {
+  "AE-AD-HEAT": {
+   "version": "0.1.1-demo",
+   "sha256": "67a95ab4553d53feff18fe7cbc6e6aa860b88d2f868fc531c0d052078a4d1a31",
+   "review_by": "2027-06-30"
+  },
+  "AE-FED-MIDDAY": {
+   "version": "2026.1-demo",
+   "sha256": "25588ea9343f37cffb2c3dde41fee9c1e3e6000cf6263adff9755ed569990555",
+   "review_by": "2026-12-31"
+  }
+ }
+}

@@ -1,0 +1,19 @@
+flowchart TB
+    GH["<b>GitHub repository</b><br/>CI on every push: tests,<br/>type-check, build, container"]:::sup --> CB["<b>Cloud Build</b><br/>device tests → server tests<br/>→ container image"]:::engine
+    CB --> AR["<b>Artifact Registry</b><br/>the image"]:::store
+    AR --> CR["<b>Cloud Run</b><br/>1 instance · 1 vCPU · 1 GiB<br/>serves the API and the web app<br/>judge sandboxes in memory"]:::sup
+    SM["<b>Secret Manager</b><br/>gemini-api-key · token secret"]:::store --> CR
+    CR --> J(["<b>Judges</b><br/>phones and laptops<br/>installable web app"]):::worker
+    CR -.->|"optional"| GEM["<b>Gemini API</b><br/>free tier"]:::ext
+    CR -.->|"pilot, planned"| P["<b>Pilot hosting</b><br/>UAE region · paid no-training AI<br/>data processing agreement"]:::ext
+    classDef worker fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef sup fill:#0E2548,stroke:#3B82F6,stroke-width:2px,color:#DBEAFE
+    classDef hse fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef clin fill:#1E293B,stroke:#E2E8F0,stroke-width:2px,color:#F8FAFC
+    classDef ai fill:#2A1747,stroke:#A78BFA,stroke-width:2px,color:#EDE9FE
+    classDef engine fill:#062F3A,stroke:#22D3EE,stroke-width:2px,color:#CFFAFE
+    classDef store fill:#111C33,stroke:#64748B,stroke-width:2px,color:#E2E8F0
+    classDef danger fill:#3A0D12,stroke:#EF4444,stroke-width:2px,color:#FEE2E2
+    classDef ok fill:#0E2548,stroke:#60A5FA,stroke-width:2px,color:#DBEAFE
+    classDef warn fill:#3A1C0B,stroke:#F97316,stroke-width:2px,color:#FFEDD5
+    classDef ext fill:#1A2234,stroke:#94A3B8,stroke-width:2px,stroke-dasharray:6 4,color:#E2E8F0

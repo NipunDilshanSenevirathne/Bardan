@@ -1,0 +1,13 @@
+.venv/
+e2e/out/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+frontend/node_modules/
+frontend/dist/
+frontend/reports/
+frontend/tsconfig.tsbuildinfo
+.env
+.env.*
+docs/diagrams/custom/_build_*

@@ -1,0 +1,6 @@
+# Python lint for the server: pyflakes and the pycodestyle error classes that catch real mistakes.
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = ["E4", "E7", "E9", "F"]

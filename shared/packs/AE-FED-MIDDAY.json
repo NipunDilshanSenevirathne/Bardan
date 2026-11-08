@@ -1,0 +1,25 @@
+{
+  "policy_id": "AE-FED-MIDDAY",
+  "version": "2026.1-demo",
+  "status": "demonstration_only",
+  "jurisdiction": "United Arab Emirates (federal)",
+  "authority": "Ministry of Human Resources and Emiratisation (MoHRE)",
+  "notice": "Recheck the official notice every season before relying on dates, hours or penalties.",
+  "season": { "from": "06-15", "to": "09-15" },
+  "window": { "start": "12:30", "end": "15:00", "timezone": "Asia/Dubai" },
+  "scope": "Outdoor work in direct sunlight and open-air spaces",
+  "employer_obligations": [
+    "shaded_rest_areas",
+    "adequate_drinking_water",
+    "approved_hydration_supplements",
+    "cooling_equipment",
+    "first_aid"
+  ],
+  "exemptions_require_authorized_record": [
+    "technically_continuous_work",
+    "urgent_community_repairs",
+    "permitted_government_works"
+  ],
+  "penalties": { "per_worker_aed": 5000, "max_aed": 50000 },
+  "report_violation": { "phone": "600590000" }
+}

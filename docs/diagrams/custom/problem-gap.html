@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="style.css">
+<style>
+  .canvas { width: 1400px; padding: 52px 60px 46px; }
+  h1 { font-size: 50px; max-width: 1180px; }
+  .flow { display: grid; grid-template-columns: 1fr 56px 1fr 56px 1fr; align-items: stretch; margin-top: 34px; }
+  .col { border-radius: 24px; padding: 24px 22px 18px; border: 2px solid; }
+  .col .head { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 800; letter-spacing: .13em;
+               text-transform: uppercase; margin-bottom: 14px; }
+  .row { display: flex; gap: 14px; align-items: flex-start; padding: 13px 0; border-top: 1.5px solid rgba(244,247,252,.10); }
+  .row:first-of-type { border-top: 0; }
+  .ico { width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; font-size: 25px; flex: none; }
+  .row p { font-size: 22px; line-height: 1.32; font-weight: 700; color: rgba(244,247,252,.94); padding-top: 4px; }
+  .row p em { font-style: normal; color: var(--muted); font-weight: 600; }
+  .arr { display: grid; place-items: center; font-size: 36px; color: rgba(244,247,252,.5); }
+  .exists { border-color: rgba(96,165,250,.6); background: linear-gradient(180deg, rgba(37,99,235,.20), rgba(37,99,235,.05)); }
+  .exists .head { color: #BFDBFE; } .exists .ico { background: rgba(59,130,246,.22); color: #93C5FD; }
+  .breaks { border-color: rgba(239,68,68,.75); background: linear-gradient(180deg, rgba(220,38,38,.24), rgba(220,38,38,.06)); }
+  .breaks .head { color: var(--red2); } .breaks .ico { background: rgba(239,68,68,.22); color: #FCA5A5; }
+  .adds { border-color: rgba(249,115,22,.8); background: linear-gradient(180deg, rgba(249,115,22,.22), rgba(8,145,178,.10)); }
+  .adds .head { color: var(--amber2); } .adds .ico { background: rgba(249,115,22,.22); color: #FDBA74; }
+  .bottom { margin-top: 26px; display: flex; align-items: center; gap: 14px; font-size: 23px; font-weight: 700; color: rgba(244,247,252,.9); }
+  .bottom .ico { width: 42px; height: 42px; border-radius: 12px; background: rgba(34,211,238,.18); color: var(--cyan); font-size: 23px; }
+</style></head>
+<body>
+<div class="canvas">
+  <div class="kicker">The problem</div>
+  <h1>The heat rules and warnings exist. <span class="a">The step after the warning is what fails.</span></h1>
+  <div class="flow">
+    <div class="col exists">
+      <div class="head"><i data-icon="shield-check"></i>Already in place</div>
+      <div class="row"><span class="ico"><i data-icon="thermometer-sun"></i></span><p>Heat rules and the <span style="white-space:nowrap">12:30–15:00</span> midday break</p></div>
+      <div class="row"><span class="ico"><i data-icon="bell-ring"></i></span><p>Forecasts and heat warnings</p></div>
+      <div class="row"><span class="ico"><i data-icon="clipboard-check"></i></span><p>Checklists signed off by supervisors</p></div>
+      <div class="row"><span class="ico"><i data-icon="stethoscope"></i></span><p>Clinics and kidney tests <em>for those who reach them</em></p></div>
+    </div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="col breaks">
+      <div class="head"><i data-icon="triangle-alert"></i>Where it breaks</div>
+      <div class="row"><span class="ico"><i data-icon="droplet-off"></i></span><p>The water point is empty, <em>but the sheet says “done”</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="tent"></i></span><p>The shade is full <em>at break time</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="user-plus"></i></span><p>A new worker is pushed too hard <em>in his first days</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="flask-conical"></i></span><p>An abnormal kidney test <em>never reaches a doctor</em></p></div>
+    </div>
+    <div class="arr"><i data-icon="arrow-right"></i></div>
+    <div class="col adds">
+      <div class="head"><i data-icon="sparkles"></i>What Bardan adds</div>
+      <div class="row"><span class="ico"><i data-icon="calendar-clock"></i></span><p>Heat-safe work planned <em>the evening before</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="list-checks"></i></span><p>Each rule becomes a task <em>with an owner, a deadline and proof</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="megaphone"></i></span><p>“This didn’t happen” <em>without being named</em></p></div>
+      <div class="row"><span class="ico"><i data-icon="lock-keyhole"></i></span><p>Kidney care kept <em>private and continuous</em></p></div>
+    </div>
+  </div>
+  <div class="bottom"><span class="ico" style="display:grid;place-items:center"><i data-icon="badge-check"></i></span>
+    Bardan does not replace the rules. It makes sure the protection they require happens, and can show that it did.</div>
+</div>
+</body></html>
