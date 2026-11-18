@@ -37,18 +37,18 @@ PERMISSIONS: dict[str, set[str]] = {
                "assist.intake", "assist.chat", "emergency.use", "task.read_own", "task.confirm"},
     "supervisor": {"ops.read", "task.act", "task.read", "plan.evaluate", "plan.simulate", "plan.optimise",
                    "plan.approve", "plan.activate", "observation.write", "forecast.read", "emergency.use",
-                   "copilot.query"},
+                   "copilot.query", "lab.run"},
     "hse": {"ops.read", "task.read", "task.act", "task.verify_independent", "task.escalation_owner",
             "compliance.read", "copilot.query", "policy.compile", "policy.approve", "insights.read",
             "insights.approve", "forecast.read", "plan.simulate", "plan.evaluate", "audit.read",
-            "observation.write", "emergency.use", "exemption.record"},
+            "observation.write", "emergency.use", "exemption.record", "lab.run"},
     "clinician": {"clinical.read", "clinical.write", "clinical.verify", "clinical.referral",
                   "clinical.restriction", "clinical.document_ai", "clinical.summary_approve", "policy.approve",
                   "audit.read", "emergency.use"},
     "nurse": {"clinical.read", "clinical.hydration", "clinical.referral_coordinate", "emergency.use",
               "audit.read"},
     "auditor": {"reports.read", "audit.read", "replay.run", "ops.read", "task.read", "compliance.read",
-                "forecast.read", "insights.read", "drill.run"},
+                "forecast.read", "insights.read", "drill.run", "lab.run"},
 }
 CLINICAL_PREFIX = "clinical."
 EMPLOYER_ROLES = {"supervisor", "hse", "auditor"}

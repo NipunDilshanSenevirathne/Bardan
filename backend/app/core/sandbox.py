@@ -350,7 +350,13 @@ class Sandbox:
         if sc.get("revalidation", {}).get("result") != "valid":
             raise ValueError("Only a plan that passed independent re-validation can be approved.")
         sc["approval"] = {"state": "approved", "by": actor, "at": self.now(), "required_role": "supervisor"}
+        # A worker gets each evening message once: approving a second, identical plan (for example when the
+        # scenario script plans the day after a judge approved without activating) sends nothing new.
+        sent = {(n.get("to_actor"), n["template"], json.dumps(n["slots"], sort_keys=True, ensure_ascii=False))
+                for n in self.ledger.notifications}
         for m in sc.get("worker_messages", []):
+            if (m["worker"], m["template_id"], json.dumps(m["slots"], sort_keys=True, ensure_ascii=False)) in sent:
+                continue
             n = self.ledger.notify(to_role="worker", to_actor=m["worker"], at=self.now(), template=m["template_id"],
                                    slots=m["slots"])
             n["slots_by_lang"] = m.get("slots_by_lang")

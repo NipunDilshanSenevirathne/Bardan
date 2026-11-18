@@ -496,6 +496,58 @@ def consent_event(body: ConsentIn, ctx: Ctx = Depends(context)):
     return {"event": ev, "effective": sb.consent.status(ctx.actor, body.purpose), "message": msg}
 
 
+# ---------------------------------------------------------- Optional wearable (worker-controlled)
+class WearableIn(BaseModel):
+    """Only a status crosses from the phone. Heart rate, temperature estimates or any other number are refused
+    (extra fields are rejected), and there is no status that clears a worker or relaxes a rule."""
+    model_config = {"extra": "forbid"}
+    status: str = Field(..., pattern=r"^(needs_break|check_on_me)$")
+    observed_at: str | None = Field(default=None, max_length=40)
+
+
+WEARABLE_PURPOSE = {"needs_break": "wearable_status_share", "check_on_me": "wearable_buddy_alert"}
+
+
+@router.post("/worker/wearable/status")
+def wearable_status(body: WearableIn, ctx: Ctx = Depends(context), idempotency_key: str | None = Header(default=None)):
+    ctx.require("self.report")
+    sb = ctx.sb
+    purpose = WEARABLE_PURPOSE[body.status]
+    if not sb.consent.status(ctx.actor, purpose)["active"]:
+        raise HTTPException(403, "You have not chosen to share this, so nothing was sent. Your alert stays on your "
+                                 "phone.")
+
+    def act() -> dict[str, Any]:
+        w = sb.worker(ctx.actor)
+        first = w["name"].split()[0]
+        if body.status == "needs_break":
+            task = sb.ledger.create(
+                action_code="CHECK_WORKER", zone=actions.worker_zone(sb, ctx.actor), now=sb.now(),
+                rationale=f"{first}'s own wearable suggests a break and {first} chose to share this. Make sure "
+                          f"{first} can rest in the shade now. No heart rate or other health value is shared.",
+                rationale_ar=f"تقترح ساعة {first} الخاصة استراحة واختار {first} مشاركة ذلك. تأكد أن {first} "
+                             "يستطيع الاستراحة في الظل الآن. لا يُشارك أي نبض أو قيمة صحية أخرى.",
+                source="wearable_status", crew=w["crew"], affected=[ctx.actor])
+            sb.ledger.notify(to_role="worker", to_actor=ctx.actor, at=sb.now(), template="msg.wearable_shared",
+                             slots={}, task=task["id"])
+            out = {"shared": "needs_break", "task": task["id"],
+                   "message": content.render("msg.wearable_shared", ctx.lang)}
+        else:
+            buddy = w.get("buddy")
+            if not buddy:
+                raise HTTPException(409, "No buddy is set for you, so nothing was sent. Press Emergency if you need "
+                                         "help.")
+            n = sb.ledger.notify(to_role="worker", to_actor=buddy, at=sb.now(), template="msg.wearable_buddy",
+                                 slots={"name": first})
+            out = {"shared": "check_on_me", "notified": "buddy", "notification": n["id"]}
+        sb.audit.append(at=sb.now(), actor=ctx.actor, role="worker", action=f"wearable.{body.status}",
+                        resource=purpose, subject=ctx.actor, category="consent",
+                        detail={"values_shared": "none"})
+        return out
+
+    return idempotent(ctx, idempotency_key, act)
+
+
 # ---------------------------------------------------------- Kidney Passport
 class PreviewIn(BaseModel):
     fields: list[str] = Field(default_factory=lambda: ["results", "referrals", "care_plan"])

@@ -31,6 +31,20 @@ PURPOSES: dict[str, dict[str, Any]] = {
         "en": "Share my care summary by link with a doctor I choose", "ar": "مشاركة ملخص رعايتي عبر رابط مع طبيب أختاره",
         "explain_en": "Optional. Links expire. Downloaded copies cannot be recalled.",
         "explain_ar": "اختياري. تنتهي صلاحية الروابط. لا يمكن استرجاع النسخ التي تم تنزيلها."},
+    "wearable_status_share": {
+        "basis": "consent", "withdrawable": True,
+        "en": "Tell my supervisor when my wearable says I need a break",
+        "ar": "إبلاغ مشرفي عندما تقول ساعتي إنني أحتاج إلى استراحة",
+        "explain_en": "Optional and off by default. Your heart rate is checked on your phone only. Your supervisor "
+                      "sees only \"needs a break\", never a number. Stop at any time.",
+        "explain_ar": "اختياري وغير مفعل افتراضياً. يُفحص نبضك على هاتفك فقط. لا يرى مشرفك إلا \"يحتاج إلى استراحة\" "
+                      "ولا يرى أي رقم أبداً. يمكنك الإيقاف في أي وقت."},
+    "wearable_buddy_alert": {
+        "basis": "consent", "withdrawable": True,
+        "en": "If I do not answer a serious wearable alert, ask my buddy to check on me",
+        "ar": "إذا لم أرد على تنبيه خطير من ساعتي، اطلب من زميلي أن يتفقدني",
+        "explain_en": "Optional and off by default. Your buddy gets \"please check on\" your name and nothing else.",
+        "explain_ar": "اختياري وغير مفعل افتراضياً. يصل زميلك \"يرجى تفقد\" اسمك فقط ولا شيء غيره."},
     "research": {
         "basis": "consent", "withdrawable": True,
         "en": "Use my data in approved research", "ar": "استخدام بياناتي في بحث معتمد",

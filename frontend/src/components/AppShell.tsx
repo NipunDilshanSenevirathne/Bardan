@@ -3,7 +3,7 @@ import {
   Activity, BookOpenCheck, Building2, CalendarClock, ChevronLeft, ChevronRight, ClipboardCheck, ClipboardList,
   Cloud, CloudOff, FileSearch, FlaskConical, Gauge, HeartPulse, Home, Languages, LayoutDashboard, ListChecks,
   MessageCircleQuestion, Mic, Moon, Radar, ScrollText, Settings2, ShieldCheck, Siren, Sparkles, Stethoscope, Sun,
-  Timer, UserRound, Users, Warehouse, BellRing, PhoneOff,
+  Timer, UserRound, Users, Warehouse, BellRing, PhoneOff, SlidersHorizontal,
 } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -13,6 +13,7 @@ import { pick, useI18n } from '../lib/i18n'
 import { useTheme } from '../lib/theme'
 import { EmergencyCard } from './EmergencyCard'
 import { GuidedTour } from './GuidedTour'
+import { TourCoach } from './TourCoach'
 import { Logo } from './Logo'
 import { Badge, Button, Drawer, Toggle, cx } from './ui'
 
@@ -36,6 +37,7 @@ function useNav(role: Role | null): NavItem[] {
       { to: '/app/site', label: t('s.overview'), icon: <LayoutDashboard className={i} />, end: true },
       { to: '/app/site/plan', label: t('s.plan'), icon: <CalendarClock className={i} /> },
       { to: '/app/site/tasks', label: t('s.tasks'), icon: <ListChecks className={i} /> },
+      { to: '/app/lab', label: t('nav.lab'), icon: <SlidersHorizontal className={i} /> },
       { to: '/app/site/capacity', label: t('s.capacity'), icon: <Warehouse className={i} /> },
       { to: '/app/trust', label: t('shell.trust'), icon: <BookOpenCheck className={i} /> },
     ]
@@ -45,6 +47,7 @@ function useNav(role: Role | null): NavItem[] {
       { to: '/app/site/tasks', label: t('s.tasks'), icon: <ListChecks className={i} /> },
       { to: '/app/site', label: t('s.overview'), icon: <LayoutDashboard className={i} />, end: true },
       { to: '/app/site/plan', label: t('s.plan'), icon: <CalendarClock className={i} /> },
+      { to: '/app/lab', label: t('nav.lab'), icon: <SlidersHorizontal className={i} /> },
       { to: '/app/hse/policy', label: t('hse.policy'), icon: <ScrollText className={i} /> },
       { to: '/app/hse/watch', label: t('hse.watch'), icon: <Radar className={i} /> },
       { to: '/app/hse/audit', label: t('hse.audit'), icon: <ClipboardList className={i} /> },
@@ -68,6 +71,7 @@ function useNav(role: Role | null): NavItem[] {
     ]
     case 'auditor': return [
       { to: '/app/trust', label: t('shell.trust'), icon: <BookOpenCheck className={i} />, end: true },
+      { to: '/app/lab', label: t('nav.lab'), icon: <SlidersHorizontal className={i} /> },
       { to: '/app/drill', label: t('nav.drill'), icon: <Timer className={i} /> },
       { to: '/app/site', label: t('s.overview'), icon: <LayoutDashboard className={i} />, end: true },
       { to: '/app/site/tasks', label: t('s.tasks'), icon: <ListChecks className={i} /> },
@@ -138,10 +142,23 @@ export function AppShell() {
   }
   const clock = state.data?.clock as string | undefined
   const sceneTitle = scenes[idx] ? pick(scenes[idx], 'title', lang) : ''
+  // The top bar grows with the drill, offline and reset strips; the new-task banner sits just below it, whatever its height.
+  const headerRef = useRef<HTMLElement>(null)
+  const [headerH, setHeaderH] = useState(64)
+  useEffect(() => {
+    const el = headerRef.current
+    if (!el) return
+    const update = () => setHeaderH(Math.round(el.getBoundingClientRect().height))
+    update()
+    if (typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   return (
     <div className="min-h-dvh bg-canvas">
-      <header className="no-print sticky top-0 z-40 border-b border-line bg-surface/90 backdrop-blur-xl">
+      <header ref={headerRef} className="no-print sticky top-0 z-40 border-b border-line bg-surface/90 backdrop-blur-xl">
         <div className="flex h-16 items-center gap-2 px-3 sm:px-5">
           <Logo to="/" />
           <div className="mx-2 hidden h-8 w-px bg-line lg:block" />
@@ -197,7 +214,7 @@ export function AppShell() {
             <button onClick={() => setCtlOpen(true)} className="grid size-11 place-items-center rounded-xl hover:bg-surface-2" aria-label={t('shell.controls')}>
               <Settings2 className="size-5" />
             </button>
-            <Button variant="danger" size="md" onClick={() => setEmOpen(true)} icon={<Siren className="size-5" />} className="ms-1">
+            <Button data-tour="shell-emergency" variant="danger" size="md" onClick={() => setEmOpen(true)} icon={<Siren className="size-5" />} className="ms-1">
               <span className="hidden sm:inline">{t('shell.emergency')}</span>
             </Button>
           </div>
@@ -224,7 +241,7 @@ export function AppShell() {
         )}
       </header>
       {drillLive && drill?.arm === 'current' && role !== 'auditor' && <CurrentArmCover key={drill.index ?? 0} />}
-      {(role === 'supervisor' || role === 'hse') && <NewTaskAlert />}
+      {(role === 'supervisor' || role === 'hse') && <NewTaskAlert top={headerH + 12} />}
 
       <div className="flex">
         <aside className="no-print sticky top-16 hidden h-[calc(100dvh-4rem)] w-64 shrink-0 flex-col border-e border-line bg-surface px-3 py-4 lg:flex">
@@ -264,6 +281,7 @@ export function AppShell() {
       <EmergencyCard open={emOpen} onClose={() => setEmOpen(false)} />
       <ControlsDrawer open={ctlOpen} onClose={() => setCtlOpen(false)} settings={state.data?.settings} offline={offline} />
       <GuidedTour open={tourOpen} onClose={() => setTourOpen(false)} goScene={goScene} choosePersona={choosePersona} />
+      <TourCoach goScene={goScene} choosePersona={choosePersona} hidden={tourOpen} />
     </div>
   )
 }
@@ -340,7 +358,7 @@ function CurrentArmCover() {
 
 /** Supervisors and HSE are told when a new task arrives (a banner, and a vibration where the phone supports it).
  *  The prototype has no push notifications yet, so this works while the app is open. */
-function NewTaskAlert() {
+function NewTaskAlert({ top }: { top: number }) {
   const { t } = useI18n()
   const navigate = useNavigate()
   const q = useApi<any>('/tasks', { refetch: 10000 })
@@ -352,15 +370,17 @@ function NewTaskAlert() {
     if (seen.current === null) { seen.current = new Set(items.map((x) => x.id)); return }
     const added = items.filter((x) => !seen.current!.has(x.id))
     added.forEach((x) => seen.current!.add(x.id))
-    const urgent = added.find((x) => String(x.source ?? '').startsWith('worker_report') || x.source === 'emergency' || x.source === 'help_button' || x.source === 'private_checkin')
+    const urgent = added.find((x) => String(x.source ?? '').startsWith('worker_report') || x.source === 'emergency' || x.source === 'help_button' || x.source === 'private_checkin' || x.source === 'wearable_status')
     if (urgent) {
       setFresh(urgent)
       try { navigator.vibrate?.([180, 80, 180]) } catch { /* not supported */ }
     }
   }, [q.data])
   if (!fresh) return null
+  // Below the top bar (z-40) and placed under its real height: an open menu, such as the person switcher, stays
+  // clickable over the banner, and a taller bar (drill, offline or reset strip) never covers the banner's buttons.
   return (
-    <div className="fixed inset-x-3 top-20 z-50 mx-auto max-w-lg rounded-2xl border border-warn/40 bg-surface p-4 shadow-float" role="alert">
+    <div className="fixed inset-x-3 z-30 mx-auto max-w-lg rounded-2xl border border-warn/40 bg-surface p-4 shadow-float" style={{ top }} role="alert">
       <div className="flex items-start gap-3">
         <BellRing className="mt-0.5 size-5 shrink-0 text-warn" aria-hidden />
         <div className="min-w-0 flex-1">

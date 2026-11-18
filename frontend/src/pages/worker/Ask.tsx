@@ -58,7 +58,7 @@ export default function Ask() {
             <span className={cx('grid size-9 shrink-0 place-items-center rounded-full', m.role === 'me' ? 'bg-brand text-brand-ink' : 'bg-surface-3')}>
               {m.role === 'me' ? <UserRound className="size-5" /> : <img src="/icons/logo-96.png" alt="" className="size-7" />}
             </span>
-            <div className={cx('max-w-[85%] rounded-3xl px-4 py-3', m.role === 'me' ? 'bg-brand text-brand-ink' : 'bg-surface-2')}>
+            <div data-tour={m.role === 'bot' ? 'ask-answer' : undefined} className={cx('max-w-[85%] rounded-3xl px-4 py-3', m.role === 'me' ? 'bg-brand text-brand-ink' : 'bg-surface-2')}>
               <p dir="auto" className="whitespace-pre-line leading-relaxed">{m.text}</p>
               {m.emergency && <Button variant="danger" size="sm" className="mt-3" icon={<Siren className="size-4" />} onClick={() => setEm(true)}>{t('a.open_emergency')}</Button>}
               {m.checkin && <Link to="/app/worker/report" className="mt-3 inline-flex min-h-10 items-center gap-2 rounded-xl bg-brand px-3 text-sm font-semibold text-brand-ink"><ClipboardPlus className="size-4" />{t('a.open_checkin')}</Link>}
@@ -81,7 +81,7 @@ export default function Ask() {
       {err ? <div className="mt-3"><ErrorNote error={err} /></div> : null}
       <form className="sticky bottom-24 mt-4 flex gap-2 lg:bottom-4" onSubmit={(e) => { e.preventDefault(); void ask(q) }}>
         <label htmlFor="askq" className="sr-only">{t('a.placeholder')}</label>
-        <input id="askq" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('a.placeholder')} dir="auto"
+        <input id="askq" data-tour="ask-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('a.placeholder')} dir="auto"
           className="h-14 min-w-0 flex-1 rounded-2xl border border-line bg-surface px-4 shadow-card" />
         <Button type="submit" size="lg" className="h-14" loading={busy} icon={<Send className="flip-rtl size-5" />}>{t('a.send')}</Button>
       </form>

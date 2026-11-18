@@ -4,6 +4,9 @@
 on every staff screen, and the pack (`shared/packs/AE-AD-HEAT.json`, version `0.1.1-demo`) carries
 `review.state = pending_qualified_review`.
 
+**Rows 16–21** (added 17 November 2026) cover the Scenario Lab's break planner and the optional wearable; they are
+published reference values, not Abu Dhabi rules, and they can only add protection to the rows above.
+
 **Compared on:** 8 November 2026, against the
 [ADOSH-SF Technical Guideline "Safety in the Heat", Version 4.0, 15 July 2024](https://www.adphc.gov.ae/-/media/Project/ADPHC/ADPHC/PDF/OSHAD-SF/Technical-Guidelines/Safety-in-the-Heat--Eng.pdf)
 (the guideline says regulatory requirements prevail where they differ, §1(a)) and the federal midday-break rule.
@@ -32,6 +35,12 @@ in the app are the route for that.
 | 13 | Reading freshness | A measured reading older than 30 minutes is stale ("not confirmed safe") | Measurement method given (§2.2); no frequency stated | Demonstration value; **reviewer to set** |
 | 14 | Rest minutes per hour | Acclimatization 10, buffer 15, withdrawal 40 | Table 1 (image) | Withdrawal matches the 20/40 cycle; the others are demonstration values |
 | 15 | WBGT planning bands | 28 / 31 / 33 °C | Not in the guideline | Demonstration only |
+| 16 | One-hour WBGT limit by work rate (break planner, Scenario Lab) | 56.7 − 11.5·log₁₀M for acclimatized workers, 59.9 − 14.1·log₁₀M for others, as one-hour averages | Not in the guideline (it uses TWL). Source: ISO 7243:2017, NIOSH 2016 REL and RAL, ACGIH TLV and Action Limit | Reference method used alongside the bands; it can only add rest. **Reviewer to confirm** its use next to TWL |
+| 17 | Work rates | Rest 115, light 180, moderate 300, heavy 415, walking 300 W (70 kg worker); very heavy work is not offered | ACGIH / OSHA Technical Manual III:4, Table 3 | Published values. **Reviewer to confirm** the task classes for the site |
+| 18 | Clothing adjustment | Work clothes 0, coveralls +1, double layer +3 °C-WBGT; vapour-barrier suits are not offered (+11, job-specific assessment) | ACGIH clothing adjustment factors | Published values |
+| 19 | How a break is counted | Breaks in 15-minute steps; the walk to and from the rest area counts as heat time; a cooled room is taken at WBGT about 19 °C (25 °C, 45%); planning uses the forecast plus 0.82 °C | Bardan design choices | Demonstration values. **Reviewer to set** the rest-area values from measurements |
+| 20 | Workers not yet acclimatized | Heat work only for the part of an hour the lower limit allows; shaded work for the rest; always within the 20–100% schedule | NIOSH RAL; Hong Kong Labour Department guidance (August 2026): 15 more minutes of rest an hour for unacclimatised workers | Stricter than the guideline's acclimatization zone. **Reviewer to decide** |
+| 21 | Optional wearable warning signs | Heart rate above 180 − age for 5 minutes; above 120 one minute after work stops; estimated core temperature (ECTemp) 38.5 °C, or 38.0 °C for workers not yet acclimatized; 38.0 °C alone is "rising" | ACGIH TLV documentation; NIOSH 2016; ECTemp (Buller et al. 2013) | Optional feature, simulated in the prototype; it can only add rest and never clears anyone. **Occupational physician to confirm** |
 
 Sign-off (to be completed by qualified reviewers before any pilot use):
 

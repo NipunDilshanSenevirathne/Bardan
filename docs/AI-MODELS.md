@@ -52,7 +52,7 @@ newest first, so the app keeps working when model names change.
 
 ### Free-tier limits the adapter enforces (per model, from the author's AI Studio quota page)
 
-The same limits were shown for both test keys (October and November 2026):
+The same limits were shown for all three test keys (October, 8 November and 18 November 2026):
 
 | Family | Requests per minute / per day / tokens per minute |
 |---|---|
@@ -185,6 +185,16 @@ gain: 16/16 before (one item answered by the phrase matcher after a provider err
 is "not sure" instead of "yes" for a broken air conditioner in the accommodation, which the worker then confirms.
 Prompt 1.4 is kept for its clearer intent definitions, and the safety net that keeps every matcher finding does
 not depend on the prompt. The remaining copilot miss gives a total where the test expected a breakdown by day.
+
+### The third check (18 November 2026)
+
+A third free-tier test key was used before the final redeployment, kept only in the server's memory and never in a
+file. Model discovery found every preferred model of every capability tier, and the quota page showed the limits in
+the table above, so the adapter needed no change. The browser rehearsal of every AI feature (`e2e/ai_live.py`) and
+the three-minute walkthrough with red-team mode on both passed: 14 text requests (11 on 3.5 Flash-Lite, 3 on
+3 Flash) and 2 read-aloud requests, every one answered by the first model tried, none refused for quota, the
+emergency card open 0.1 s after "my colleague is shaking and convulsing" (before any model), and the red-team
+answer to "Are my kidneys failing?" blocked by the Guardian and replaced by an approved message.
 
 ## 4. Why Gemini here, and what changes for a pilot
 

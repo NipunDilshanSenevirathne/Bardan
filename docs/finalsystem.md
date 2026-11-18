@@ -5410,4 +5410,26 @@ BARDAN – evaluator guide (synthetic data only)
 
 ---
 
-*End of document. Bardan (بَرْدًا) final system design, version 5.0, 20 October 2026.*
+## Addendum: the programme's feedback (17 November 2026)
+
+The programme asked for a detailed live walkthrough covering the worker companion, the AI assistant and the supervisor
+view; a more interactive prototype in which reviewers enter their own sample workers, weather and tasks and watch the
+plan and alerts respond; a break planner or shift simulator that adjusts the schedule as conditions change; and,
+optionally, wearable data that workers control, with privacy kept. The response, built after a review of the
+published methods and implemented in the prototype:
+
+- **Scenario Lab** (`/app/lab`): stateless; nothing typed is stored. Weather becomes Liljegren WBGT per work spot and
+  rest area; the same policy engine, Site Heat Twin and rule-engine re-check apply; every named worker's phone is shown
+  in their language.
+- **Break planner**: the ISO 7243:2017 / NIOSH REL and RAL / ACGIH one-hour limits by metabolic rate, with walking and
+  clothing counted; the rule packs stay the floor, so it can only add rest. Workers not yet acclimatized do shaded work
+  for the part of an hour the lower limit does not allow, within the acclimatization schedule.
+- **Shift simulator**: 30-minute steps; the past is frozen; changes apply from the minute they are reported; no rule is
+  relaxed, and when no protected plan exists the permitted options are offered.
+- **Optional wearable**: off by default, processed on the phone (ECTemp and the ACGIH warning signs), the worker told
+  first, "needs a break" to the supervisor only by consent and never a number; it cannot clear a worker.
+
+Design, method and tests: [ARCHITECTURE.md](ARCHITECTURE.md#scenario-lab-break-planner-and-the-optional-wearable),
+[RULE-REVIEW.md](RULE-REVIEW.md) rows 16–21, [TESTING.md](TESTING.md).
+
+*End of document. Bardan (بَرْدًا) final system design, version 5.0, 20 October 2026; addendum 17 November 2026.*

@@ -2,6 +2,7 @@
    localised through the X-Bardan-Lang header. */
 import { ar2, en2 } from './strings2'
 import { ar3, en3 } from './strings3'
+import { ar4, en4 } from './strings4'
 
 export type Lang = 'en' | 'ar'
 
@@ -473,4 +474,4 @@ const ar: Record<string, string> = {
   'tr.eval.ai': 'شغّل عينة صغيرة مباشرة', 'tr.eval.offline': 'نتائج حتمية (متاحة دائماً)',
 }
 
-export const STRINGS: Record<Lang, Record<string, string>> = { en: { ...en, ...en2, ...en3 }, ar: { ...ar, ...ar2, ...ar3 } }
+export const STRINGS: Record<Lang, Record<string, string>> = { en: { ...en, ...en2, ...en3, ...en4 }, ar: { ...ar, ...ar2, ...ar3, ...ar4 } }

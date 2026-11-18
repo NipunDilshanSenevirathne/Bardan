@@ -12,6 +12,15 @@ see it full size. [hook.gif](hook.gif) is the opening of the film.
 | <img src="screens/phone-verified-independent-check.jpg" width="190" alt="Water restored, independently checked at E4"><br>**Verified independently** | <img src="screens/phone-emergency-pick.jpg" width="190" alt="Emergency: what do you see? Tap one"><br>**Emergency: what do you see?** | <img src="screens/phone-emergency-card.jpg" width="190" alt="Emergency card with AI and internet off"><br>**Emergency card** | <img src="screens/phone-emergency-honest-states.jpg" width="190" alt="What has really happened: dialler opened, alert saved, not yet received"><br>**Only what really happened** |
 | <img src="screens/phone-ask-guardian-blocked.jpg" width="190" alt="A kidney question in Arabic answered with an approved message"><br>**A frightening question** | <img src="screens/phone-six-promises.jpg" width="190" alt="Bardan's six promises to the worker, in plain words"><br>**Six promises, read aloud** | <img src="screens/phone-who-saw-my-data.jpg" width="190" alt="Who saw my data: the supervisor's attempt denied"><br>**Who saw my data** | |
 
+## Scenario Lab and the optional wearable
+
+| | |
+|:-:|:-:|
+| <img src="screens/console-scenario-lab.jpg" width="420" alt="The Scenario Lab: weather, tasks, people and rest areas, the shift simulator and the results"><br>**Scenario Lab** | <img src="screens/console-lab-shift.jpg" width="420" alt="The plan re-planned from 07:00 with the past frozen and a worker's needs-a-break status"><br>**Play the shift** |
+| <img src="screens/console-lab-phones.jpg" width="420" alt="Each named worker's phone in English or Arabic"><br>**Every phone, in its language** | <img src="screens/console-lab-why.jpg" width="420" alt="Why each break is the length it is, and the log of the shift"><br>**Why these breaks** |
+| <img src="screens/phone-wearable-choices.jpg" width="190" alt="The wearable switches on the worker's phone"><br>**Wearable: the worker chooses** | <img src="screens/phone-wearable-alert.jpg" width="190" alt="The wearable alert on the worker's phone"><br>**The worker is told first** |
+| <img src="screens/console-wearable-task.jpg" width="420" alt="The supervisor's check-on-a-worker task with no health value"><br>**The supervisor gets a task, not a number** | |
+
 ## Site console, clinic and Trust Centre
 
 | | |

@@ -51,7 +51,7 @@ export default function Today() {
   return (
     <div className="mx-auto max-w-2xl space-y-5">
       {/* 1. What to do now */}
-      <section aria-labelledby="now" className={cx('relative overflow-hidden rounded-[2rem] bg-gradient-to-br p-6 text-white shadow-float sm:p-8', TONE_BG[meta.tone])}>
+      <section data-tour="worker-now" aria-labelledby="now" className={cx('relative overflow-hidden rounded-[2rem] bg-gradient-to-br p-6 text-white shadow-float sm:p-8', TONE_BG[meta.tone])}>
         <div className="absolute -end-10 -top-10 size-48 rounded-full bg-white/10" aria-hidden />
         <div className="relative">
           <div className="flex items-center justify-between gap-3">
@@ -88,7 +88,7 @@ export default function Today() {
       <Card className="p-5">
         <div className="flex items-center justify-between gap-3">
           <h2 className="font-bold">{t('w.why')}</h2>
-          <Button size="sm" variant="soft" onClick={explain} loading={whyBusy} icon={<Sparkles className="size-4 text-sun" />}>{t('w.explain')}</Button>
+          <Button data-tour="worker-explain" size="sm" variant="soft" onClick={explain} loading={whyBusy} icon={<Sparkles className="size-4 text-sun" />}>{t('w.explain')}</Button>
         </div>
         <ul className="mt-3 space-y-2 text-sm">
           {dec.reasons.map((r: string) => <li key={r} className="flex gap-2"><Info className="mt-0.5 size-4 shrink-0 text-brand" />{reasonText(r, lang, { value: obs?.value })}</li>)}
@@ -141,7 +141,7 @@ export default function Today() {
               <div className="mt-2 flex flex-wrap gap-2"><TierChip tier={task.achieved_tier} />{task.open_disputes > 0 && <Badge tone="stop" icon={<MessageSquareWarning className="size-3" />}>{t('t.disputes', { n: task.open_disputes })}</Badge>}</div>
               {['reported_complete', 'verified', 'in_progress', 'accepted', 'escalated'].includes(task.state) && (
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <Button variant="outline" size="lg" onClick={() => taskAct(task.id, 'dispute')} loading={busyTask === task.id} icon={<ThumbsDown className="size-5 text-stop" />}>{t('w.dispute')}</Button>
+                  <Button data-tour="worker-dispute" variant="outline" size="lg" onClick={() => taskAct(task.id, 'dispute')} loading={busyTask === task.id} icon={<ThumbsDown className="size-5 text-stop" />}>{t('w.dispute')}</Button>
                   <Button variant="soft" size="lg" onClick={() => taskAct(task.id, 'confirm')} disabled={busyTask === task.id} icon={<ThumbsUp className="size-5 text-ok" />}>{t('w.confirm')}</Button>
                 </div>
               )}

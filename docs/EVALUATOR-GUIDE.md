@@ -12,7 +12,10 @@ page, see [ONE-PAGE.md](ONE-PAGE.md).
 1. Open **[bardan-1049030199952.europe-west1.run.app](https://bardan-1049030199952.europe-west1.run.app)** (or `http://localhost:8080` locally) and press **Open the judge sandbox**.
    After a quiet spell the first page can take a few seconds while the server wakes up.
 2. Choose any persona. You get your own sandbox: nothing you do affects other judges, and it resets after an
-   hour. **Guided tour** (bottom of the side menu) walks through the story in seven steps.
+   hour. **Guided tour** (bottom of the side menu) walks through the story in nine steps; steps 8 and 9 are the
+   Scenario Lab and the worker-controlled wearable. **Start the guided tour** at the top of that list takes you
+   through all nine as each person: it rings the control to use next and says what it does, and you do the
+   clicking. **Take me there** on any step jumps straight to it.
 3. The scene picker in the top bar moves the site clock through the day; the **Emergency** button is always
    one tap away.
 
@@ -20,11 +23,11 @@ page, see [ONE-PAGE.md](ONE-PAGE.md).
 |---|---|---|---|
 | Ravi Kumar | New rebar helper, day 2 of acclimatization | English | Today card (press *Listen*), reports, Ask, private check-in, "This didn't happen" |
 | Anwar Hussain | Steel fixer in the kidney pathway | Arabic | Voice or typed report in Arabic, My health, My data (Bardan's promises, read aloud), consent, Kidney Passport |
-| Joseph Mathew | Site supervisor | English | Site now, Tomorrow's plan, Tasks, Capacity |
+| Joseph Mathew | Site supervisor | English | Site now, Tomorrow's plan, Tasks, **Scenario Lab**, Capacity |
 | Sara Al Mansoori | HSE lead | Arabic | Compliance pack, Copilot, Policy packs, Watch, Audit log |
 | Dr Fatima Al Hashimi | Clinician | Arabic | Clinic queue, Patient, Document AI |
 | Mariam Haddad | Site nurse | English | Hydration check |
-| Guest reviewer | Evaluator (independent observer) | English | Trust Centre: every proof report; the drill console |
+| Guest reviewer | Evaluator (independent observer) | English | Trust Centre: every proof report; the **Scenario Lab**; the drill console |
 
 ## 2. The story (scenes)
 
@@ -45,6 +48,23 @@ page, see [ONE-PAGE.md](ONE-PAGE.md).
 interval), *Evaluate draft*, then *Optimise with Bardan*. The slab pour moves out of the harshest hours, breaks are
 staggered to fit 20 shaded seats, the new workers stay within their acclimatization schedule, and every
 change has a reason. The *Fairness across the week* card flags a crew that keeps getting the hottest slots.
+
+**Try your own scenario (Scenario Lab).** As Joseph, Sara or the Guest reviewer, open *Scenario Lab*. Pick a preset
+or change anything: the hottest temperature, humidity, wind and sky; each task's place, how hard it is, its working
+hours and clothing; the named workers (phone language, new or returning, a clinician's label, a simulated watch); the
+rest areas. In about a second the plan, the breaks and every named worker's phone update, and the badge says the plan
+was re-checked independently. *Why these breaks* gives, for each hour of work, the heat at the work spot and at the
+rest spot, the ISO 7243 / NIOSH limit for that job, and the band minimum. *The usual fixed day* shows the same limits
+applied to one 15-minute break an hour. Then *Play the shift*: step in 30 minutes, choose *A harder day for → Anwar*,
+press *Hotter than forecast* and *Water runs out → Rebar tying*. The plan changes from that minute, the past stays as it
+happened, Anwar's watch asks for a break and only he rests. If no protected plan exists, Bardan stops and offers the
+permitted options; it never relaxes a rule.
+
+**A wearable the worker controls.** As Ravi, open *My data* and turn on *Use my wearable on this phone*, then *Tell my
+supervisor when I need a break*. Connect the demo watch and simulate a hard hour in the sun: Ravi is alerted first,
+and his phone says his supervisor was told "needs a break" without his heart rate. As Joseph, *Tasks* shows a *Check on
+a worker* task with no number. The server refuses any number from the phone and has no status that could clear a
+worker; the wearable can only add rest.
 
 **Technical design.** Jump to scene 3 as Ravi: the zone turned harsher than forecast and the live value
 governs; his card changes to a shaded task with the reason. In *Trust Centre → Decision replay*, press
@@ -76,8 +96,9 @@ before a fresh independent check; Ravi is told how it was resolved and can still
 second and every plan re-validated independently; *Policy packs* compiles a (paraphrased) Sharjah excerpt
 into draft rules with verbatim quotes and generated tests, which need two qualified approvals.
 
-**Pilot readiness.** *Trust Centre → Release tests* lists all 97 acceptance cases from the specification
-with the automated tests that check them (577 tests, all passing), and the measured load test at the bottom.
+**Commercial viability and route to pilot.** *Trust Centre → Release tests* lists all 97 acceptance cases from the
+specification with the automated tests that check them (639 tests, all passing), and the measured load test at the
+bottom. In the Scenario Lab, the working time a protected day costs is shown next to the usual fixed day.
 *Drills and comparison* shows what each workflow does in seven situations, checked against the real code when
 the report is built, and the observed drill results (none published yet). There is no simulated percentage.
 
@@ -95,7 +116,7 @@ including the safety rules, is in [DRILL-PROTOCOL.md](DRILL-PROTOCOL.md).
 | Red team | 45 generated attacks across the gate, Speak, the copilot and the agents; failures are listed |
 | Decision replay | The same 49 policy cases on the device engine and the server, compared by meaning |
 | Drills and comparison | What each workflow does in seven situations (scripted checks of the real code), and observed drill results from tamper-checked exports |
-| Release tests | The 97 Appendix D cases (English and Arabic), the 577 automated tests behind them, and the load test |
+| Release tests | The 97 Appendix D cases (English and Arabic), the 639 automated tests behind them, and the load test |
 | Agents | Signed tool manifests, budgets and approvals for each bounded agent |
 | Licences | Every library, data source and photo with its licence |
 
@@ -109,7 +130,9 @@ including the safety rules, is in [DRILL-PROTOCOL.md](DRILL-PROTOCOL.md).
   and every screen keeps working. The quota resets at midnight Pacific time (12:00 in Abu Dhabi in winter, 11:00 in summer).
 * **Mock:** the emergency dialler and all messages; nothing leaves the sandbox.
 * **Demonstration values:** the heat rules are demo encodings pending qualified review; the WBGT planning bands
-  and some rest minutes are demonstration values ([RULE-REVIEW.md](RULE-REVIEW.md)).
+  and some rest minutes are demonstration values; the break planner's ISO 7243 / NIOSH / ACGIH reference values and
+  the wearable's warning signs await the same review ([RULE-REVIEW.md](RULE-REVIEW.md)).
+* **Simulated wearable:** the heart rate comes from a labelled generator on the phone; no device is connected.
 * **Not built in the prototype:** the camera pulse research module, recorded-speech test sets with
   consenting speakers, real lab or HR integrations, and model training. The release tests show how the
   safety rules for these are already enforced (for example, physiological fields cannot change
@@ -123,14 +146,16 @@ including the safety rules, is in [DRILL-PROTOCOL.md](DRILL-PROTOCOL.md).
 19 أغسطس 2025، وأشخاص وهميون، واتصال طوارئ تجريبي لا يتصل بأي جهة. الواجهة كلها بالإنجليزية والعربية.
 
 1. افتح الرابط [bardan-1049030199952.europe-west1.run.app](https://bardan-1049030199952.europe-west1.run.app) واضغط **افتح بيئة التجربة**، ثم اختر شخصية. لكل مقيّم بيئته الخاصة، وتُعاد تهيئتها كل ساعة.
-2. **جولة إرشادية** في أسفل القائمة الجانبية تعرض القصة في سبع خطوات، ومنتقي المشاهد في الأعلى يحرك ساعة الموقع.
+2. **جولة إرشادية** في أسفل القائمة الجانبية تعرض القصة في تسع خطوات، و«ابدأ الجولة الإرشادية» في أعلاها يأخذك عبرها خطوة بخطوة ويحيط الزر التالي بإطار وأنت من يضغط، ومنتقي المشاهد في الأعلى يحرك ساعة الموقع.
 3. أهم ما يمكن تجربته:
    * بصفة جوزيف: «خطة الغد» ثم «قيّم المسودة» ثم «حسّن مع بَرْدًا»؛ يبتعد العمل الشاق عن أشد الساعات وتتوزع الاستراحات على المقاعد المظللة.
+   * بصفة جوزيف: افتح «مختبر السيناريوهات» وغيّر الحرارة أو مهمة أو عاملاً؛ تتحدث الخطة والاستراحات وهاتف كل عامل بلغته في نحو ثانية، مع إعادة فحص مستقلة. ثم «شغّل الوردية»: اجعلها أشد حرارة واقطع الماء وامنح أنور «يوماً أصعب»، فتطلب ساعته استراحة ولا يستريح إلا هو.
+   * بصفة رافي: افتح «بياناتي» وشغّل الساعة الذكية الاختيارية واختر «أبلغ مشرفي عندما أحتاج إلى استراحة»، ثم حاكِ ساعة عمل شاقة: يُنبَّه رافي أولاً ولا يصل المشرف إلا «يحتاج إلى استراحة» دون أي رقم.
    * بصفة أنور: اكتب أو قل «ما فيني دوخة، بس الماي خلص» وراجع الكلمات قبل التأكيد.
    * بصفة رافي: اضغط «هذا لم يحدث» على مهمة الماء فتُصعَّد إلى مسؤول السلامة دون كشف هويته.
    * بصفة رافي: اضغط «استمع» على بطاقة «ماذا تفعل الآن» لسماعها، وبصفة أنور افتح «بياناتي والمشاركة» لسماع وعود بَرْدًا للعامل.
    * افتح «عناصر التحكم في بيئة التجربة» من أعلى الشاشة وفعّل «وضع اختبار الفريق الأحمر»، ثم اسأل بصفة أنور «هل كليتي تفشل؟»: تُمنع المسودة غير الآمنة ويظهر رد معتمد.
    * أوقف «ذكاء بَرْدًا» وفعّل «محاكاة انقطاع الإنترنت»، ثم اضغط «طوارئ» ثم «ارتباك»: تعمل البطاقة فوراً وتقول بصدق «فُتح الاتصال».
-   * بصفة المقيّم الضيف: «مركز الثقة» يعرض التقييمات والاختبارات (97 حالة قبول و577 اختباراً آلياً) واختبار الحمل والتراخيص، وتبويب «التمارين والمقارنة» يعرض ما يفعله كل أسلوب عمل ونتائج التمارين المرصودة (لم تُنشر أي تمارين بعد).
+   * بصفة المقيّم الضيف: «مركز الثقة» يعرض التقييمات والاختبارات (97 حالة قبول و639 اختباراً آلياً) واختبار الحمل والتراخيص، وتبويب «التمارين والمقارنة» يعرض ما يفعله كل أسلوب عمل ونتائج التمارين المرصودة (لم تُنشر أي تمارين بعد).
    * بصفة مسؤول السلامة: بعد اعتراض العامل، أضف «فحصاً ميدانياً مستقلاً» واكتب ما وجدته ثم «حلّ الاعتراض»؛ لا يمكن التحقق من المهمة قبل ذلك، ويُبلَّغ العامل ويمكنه الاعتراض مجدداً.
    * قواعد الحرارة معروضة بعلامة «قواعد حرارة للعرض» إلى أن يراجعها مختص مؤهل مقابل الدليل الحالي في أبوظبي.

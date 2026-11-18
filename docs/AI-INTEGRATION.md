@@ -44,6 +44,9 @@ These are decided by deterministic code that the release tests hold, with or wit
 - **Verification.** Evidence tiers and disputes are enforced by the ledger, never judged by a model.
 - **Clinical judgement.** No diagnosis, kidney-risk figure, fitness-for-work verdict or medicine dose, ever.
 - **People.** Nothing scores, ranks or profiles a worker.
+- **Breaks, the Scenario Lab and the wearable.** The break planner applies the published ISO 7243 / NIOSH equations,
+  the Lab re-plans with CP-SAT and re-checks with the rule engine, and the optional wearable runs ECTemp and fixed
+  warning signs on the phone. No model is involved, and a wearable reading can only add rest.
 
 ## 1. The safety router (before any model)
 

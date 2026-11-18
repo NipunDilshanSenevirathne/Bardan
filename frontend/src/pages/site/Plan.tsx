@@ -71,8 +71,8 @@ export default function Plan() {
       <PageHeader title={t('p.title')} icon={<CalendarClock className="size-6" />}
         sub={<>{t('p.sub')} <Badge tone="sun" className="ms-1">{t('common.simulation')}</Badge></>}
         actions={<>
-          {can('plan.evaluate') && <Button variant="outline" onClick={evaluate} loading={busy === 'evaluate'} icon={<ClipboardCheck className="size-4" />}>{t('p.evaluate')}</Button>}
-          {can('plan.optimise') && <Button variant="sun" onClick={optimise} loading={busy === 'optimise'} icon={<Wand2 className="size-4" />}>{t('p.optimise')}</Button>}
+          {can('plan.evaluate') && <Button data-tour="plan-evaluate" variant="outline" onClick={evaluate} loading={busy === 'evaluate'} icon={<ClipboardCheck className="size-4" />}>{t('p.evaluate')}</Button>}
+          {can('plan.optimise') && <Button data-tour="plan-optimise" variant="sun" onClick={optimise} loading={busy === 'optimise'} icon={<Wand2 className="size-4" />}>{t('p.optimise')}</Button>}
         </>} />
       {err ? <ErrorNote error={err} /> : null}
 
@@ -244,7 +244,7 @@ function ProposalCard({ data, busy, onApprove, onActivate, canApprove, canActiva
             </div>
           )}
           {cert && (
-            <div className="rounded-2xl border border-ok/40 p-4">
+            <div data-tour="plan-cert" className="rounded-2xl border border-ok/40 p-4">
               <div className="flex items-center gap-2 font-bold text-ok"><BadgeCheck className="size-5" />{t('p.certificate')}</div>
               <div className="mt-2 grid grid-cols-1 gap-x-6 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
                 <KV k="ID" v={<span dir="ltr">{cert.certificate_id}</span>} />
@@ -268,8 +268,8 @@ function ProposalCard({ data, busy, onApprove, onActivate, canApprove, canActiva
             </div>
           )}
           <div className="flex flex-wrap gap-2">
-            {canApprove && <Button onClick={() => onApprove(data.scenario_id)} disabled={approved} loading={busy === 'approve'} icon={<CheckCircle2 className="size-4" />}>{approved ? t('p.approved') : t('p.approve')}</Button>}
-            {canActivate && <Button variant="sun" onClick={() => onActivate(data.scenario_id)} disabled={!approved || active} loading={busy === 'activate'} icon={<PlayCircle className="size-4" />}>{active ? t('p.active') : t('p.activate')}</Button>}
+            {canApprove && <Button data-tour="plan-approve" onClick={() => onApprove(data.scenario_id)} disabled={approved} loading={busy === 'approve'} icon={<CheckCircle2 className="size-4" />}>{approved ? t('p.approved') : t('p.approve')}</Button>}
+            {canActivate && <Button data-tour="plan-activate" variant="sun" onClick={() => onActivate(data.scenario_id)} disabled={!approved || active} loading={busy === 'activate'} icon={<PlayCircle className="size-4" />}>{active ? t('p.active') : t('p.activate')}</Button>}
           </div>
           {data.activation?.state === 'rejected' && <div className="rounded-xl bg-stop-soft p-3 text-sm text-stop">{t('p.basis_changed', { c: (data.activation.changed ?? []).join(', ') })}</div>}
           <p className="text-xs text-muted">{t('p.approve_note')}</p>

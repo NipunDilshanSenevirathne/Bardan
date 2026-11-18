@@ -170,8 +170,8 @@ export default function Report() {
           </form>
           {offline && <p className="mt-2 text-xs font-semibold text-white/90">{t('r.offline_typing')}</p>}
           <div className="mt-3 flex flex-wrap gap-2">
-            {['ما فيني دوخة، بس الماي خلص', 'I am not dizzy, but the water is finished', 'the water خلص و أحس بدوخة', 'my friend is talking strangely'].map((s) => (
-              <button key={s} onClick={() => { setText(s); void intake({ text: s }) }} disabled={busy} className="rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold hover:bg-white/25">{s}</button>
+            {['ما فيني دوخة، بس الماي خلص', 'I am not dizzy, but the water is finished', 'the water خلص و أحس بدوخة', 'my friend is talking strangely'].map((s, i) => (
+              <button key={s} data-tour={i === 0 ? 'report-example' : undefined} onClick={() => { setText(s); void intake({ text: s }) }} disabled={busy} className="rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold hover:bg-white/25">{s}</button>
             ))}
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function Report() {
                   })}
                 </ul>
                 <div className="grid grid-cols-2 gap-2">
-                  <Button size="lg" onClick={confirm} loading={busy}>{t('r.yes')}</Button>
+                  <Button data-tour="report-confirm" size="lg" onClick={confirm} loading={busy}>{t('r.yes')}</Button>
                   <Button size="lg" variant="soft" onClick={() => setRes(null)}>{t('r.edit')}</Button>
                 </div>
               </>

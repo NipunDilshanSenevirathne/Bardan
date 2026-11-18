@@ -92,6 +92,12 @@ TEMPLATES: dict[str, dict[str, str]] = {
     "msg.ac_broken_ack": {
         "en": "Thank you. A housing task was created. Your name is not shared.",
         "ar": "شكراً لك. أُنشئت مهمة للسكن. لا تتم مشاركة اسمك."},
+    "msg.wearable_shared": {
+        "en": "Your supervisor was told you need a break. Rest in the shade and drink water. They did not see your heart rate.",
+        "ar": "أُبلغ مشرفك أنك تحتاج إلى استراحة. استرح في الظل واشرب الماء. لم يرَ مشرفك نبضك."},
+    "msg.wearable_buddy": {
+        "en": "Please check on {name} now. Their wearable alert was not answered. Go to them; if they are confused or unwell, press Emergency.",
+        "ar": "يرجى تفقد {name} الآن. لم يُرد على تنبيه ساعته. اذهب إليه، وإن كان مشوشاً أو متعباً فاضغط زر الطوارئ."},
     "msg.sharing_withdrawn": {
         "en": "Optional sharing has stopped on this phone. Other services update when they receive the change. Some clinical records must be kept by law.",
         "ar": "توقفت المشاركة الاختيارية على هذا الهاتف. تُحدَّث الخدمات الأخرى عند استلام التغيير. يجب الاحتفاظ ببعض السجلات الطبية بحكم القانون."},

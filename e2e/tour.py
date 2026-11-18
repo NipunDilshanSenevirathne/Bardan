@@ -1,4 +1,4 @@
-"""Rehearse the seven-step guided tour from a fresh sandbox, as a judge would click it (Playwright, AI off)."""
+"""Rehearse guided-tour steps 1-7 from a fresh sandbox, as a judge would click it (Playwright, AI off); e2e/lab.py covers 8-9."""
 import json
 import re
 import sys

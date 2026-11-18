@@ -33,6 +33,7 @@ const Trust = lazy(() => import('./pages/trust/TrustCentre'))
 const DrillConsole = lazy(() => import('./pages/trust/Drill'))
 const Passport = lazy(() => import('./pages/Passport'))
 const Credits = lazy(() => import('./pages/Credits'))
+const Lab = lazy(() => import('./pages/lab/Lab'))
 
 registerSW({ immediate: true })
 
@@ -76,6 +77,7 @@ createRoot(document.getElementById('root')!).render(
                   <Route path="clinic/hydration" element={<Suspense fallback={<Loading />}><ClinicHydration /></Suspense>} />
                   <Route path="trust" element={<Suspense fallback={<Loading />}><Trust /></Suspense>} />
                   <Route path="drill" element={<Suspense fallback={<Loading />}><DrillConsole /></Suspense>} />
+                  <Route path="lab" element={<Suspense fallback={<Loading />}><Lab /></Suspense>} />
                 </Route>
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>

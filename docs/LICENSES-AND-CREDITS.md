@@ -84,3 +84,19 @@ images and video they produced are original work for this project.
 
 The film's music and sound effects were generated in code for this project; no stock music or footage is used. The
 screens shown in the README and the film are captured from the prototype itself, running on synthetic data.
+
+## Methods and published values (Scenario Lab, break planner, optional wearable)
+
+No code or text is copied from these; the equations and values are implemented from the published descriptions and
+are listed for review in [RULE-REVIEW.md](RULE-REVIEW.md) (rows 16–21).
+
+| Source | Used for |
+|---|---|
+| ISO 7243:2017, *Ergonomics of the thermal environment: assessment of heat stress using the WBGT index* | The one-hour WBGT reference values by metabolic rate |
+| NIOSH, *Criteria for a Recommended Standard: Occupational Exposure to Heat and Hot Environments* (DHHS 2016-106) | REL and RAL (the same equations), acclimatization, hydration background |
+| ACGIH TLV documentation for heat stress, as tabulated in the [OSHA Technical Manual, Section III, Chapter 4](https://obis.osha.gov/dts/osta/otm/otm_iii/otm_iii_4.html) | Work-rate classes, clothing adjustment factors, the screening table the tests compare against, physiological warning signs |
+| Buller MJ et al. (2013), *Estimation of human core temperature from sequential heart rate observations*, Physiological Measurement 34:781–798; [US 2014/0180027 A1](https://patents.google.com/patent/US20140180027A1/en) | ECTemp parameters for the phone's body-heat estimate |
+| AIHA Thermal Stress Working Group (2024), *Wearable physiological monitoring to assess heat strain* (white paper) | Accuracy limits, false alarms at 38 °C, consent and no-penalty safeguards |
+| Morrissey MC et al. (2026), *Leveraging wearables to safeguard workers in a hotter climate*, Frontiers in Public Health 14:1867796 | No use for discipline, pay, task allocation, employment or immigration decisions |
+| Hong Kong Labour Department, *Guidance Notes on Prevention of Heat Stroke at Work* (third edition, revised August 2026) | Hourly work–rest schedules by workload; extra rest for unacclimatised workers |
+| Abu Dhabi Public Health Centre, *Safety in the Heat* (2026 campaign), and the MoHRE midday break (12:30–15:00, 15 June–15 September 2026) | Water guidance and the federal floor, already in the rule packs |

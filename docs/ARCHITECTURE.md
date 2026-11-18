@@ -32,12 +32,12 @@ depth, see [AI-INTEGRATION.md](AI-INTEGRATION.md).
 
 | Path | Responsibility | Key files |
 |---|---|---|
-| `frontend/src/pages` | Worker phone, site console, HSE, clinic, Trust Centre, drill console | `worker/Today.tsx`, `worker/Report.tsx`, `site/Plan.tsx`, `site/Tasks.tsx`, `trust/TrustCentre.tsx` |
-| `frontend/src/engine` | The device policy engine and the offline phrase matcher (TypeScript), with 138 tests | `engine.ts`, `lexicon.ts`, `conformance.test.ts` |
-| `backend/app/api` | The `/v1` routes (85), capability tokens, problem details, idempotency | `routes_worker.py`, `routes_ops.py`, `routes_clinical.py`, `routes_trust.py` |
+| `frontend/src/pages` | Worker phone, site console, Scenario Lab, HSE, clinic, Trust Centre, drill console | `worker/Today.tsx`, `worker/Report.tsx`, `site/Plan.tsx`, `site/Tasks.tsx`, `lab/Lab.tsx`, `trust/TrustCentre.tsx` |
+| `frontend/src/engine` | The device policy engine, the offline phrase matcher and the wearable engine (TypeScript), with 153 tests | `engine.ts`, `lexicon.ts`, `strain.ts`, `conformance.test.ts` |
+| `backend/app/api` | The `/v1` routes (89), capability tokens, problem details, idempotency | `routes_worker.py`, `routes_ops.py`, `routes_clinical.py`, `routes_trust.py` |
 | `backend/app/core` | Policy engine, protection ledger, consent, clinical vault, audit log, sandbox and scenario | `policy.py`, `ledger.py`, `consent.py`, `clinical.py`, `audit.py`, `access.py` |
 | `backend/app/forecast` | Liljegren WBGT, the replay forecast and its backtest, live Open-Meteo mode | `wbgt.py`, `model.py`, `service.py` |
-| `backend/app/planner` | Site Heat Twin, CP-SAT optimiser, independent re-validation and certificate, weekly fairness | `twin.py`, `optimiser.py`, `certificate.py`, `fairness.py` |
+| `backend/app/planner` | Site Heat Twin, CP-SAT optimiser, independent re-validation and certificate, weekly fairness, break planner, Scenario Lab and shift simulator | `twin.py`, `optimiser.py`, `certificate.py`, `fairness.py`, `workrest.py`, `lab.py` |
 | `backend/app/ai` | AI adapter, Guardian, Speak, Ask, copilot, compiler, document AI, agents, evaluation | `gemini.py`, `gate.py`, `intake.py`, `chat.py`, `copilot.py`, `orchestrator.py` |
 | `backend/app/insights` | Watch: Poisson CUSUM on aggregated signals with small-group suppression | `cusum.py` |
 | `shared` | One source of truth for both engines: rule packs, the 49-case conformance suite, the emergency lexicon | `packs/`, `conformance.json`, `lexicon.json` |
@@ -98,6 +98,63 @@ named supervisor approves it, and activation is refused if anything changed betw
 ![The protection loop as a flow, from Foresee to Resolve.](diagrams/02-protection-loop.png)
 
 <sub>Source: [diagrams/src/02-protection-loop.mmd](diagrams/src/02-protection-loop.mmd)</sub>
+
+## Scenario Lab, break planner and the optional wearable
+
+Added after the programme's feedback (17 November 2026): let reviewers enter their own sample workers, weather and
+tasks and watch the plan and alerts respond; add a break planner or shift simulator; and, optionally, wearable data
+that the worker controls. Nothing here uses AI.
+
+**Break planner** (`backend/app/planner/workrest.py`). The demonstration pack sets a minimum rest per hour by heat band
+only. The published method also makes rest depend on the work itself. ISO 7243:2017, the NIOSH 2016 criteria (REL and
+RAL) and the ACGIH TLV and Action Limit share two one-hour limits: WBGT ≤ 56.7 − 11.5·log₁₀M for acclimatized workers
+and ≤ 59.9 − 14.1·log₁₀M for workers who are not, with M the hour's time-weighted metabolic rate (light 180 W,
+moderate 300 W, heavy 415 W, rest 115 W; valid 115–520 W). For each crew and hour the planner finds the shortest break,
+in 15-minute steps, that keeps the hour's average WBGT within the limit for the hour's average metabolic rate. The walk
+to and from the rest area is spent at the work spot's heat and at walking pace (300 W), so a distant rest area costs
+more rest; the ACGIH clothing adjustment is added (coveralls +1 °C, double layer +3 °C). The pack's band minimum is
+the floor, so the planner can only add rest. With the same WBGT at work and rest and no walk, the results match the
+ACGIH screening table (tested).
+
+**Lab** (`backend/app/planner/lab.py`, `POST /v1/lab/plan`, stateless). The reviewer's weather becomes hourly air
+temperature (a diurnal curve to the chosen peak), humidity at a constant dew point, wind and sun (a clear-sky model
+scaled for haze or cloud), then Liljegren WBGT per slot for full sun, shade, a still indoor space and a cooled room;
+plans use the value plus 0.82 °C (the upper end of the 90% band). Each task becomes a work spot and a crew in the site
+plan's world format, so the same policy engine, Site Heat Twin and re-check apply. The CP-SAT model differs from the
+site plan's in two ways: working time is counted net of breaks (a task needs its working hours, not slots), and a
+crew's break in an hour is one block of the length the break planner asks for. New and returning workers do heat
+work only where the lower limit allows, and shaded work for the rest of such hours, inside their acclimatization
+allowance; clinician labels and the midday window are hard constraints, as on the site. Objectives, in order: least
+heavy work in harsh bands, least work waiting for tomorrow, least rest needed (cooler hours first), fairness, least
+disruption (and, when re-planning, least change to the plan already announced), acclimatization progress.
+
+The re-check (`lab.revalidate`) runs the site plan's rule-engine re-check worker by worker and slot by slot, then
+re-checks every worked crew-hour against the limit with the working and rest minutes as planned, every new worker's
+hour on that worker's own heat time, water outages and personal events. It never reads the solver's model.
+
+**Shift simulator.** The browser sends the scenario, the time, the plan in force and the changes reported so far.
+Slots before "now" are fixed to what happened; changes apply only from the slot they were reported in; a crew that
+stops at the half hour takes its break straight away. When no protected plan exists, the response names the permitted
+remedies (let part wait, add rest seats, add shaded places) and never relaxes the midday window, the withdrawal band,
+the heat limit or a clinician's label. The browser keeps the change and waits for the reviewer's decision.
+
+**Optional wearable** (`frontend/src/engine/strain.ts`, `WearableCard.tsx`, `POST /v1/worker/wearable/status`). Off by
+default. On the phone, minute heart rate drives ECTemp, the extended Kalman filter of Buller et al. (2013) with the
+published parameters (a = 1, γ = 0.022, HR = −4.5714·CT² + 384.4286·CT − 7887.1, σ = 18.88; start 37.1 °C, variance 0).
+The warning signs are ACGIH's: heart rate above 180 minus age for five minutes (only if the worker entered an age, kept
+on the phone), above 120 one minute after work stops, and an estimate of 38.5 °C, or 38.0 °C for a worker not yet
+acclimatized; 38.0 °C alone is "rising" for acclimatized workers. A serious alert goes to the worker first and stays
+until answered. Only with the worker's consent (`wearable_status_share`) does the phone send the words
+`needs_break`; the server refuses any other field and any other status, creates a *Check on a worker* task (E2, five
+minutes) and tells the worker what was shared. A second consent (`wearable_buddy_alert`) lets the phone ask the buddy
+to check on the worker, by name only, when a serious alert is not answered. Withdrawal wins, as for every consent.
+Readings stay on the phone for 24 hours. In the Lab the same engine runs on simulated heart rates for named workers
+with a watch; the planner receives only "needs a break" and gives that worker a 30-minute shaded break.
+
+Why it can only add rest: ECTemp's 95% limits of agreement were ±0.63 °C in the laboratory and ±1.2 °C in an
+independent field check, and the AIHA's 2024 review shows a 38 °C decision point catches strain but raises many false
+alarms. A false alarm costs a break; a false all-clear could cost a life, so no reading can shorten a break, lift a stop
+or mark anyone fit, and no reading means no change. The rule pack already sets `may_infer_fitness_from_pulse: false`.
 
 ## The protection ledger
 
@@ -221,7 +278,7 @@ Step by step: [DEPLOY-CLOUD-RUN.md](DEPLOY-CLOUD-RUN.md).
 
 ## Invariants and the tests that hold them
 
-A selection of the 577 release tests, by the rule they hold. The full list, tied to the 97 acceptance cases, is in
+A selection of the 639 release tests, by the rule they hold. The full list, tied to the 97 acceptance cases, is in
 *Trust Centre → Release tests* and [TESTING.md](TESTING.md).
 
 | Invariant | Release test (backend/tests) |
@@ -243,3 +300,6 @@ A selection of the 577 release tests, by the rule they hold. The full list, tied
 | Models never receive worker identity; real data never reaches a free-tier model | `test_models_never_receive_worker_identity`, `test_real_data_is_never_sent_to_a_free_tier_model` |
 | No model name ever reaches the interface | `test_no_model_identifier_ever_reaches_the_interface` |
 | People never read internal codes, including in the AI trace | `test_people_never_read_internal_codes` |
+| Breaks follow the ISO 7243 / NIOSH limit for the job and can only add rest | `test_rest_agrees_with_the_acgih_screening_table`, `test_rest_never_decreases_when_work_gets_harder`, `test_rules_are_never_relaxed_for_productivity` |
+| The simulator never rewrites the past and every plan shown is re-checked | `test_the_past_is_frozen_and_changes_apply_only_from_now`, `test_random_days_of_changes_always_stay_rechecked_valid` |
+| A wearable shares words, never numbers, only by choice, and can never clear a worker | `test_shared_status_reaches_the_supervisor_as_words_never_numbers`, `test_no_number_and_no_clearing_status_can_cross_from_the_phone`, `test_wearable_status_needs_the_workers_own_consent` |

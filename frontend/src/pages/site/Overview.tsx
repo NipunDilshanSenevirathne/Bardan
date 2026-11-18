@@ -172,7 +172,7 @@ export default function Overview() {
                 <div className="mt-4 rounded-2xl border border-dashed border-line p-4">
                   <div className="text-sm font-semibold">{t('s.try_clinical')}</div>
                   <p className="mt-1 text-xs text-muted">{t('s.try_clinical_b')}</p>
-                  <Button className="mt-3" size="sm" variant="outline" onClick={tryClinical} loading={deniedBusy} icon={<ShieldX className="size-4 text-stop" />}>{t('s.try_clinical')}</Button>
+                  <Button data-tour="privacy-try" className="mt-3" size="sm" variant="outline" onClick={tryClinical} loading={deniedBusy} icon={<ShieldX className="size-4 text-stop" />}>{t('s.try_clinical')}</Button>
                   {denied && (
                     <div role="status" className="mt-3 rounded-xl border border-stop/30 bg-stop-soft p-3 text-sm text-stop">
                       <div className="font-bold">{t('s.denied')}</div>

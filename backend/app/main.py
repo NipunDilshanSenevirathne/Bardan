@@ -16,7 +16,7 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from .api import routes_clinical, routes_drill, routes_ops, routes_sandbox, routes_trust, routes_worker
+from .api import routes_clinical, routes_drill, routes_lab, routes_ops, routes_sandbox, routes_trust, routes_worker
 from .api.deps import problem
 from .core.clinical import ClinicalError
 from .core.drill import DrillError
@@ -136,7 +136,7 @@ def _title(code: int) -> str:
 
 
 for r in (routes_sandbox.router, routes_worker.router, routes_ops.router, routes_clinical.router,
-          routes_trust.router, routes_drill.router):
+          routes_trust.router, routes_drill.router, routes_lab.router):
     app.include_router(r)
 
 # ------------------------------------------------------------- web app

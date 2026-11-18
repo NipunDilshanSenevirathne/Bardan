@@ -127,6 +127,16 @@ def test_optimised_plan_is_revalidated_certified_and_needs_approval(site):
     assert msgs["W07"]["lang"] == "ar" and msgs["W01"]["lang"] == "en"
 
 
+def test_each_evening_message_reaches_a_worker_once(site):
+    """Approving without activating, then jumping to the shift, re-plans the same day: no duplicate messages."""
+    p = optimise(site)
+    assert site.sup.post(f"/v1/plans/{p['scenario_id']}/approve").status_code == 200
+    site.sb.set_scene("harsh")                     # the scenario script plans, approves and activates again
+    tomorrow = [n for n in site.sb.ledger.notifications
+                if n.get("to_actor") == "W01" and n["template"].startswith("msg.tomorrow")]
+    assert len(tomorrow) == 1, [n["slots"] for n in tomorrow]
+
+
 @pytest.mark.tcase("T24", "T76")
 def test_rest_capacity_shortage_gives_no_feasible_plan_with_remedies(site):
     """Too few shaded seats: 'no feasible protected plan', the binding constraint and permitted remedies."""

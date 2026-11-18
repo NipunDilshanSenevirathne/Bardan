@@ -106,7 +106,7 @@ function TaskCard({ task, clock }: { task: any; clock: string }) {
   const rationale = lang === 'ar' ? task.rationale_ar ?? task.rationale : task.rationale
 
   return (
-    <Card className={cx('overflow-hidden', ['escalated', 'disputed'].includes(s) && 'border-stop/40')}>
+    <Card data-tour={`task-${task.action_code}`} className={cx('overflow-hidden', ['escalated', 'disputed'].includes(s) && 'border-stop/40')}>
       <div className="flex flex-wrap items-start justify-between gap-3 px-5 pt-4">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">

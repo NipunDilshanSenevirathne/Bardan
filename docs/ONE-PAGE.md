@@ -4,7 +4,8 @@
 Challenge 2026, Challenge 07. Individual entry by Nipun Dilshan Senevirathne. Working prototype, **synthetic data
 only**, English and Arabic. Bardan plans heat-safe work the evening before, turns the heat rules into tasks that
 are assigned, evidenced, escalated and independently checked, lets workers say "this didn't happen" safely, and
-keeps kidney care private and continuous.
+keeps kidney care private and continuous. In the **Scenario Lab** anyone can enter sample workers, weather and
+tasks, watch the plan, the breaks and every phone respond, and play the shift as conditions change.
 
 | Implemented and tested | Simulated or mocked (labelled in the app) | Planned, not built |
 |---|---|---|
@@ -15,25 +16,23 @@ keeps kidney care private and continuous.
 | Offline: reports and alerts wait on the phone, survive a reload and send themselves when the network returns; "received by the server" and "seen by the site team" are separate | AI on a free tier with synthetic data only; everything works with AI off | Push notifications or SMS; HR, lab and health-information-exchange integrations |
 | Clinical workspace: lab import checks, document AI with source highlights, referrals with clinic capacity enforced at booking; the employer sees only "clinic visit 14:00-16:00" | | Recorded-speech test sets, the camera pulse research module, model training |
 | Trust Centre: AI trace (scoped per person), evaluation and red team, decision replay on two engines, workflow checks, drill results, release tests, load test | | A licensed clinical partner, a pilot site and worker representatives |
+| Scenario Lab and shift simulator: your own workers, weather and tasks; breaks sized to the ISO 7243 / NIOSH limit for each job; mid-shift changes re-planned from that minute; every plan re-checked. Optional wearable, off by default: processed on the phone, it can only add rest, and the supervisor gets "needs a break" only by the worker's choice, never a number | The wearable's heart rate (a labelled generator on the phone) | A real wearable integration, and a field check of the estimate on the pilot's workers |
 
 **Measured, as it is**
 
-* **577 automated tests** (439 server, 138 device), all passing, covering all **97 acceptance cases** of the
-  specification. Browser rehearsals of the full guided tour and of a phone losing its network pass with no
-  unexpected failed call.
-* **Forecast, held out:** fitted, calibrated and tested on separate periods, with only data available at the 18:00
-  issue time: 90% interval coverage **89.1%** on 2,340 zone-hours; mean error **0.76 °C** against 0.84 °C for
-  persistence; 1.5% of harsh hours underestimated. Replayed weather, not site instruments.
-* **What each workflow does:** 7 of 7 scripted situations behave as designed when run through the real code. They
-  show behaviour, not speed; no simulated percentage is claimed.
-* **Live AI (free tier, 8 Nov 2026):** every AI feature ran in English and Arabic in a browser against the hosting
-  container; 100% critical recall, 0 false reassurance over 44 reports; red-team drafts blocked 10/10 after one fix.
-* **Load, one CPU core:** 50 judges clicking for a minute at 270 requests a second (95th percentile under 45 ms);
-  100 judges arriving in the same second all finished, 0 errors.
-* **Watch:** a sudden supply failure is caught within 2 days in 93% of synthetic cases (0.18 false alerts per site
-  per month); a slow rise from a low baseline often cannot be, because no event has happened yet; this is shown.
+* **639 automated tests** (486 server, 153 device), all passing, covering all **97 acceptance cases** of the
+  specification. Browser rehearsals of the guided tour, a lost network, a drill and the Scenario Lab with the
+  wearable pass with no unexpected failed call.
+* **Forecast, held out:** 90% interval coverage **89.1%** on 2,340 zone-hours; mean error **0.76 °C** against
+  0.84 °C for persistence (fitted, calibrated and tested on separate periods; replayed weather).
+* **Scenario Lab:** across **1,722** random half-hour steps on 120 random days, every plan shown passed the
+  independent re-check; when no protected plan exists it says so and names the permitted options.
+* **Live AI (free tier, 8 Nov 2026):** every AI feature ran in English and Arabic; 100% critical recall and 0 false
+  reassurance over 44 reports; red-team drafts blocked 10/10 after one fix. **What each workflow does:** 7 of 7
+  scripted situations behave as designed in the real code (behaviour, not speed).
+* **Load, one CPU core:** 270 requests a second for 50 judges (95th percentile under 45 ms); 100 arriving at once,
+  0 errors. **Watch:** 93% of sudden supply failures caught within 2 days; slow rises often cannot be, and this is shown.
 
-**Not yet, said plainly:** no drill has been observed, no qualified person has reviewed the heat rules, and there
-is no clinical partner, customer, approval or pilot. The pilot kit (`docs/PILOT-KIT.md`) sizes the market from
-published figures (about 1.39 million MoHRE-registered construction workers in the UAE in 2022, 0.42 million in Abu
-Dhabi in 2019) and sets out UAE hosting, the health-data law, outreach and the review forms.
+**Not yet, said plainly:** no observed drill, no qualified review of the heat rules or the break limits, and no
+clinical partner, customer, approval or pilot; `docs/PILOT-KIT.md` sets out the market, UAE hosting, the
+health-data law and the review forms.

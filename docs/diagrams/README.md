@@ -21,12 +21,14 @@ screenshots are captured from the prototype itself, running on synthetic data.
 | [ai-integration.png](ai-integration.png) | How AI is integrated: safety router, one adapter, Guardian, engines decide, people approve, AI-off path | [custom/ai-integration.html](custom/ai-integration.html) |
 | [ai-capabilities.png](ai-capabilities.png) | Ten capabilities (seven generative, each with an AI-off path) and seven bounded agents | [custom/ai-capabilities.html](custom/ai-capabilities.html) |
 | [evidence-ladder.png](evidence-ladder.png) | Evidence tiers E0 to E4 and the rules for verification and disputes | [custom/evidence-ladder.html](custom/evidence-ladder.html) |
-| [privacy-matrix.png](privacy-matrix.png) | Who sees what, for each of the five roles | [custom/privacy-matrix.html](custom/privacy-matrix.html) |
+| [privacy-matrix.png](privacy-matrix.png) | Who sees what, for each of the five roles, including the optional wearable | [custom/privacy-matrix.html](custom/privacy-matrix.html) |
 | [architecture.png](architecture.png) | The layers: people, phone, API, deterministic engines, AI, stores; hosting and outside services | [custom/architecture.html](custom/architecture.html) |
 | [proof.png](proof.png) | The measured results, with the method next to each number, and what is not done yet | [custom/proof.html](custom/proof.html) |
 | [screens-worker.png](screens-worker.png) | Four worker screens: action card offline, Arabic report heard back, "This didn't happen", emergency card | [custom/screens-worker.html](custom/screens-worker.html) |
 | [screens-trust.png](screens-trust.png) | Four trust screens: blocked unsafe draft, honest emergency states, independent verification, who saw my data | [custom/screens-trust.html](custom/screens-trust.html) |
 | [screens-console.png](screens-console.png) | Six console screens: plan, site now, escalated task, resolved dispute, AI trace, decision replay | [custom/screens-console.html](custom/screens-console.html) |
+| [screens-lab.png](screens-lab.png) | The Scenario Lab and shift simulator: your own scenario, the shift re-planned, every phone, why each break | [custom/screens-lab.html](custom/screens-lab.html) |
+| [screens-wearable.png](screens-wearable.png) | The optional wearable: the worker's choices, the worker told first, the supervisor's task with no number | [custom/screens-wearable.html](custom/screens-wearable.html) |
 | [../images/hook.gif](../images/hook.gif) | The film's opening: the badge that lied | drawn from the film's stage, captions off |
 
 ## Technical diagrams

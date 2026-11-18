@@ -9,8 +9,12 @@ import { Badge, cx } from './ui'
 
 const Q = SLOT_COUNT * 2   // 56 quarter-hour columns
 
-export function PlanTimeline({ plan, draft, grid, crewSize, restAreas, workers }: {
+export function PlanTimeline({ plan, draft, grid, crewSize, restAreas, workers, nowSlot, taskSub }: {
   plan: any; draft?: any; grid?: any; crewSize: Record<string, number>; restAreas: any[]; workers: Record<string, any>
+  /** Shift simulator: a "now" line at this half-hour slot; what is left of it has already happened. */
+  nowSlot?: number | null
+  /** Optional second line under each task's name (defaults to zone · crew · workload). */
+  taskSub?: (tk: any) => React.ReactNode
 }) {
   const { t, lang } = useI18n()
   const c = useVizColors()
@@ -67,7 +71,15 @@ export function PlanTimeline({ plan, draft, grid, crewSize, restAreas, workers }
         </div>
       ) : (
         <div className="relative scroll-thin overflow-x-auto rounded-2xl border border-line" dir="ltr">
-          <div className="grid min-w-[980px] text-xs" style={{ gridTemplateColumns: `11rem repeat(${Q}, minmax(0, 1fr))` }}>
+          <div className="relative grid min-w-[980px] text-xs" style={{ gridTemplateColumns: `11rem repeat(${Q}, minmax(0, 1fr))` }}>
+            {nowSlot != null && nowSlot > 0 && (
+              <>
+                <div className="pointer-events-none absolute top-0 bottom-0 z-[5] bg-surface-2/55" aria-hidden
+                  style={{ left: '11rem', width: `calc((100% - 11rem) * ${Math.min(nowSlot * 2, Q) / Q})` }} />
+                <div className="pointer-events-none absolute top-0 bottom-0 z-[6] w-0.5 bg-sun-bright" aria-hidden
+                  style={{ left: `calc(11rem + (100% - 11rem) * ${Math.min(nowSlot * 2, Q) / Q})` }} />
+              </>
+            )}
             {/* hour header */}
             <div className="sticky start-0 z-10 border-b border-line bg-surface-2 px-3 py-2 font-semibold text-muted" style={{ gridColumn: 1 }}>{t('common.time')}</div>
             {Array.from({ length: SLOT_COUNT / 2 + 0 }, (_, i) => i * 4).map((q) => (
@@ -83,7 +95,7 @@ export function PlanTimeline({ plan, draft, grid, crewSize, restAreas, workers }
                 <div key={tk.id} className="contents">
                   <div className="sticky start-0 z-10 flex min-h-12 flex-col justify-center border-t border-line bg-surface px-3 py-1.5" style={{ gridColumn: 1 }} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
                     <div className="truncate font-semibold">{pick(tk, 'name', lang)}</div>
-                    <div className="flex items-center gap-1 text-[10px] text-muted">{t('common.zone')} {tk.zone} · {tk.crew} · {t(`wl.${tk.workload}`)}</div>
+                    <div className="flex items-center gap-1 text-[10px] text-muted">{taskSub ? taskSub(tk) : <>{t('common.zone')} {tk.zone} · {tk.crew} · {t(`wl.${tk.workload}`)}</>}</div>
                   </div>
                   {Array.from({ length: Q }, (_, q) => {
                     const s = Math.floor(q / 2)

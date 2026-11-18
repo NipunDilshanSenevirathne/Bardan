@@ -8,13 +8,13 @@ Six layers of evidence, all reproducible from the repository; the first four are
 | Device engine tests (TypeScript, vitest) | `cd frontend && npm run test:report` | merged into the same report |
 | AI evaluation, red team, workflow checks | `GET /v1/reports/evaluation` (computed live) | Trust Centre → AI evaluation, Red team, Drills and comparison |
 | Load test | `python backend/scripts/load_test.py` against a running server ([LOAD-TEST.md](LOAD-TEST.md)) | Trust Centre → Release tests (bottom) |
-| Browser rehearsals | `python e2e/tour.py`, `e2e/offline_phone.py`, `e2e/drill.py`; with a key, `e2e/ai_live.py` ([e2e/README.md](../e2e/README.md)) | printed, with screenshots |
+| Browser rehearsals | `python e2e/tour.py`, `e2e/coach.py`, `e2e/offline_phone.py`, `e2e/drill.py`, `e2e/lab.py`; with a key, `e2e/ai_live.py` ([e2e/README.md](../e2e/README.md)) | printed, with screenshots |
 | Observed drills | the drill console and [DRILL-PROTOCOL.md](DRILL-PROTOCOL.md) (people, real time) | Trust Centre → Drills and comparison, once published |
 
 ## Release tests
 
-`backend/tests/` holds 439 server tests in 10 suites; `frontend/src/**/*.test.ts` holds 138 device tests
-(577 in all). Together they cover **all 97 acceptance cases** of Appendix D of the specification. Each test names the
+`backend/tests/` holds 486 server tests in 11 suites; `frontend/src/**/*.test.ts` holds 153 device tests
+(639 in all). Together they cover **all 97 acceptance cases** of Appendix D of the specification. Each test names the
 cases it checks with a marker, for example `@pytest.mark.tcase("T27")`, and the report lists, per case, its
 English and Arabic text, the expected outcome and the tests behind it (`backend/app/data/acceptance_cases.json`).
 
@@ -30,6 +30,8 @@ English and Arabic text, the expected outcome and the tests behind it (`backend/
 | `test_watch_agents.py` | Aggregate signals, the individual-output guard, detector evaluation, bounded agents |
 | `test_drill.py` | Observed drills: counterbalanced plan, sealed false reports, real-time clock, ledger-derived and observer moments, the fixer cannot be their own independent check, tamper-checked export and publication; the scripted workflow checks, and that they fail when a rule is broken |
 | `test_api.py` | Tokens, the permission matrix, problem details, security headers, rate limits, no model names in any response |
+| `test_lab.py` | The break planner (the ISO 7243 / NIOSH equations, agreement with the ACGIH screening table, more rest never needed for easier work, cooled rest giving back working time), the Scenario Lab (every preset planned and re-checked, working time net of breaks, rules never relaxed for productivity, new and restricted workers, permitted remedies only), the shift simulator (the past frozen, water outage, cooling failure, a worker's own wearable break, a symptom, a seeded stress run of random days), the API (staff only, nothing stored, unknown fields refused) and the wearable status (consent first, words never numbers, no clearing status, withdrawal stops it, buddy check, one task per retry) |
+| `strain.test.ts` (device) | ECTemp on the phone with the published parameters, the ACGIH warning signs, "no reading" never shown as steady, no level that can shorten a break or mark a worker fit, only "needs a break" leaving the phone and only by choice, the demonstration heart-rate generator |
 
 Rules the suite follows:
 
@@ -87,6 +89,30 @@ Preparing the README screenshots (9 November 2026) found two small display defec
   `test_people_never_read_internal_codes` also fails if any Guardian check lacks a label in either language.
 * An HSE finding typed without a full stop ran into the next sentence ("refilled and cold The worker can still
   challenge this"). The finding now always ends as its own sentence.
+
+Building the Scenario Lab, the break planner and the wearable (17 November 2026, after the programme's feedback) found
+and fixed more, each now a regression test or part of the seeded stress run:
+
+* The first version moved workers who were not yet acclimatized off heat work in every hour where their crew's breaks
+  were not enough. On a summer day that meant no heat work at all, so they could never acclimatize. They now do heat
+  work for the part of the hour the lower NIOSH limit allows and shaded work for the rest (the extra-rest approach in
+  Hong Kong's 2026 guidance), always inside the acclimatization allowance.
+* That rule first skipped indoor work that is not cooled; it now applies to every hot workplace, sun or not.
+* A new worker's hour was re-checked against the crew's working time; it is now checked against the worker's own heat
+  time, at the conditions of the slots that worker actually worked.
+* A change reported in the second half of an hour (hotter, cooling failed) made the re-check fail the first half,
+  which had already happened. Each hour is now judged on the conditions of the slots worked.
+* A crew that had worked the first half of an hour, with its break still to come, could be stopped at the half hour
+  without a break on record. It now takes that break in the rest area straight away (counted in the seats), and the
+  next re-plan keeps it as history instead of contradicting it.
+* In the simulator, a change that left no protected plan was silently dropped by the next change. The change is now
+  kept, and the day waits until a permitted option is chosen.
+
+A broader stress run on the final planner, outside the release tests: 120 random days (four seeds) with random
+weather, tasks, workers, clothing and mid-shift changes, 1,722 simulated half-hour steps. Every plan shown passed the
+independent re-check. When a day had no protected plan, the run let work wait until tomorrow; once (seed 7) that was
+not enough and more rest seats were needed, which the Lab offers as its own option. The script is
+`backend/scripts/lab_stress.py`.
 
 ## Live tests with a real key (21 October and 8 November 2026)
 

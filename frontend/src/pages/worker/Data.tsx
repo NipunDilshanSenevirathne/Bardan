@@ -3,6 +3,7 @@ import { Eye, FileDown, HeartHandshake, History, Link2, Lock, Printer, QrCode, S
 import { useEffect, useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { ListenButton } from '../../components/ListenButton'
+import { WearableCard } from '../../components/WearableCard'
 import { Badge, Button, Card, CardHeader, ErrorNote, Modal, PageHeader, Pre, Skeleton, cx } from '../../components/ui'
 import { api, enqueue, useStore } from '../../lib/api'
 import { useApi } from '../../lib/hooks'
@@ -13,6 +14,7 @@ export default function Data() {
   const qc = useQueryClient()
   const offline = useStore((s) => s.offline)
   const health = useApi<any>('/worker/health')
+  const today = useApi<any>('/worker/today')
   const [busy, setBusy] = useState<string | null>(null)
   const [msg, setMsg] = useState<string | null>(null)
   const [err, setErr] = useState<unknown>(null)
@@ -63,7 +65,7 @@ export default function Data() {
       <Card>
         <CardHeader title={t('d.title')} icon={<Lock className="size-5" />} />
         <ul className="divide-y divide-line">
-          {d.consents.map((c: any) => (
+          {d.consents.filter((c: any) => !String(c.purpose).startsWith('wearable_')).map((c: any) => (
             <li key={c.purpose} className="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2 font-semibold">{lang === 'ar' ? c.label_ar : c.label_en}
@@ -79,6 +81,9 @@ export default function Data() {
           ))}
         </ul>
       </Card>
+
+      <WearableCard consents={d.consents} onConsent={consent} busy={busy}
+        acclimatized={(today.data?.status?.worker?.exposure_percent ?? 100) >= 100} />
 
       <Card>
         <CardHeader title={t('d.passport')} sub={t('d.passport.b')} icon={<QrCode className="size-5" />} />
