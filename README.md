@@ -28,6 +28,12 @@
 Challenge 07: Climate-Resilient Worker Health**. Individual entry by **Nipun Dilshan Senevirathne**. It runs end to end
 in **English and Arabic**, on a phone or a laptop, with **synthetic data only**.
 
+## 🎬 Project Demo
+
+[![Demo](https://img.youtube.com/vi/KDHKV4QdAm0/maxresdefault.jpg)](https://www.youtube.com/watch?v=KDHKV4QdAm0)
+
+**▶️ Click the video thumbnail above to watch the full demonstration.**
+
 ## Bardan in 30 seconds
 
 - **The problem.** Outdoor workers in the Gulf already have heat rules, forecasts and a midday break. What fails is the
