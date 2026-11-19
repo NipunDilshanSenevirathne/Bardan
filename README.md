@@ -32,7 +32,7 @@ in **English and Arabic**, on a phone or a laptop, with **synthetic data only**.
 
 [![Demo](https://img.youtube.com/vi/KDHKV4QdAm0/maxresdefault.jpg)](https://www.youtube.com/watch?v=KDHKV4QdAm0)
 
-**▶️ Click the video thumbnail above to watch the full demonstration.**
+**▶️ Click the video thumbnail above to watch the idea.**
 
 ## Bardan in 30 seconds
 
